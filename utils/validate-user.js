@@ -1,3 +1,25 @@
+const validatePasswordInput = (password) => {
+  let passwordArr = [];
+
+  if (password.trim() === "") {
+    passwordArr.push("Password should not be empty");
+  }
+  if (password.length < 8) {
+    // !password.match(/^(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.[!#$%^&? "])$/)
+    passwordArr.push("Password should contain at least 8 characters");
+  }
+  // if (!password.match(/^(?=.*[a-zA-Z])$/)) {
+  //   passwordArr.push(
+  //     "Password should contain at least one lowercase character and one uppercase character"
+  //   );
+  // }
+  // if (!password.match(/^(?=.*\d)$/)) {
+  //   passwordArr.push("Password should contain at least one number");
+  // }
+
+  return passwordArr.length ? { password: passwordArr } : {};
+};
+
 const validateRegistrationInput = (
   username,
   email,
@@ -29,7 +51,7 @@ const validateRegistrationInput = (
   errors = { ...errors, ...validatePasswordInput(password) };
   if (confirmPassword.trim() === "") {
     errors.confirmPassword = "Confirm password should not be empty";
-  } else if (confirmPassword === password) {
+  } else if (confirmPassword !== password) {
     errors.confirmPassword = "Confirm password & password don't match";
   }
 
@@ -42,7 +64,10 @@ const validateLoginInput = (username, password) => {
   if (username.trim() === "") {
     errors.username = "Username should not be empty";
   }
-  errors = { ...errors, ...validatePasswordInput(password) };
+  if (password.trim() === "") {
+    errors.password = "Password should not be empty";
+  }
+  errors = { ...errors };
   return { errors, valid: Object.keys(errors).length < 1 };
 };
 
@@ -66,23 +91,6 @@ const validateUserEditInput = (firstName, lastname, email) => {
   }
 
   return { errors, valid: Object.keys(errors).length < 1 };
-};
-
-const validatePasswordInput = (password) => {
-  if (password.trim() === "") {
-    return {
-      password: "Password should not be empty",
-    };
-  } else if (
-    password.match(/^(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.[!#$%^&? "])$/)
-  ) {
-    return {
-      password:
-        "Password should contain at least one digit\nPassword should contain at least one lower case\nPassword should contain at least one upper case\nPassword should contain at least 8 from the mentioned characters",
-    };
-  }
-
-  return {};
 };
 
 module.exports = {

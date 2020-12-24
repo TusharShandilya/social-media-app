@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const { UserInputError } = require("apollo-server");
 
@@ -49,25 +50,21 @@ module.exports = {
         confirmPassword
       );
 
-      if (!valid) throw new UserInputError(errors);
-      try {
-        const user = findOne({ $or: [{ username }, { email }] });
+      if (!valid) throw new UserInputError("Invalid Input", { errors });
 
-        if (user) {
-          if (user.username === username) {
-            throw new UserInputError("Username already exists", {
-              errors: {
-                username: "This username is taken",
-              },
-            });
-          } else if (user.email === email) {
-            throw new UserInputError("Email already registered", {
-              errors: {
-                email: "This email is already registered",
-              },
-            });
-          }
-        } else {
+      const user = await User.findOne({ $or: [{ username }, { email }] });
+
+      if (user) {
+        let errors = {};
+        if (user.username === username) {
+          errors.username = "This username is taken";
+        } else if (user.email === email) {
+          errors.email = "This email is already registered";
+        }
+
+        throw new UserInputError("User already exists", { errors });
+      } else {
+        try {
           password = await bcrypt.hash(password, 12);
           const newUser = new User({
             username,
@@ -87,18 +84,17 @@ module.exports = {
             id: res._id,
             token,
           };
+        } catch (err) {
+          throw new Error(err);
         }
-      } catch (err) {
-        throw new Error(err);
       }
     },
     login: async (_, { username, password }) => {
       const { valid, errors } = validateLoginInput(username, password);
-
-      if (!valid) throw new UserInputError(errors);
+      if (!valid) throw new UserInputError("Invalid Input", { errors });
 
       try {
-        let user = await User.findOne(username);
+        let user = await User.findOne({ username });
 
         if (!user) {
           throw new UserInputError("user not found", {
