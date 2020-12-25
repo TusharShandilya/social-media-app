@@ -5,6 +5,8 @@ const PostSchema = Schema({
   createdAt: String,
   updatedAt: String,
   username: String,
+  firstName: String,
+  lastName: String,
   likes: [
     {
       username: String,

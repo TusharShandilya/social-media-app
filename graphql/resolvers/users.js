@@ -93,34 +93,28 @@ module.exports = {
       const { valid, errors } = validateLoginInput(username, password);
       if (!valid) throw new UserInputError("Invalid Input", { errors });
 
-      try {
-        let user = await User.findOne({ username });
+      let user = await User.findOne({ username });
 
-        if (!user) {
-          throw new UserInputError("user not found", {
-            errors: { general: "User not found" },
-          });
-        }
-        // verify password
+      if (!user) {
+        throw new UserInputError("user not found", {
+          errors: { general: "User not found" },
+        });
+      }
+      // verify password
 
-        const matchPassword = await bcrypt.compare(password, user.password);
+      const matchPassword = await bcrypt.compare(password, user.password);
 
-        if (matchPassword) {
-          let token = generateToken(user);
-          return {
-            ...user._doc,
-            id: user._id,
-            token,
-          };
-        } else {
-          throw new UserInputError("Invalid credentials", {
-            errors: { general: "Invalid credentials" },
-          });
-        }
-
-        // generate token
-      } catch (err) {
-        throw new Error(err);
+      if (matchPassword) {
+        let token = generateToken(user);
+        return {
+          ...user._doc,
+          id: user._id,
+          token,
+        };
+      } else {
+        throw new UserInputError("Invalid credentials", {
+          errors: { general: "Invalid credentials" },
+        });
       }
     },
     editUser: async (_, { firstName, lastName, email }, context) => {},
