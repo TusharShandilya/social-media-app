@@ -1,4 +1,4 @@
-const { ForbiddenError } = require("apollo-server");
+const { ForbiddenError, UserInputError } = require("apollo-server");
 const Post = require("../../models/Post");
 const checkAuth = require("../../utils/check-auth");
 
@@ -52,26 +52,34 @@ module.exports = {
         throw new Error(err);
       }
     },
-    editPost: async (_, { postId, body }, context) => {},
+    editPost: async (_, { postId, body }, context) => {
+      const { username } = checkAuth(context);
+
+      const post = await Post.findById(postId);
+
+      if (!post) throw new UserInputError("Post not found");
+
+      if (post.username !== username) throw new ForbiddenError("Not allowed");
+
+      post.edited = true;
+      post.updatedAt = new Date().toISOString();
+      post.body = body;
+
+      await post.update(post);
+
+      return post;
+    },
     deletePost: async (_, { postId }, context) => {
-      // Check if the user is authorized
       const user = checkAuth(context);
 
-      try {
-        const post = await Post.findById({ id: postId });
-        if (post.username === user.username) {
-          post.delete();
-          return post;
-        } else {
-          throw new ForbiddenError("Not allowed");
-        }
-      } catch (err) {
-        throw new Error(err);
+      const post = await Post.findById(postId);
+      if (post.username === user.username) {
+        post.delete();
+        return post;
+      } else {
+        throw new ForbiddenError("Not allowed");
       }
     },
-    createComment: async (_, { postId, body }, context) => {},
-    editComment: async (_, { postId, commentId, body }, context) => {},
-    deleteComment: async (_, { postId, commentId }, context) => {},
     likePost: async (_, { postId }, context) => {},
   },
 };

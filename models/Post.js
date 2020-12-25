@@ -7,6 +7,7 @@ const PostSchema = Schema({
   username: String,
   firstName: String,
   lastName: String,
+  edited: { type: Boolean, default: false },
   likes: [
     {
       username: String,
