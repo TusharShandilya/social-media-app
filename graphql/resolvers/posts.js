@@ -70,16 +70,34 @@ module.exports = {
       return post;
     },
     deletePost: async (_, { postId }, context) => {
-      const user = checkAuth(context);
+      const { username } = checkAuth(context);
 
       const post = await Post.findById(postId);
-      if (post.username === user.username) {
+      if (post.username === username) {
         post.delete();
         return post;
       } else {
         throw new ForbiddenError("Not allowed");
       }
     },
-    likePost: async (_, { postId }, context) => {},
+    likePost: async (_, { postId }, context) => {
+      const { username } = checkAuth(context);
+
+      const post = await Post.findById(postId);
+
+      if (!post) throw new Error("Post not found");
+
+      if (post.likes.find((like) => like.username === username)) {
+        // Like found
+        post.likes = post.likes.filter((like) => like.username !== username);
+      } else {
+        // Like not found
+        post.likes.push({ username, createdAt: new Date().toISOString() });
+
+        await post.save();
+
+        return post;
+      }
+    },
   },
 };
