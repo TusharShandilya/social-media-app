@@ -16,10 +16,14 @@ const PostSchema = Schema({
   ],
   comments: [
     {
+      commentId: String,
       body: String,
       username: String,
-      edited: Boolean,
+      firstName: String,
+      lastName: String,
       createdAt: String,
+      updatedAt: String,
+      edited: { type: Boolean, default: false },
     },
   ],
   user: {
