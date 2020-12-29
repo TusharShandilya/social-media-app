@@ -1,23 +1,30 @@
 import { createContext, useReducer } from "react";
 
-type AuthContextType = {
+type User = {
+  [props: string]: string;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+};
+
+type State = {
   user: object | null;
-  login: (userData: object) => void;
+  login: (userData: User) => void;
   logout: () => void;
 };
 
-const initialState: AuthContextType = {
+type Actions = { type: "LOGIN"; payload: User } | { type: "LOGOUT" };
+
+const initialState: State = {
   user: null,
-  login: (userData: object) => {},
+  login: (userData: User) => {},
   logout: () => {},
 };
 
-const AuthContext = createContext<AuthContextType>(initialState);
-// TODO: Change state type
-const authReducer = (
-  state: any,
-  action: { type: string; payload?: object }
-) => {
+const AuthContext = createContext<State>(initialState);
+
+const authReducer = (state: State, action: Actions) => {
   switch (action.type) {
     case "LOGIN":
       return {
@@ -37,7 +44,7 @@ const authReducer = (
 const AuthProvider: React.FC = (props) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const login = (userData: object) => {
+  const login = (userData: User) => {
     dispatch({ type: "LOGIN", payload: userData });
   };
 
