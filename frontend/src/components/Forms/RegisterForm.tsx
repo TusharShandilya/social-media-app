@@ -1,5 +1,7 @@
 import React from "react";
+import { gql, useMutation } from "@apollo/client";
 
+import { AuthContext } from "../../context/AuthUser.context";
 import useForm from "../../hooks/useForm";
 
 interface RegisterFormValues {
@@ -12,6 +14,15 @@ interface RegisterFormValues {
 }
 
 const RegisterForm: React.FC = () => {
+  const context = React.useContext(AuthContext);
+  const [errors, setErrors] = React.useState<RegisterFormValues>({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const { values, onSubmit, onChange } = useForm<RegisterFormValues>(
     {
       firstName: "",
@@ -21,10 +32,25 @@ const RegisterForm: React.FC = () => {
       password: "",
       confirmPassword: "",
     },
-    () => {
-      console.log("register");
-    }
+    handleRegistration
   );
+
+  const [registerUser, { loading }] = useMutation(REGISTER_USER, {
+    update(_, { data: { register: userData } }) {
+      context.login(userData);
+    },
+    variables: values,
+    onError({ graphQLErrors, networkError }) {
+      if (graphQLErrors) {
+        setErrors(graphQLErrors[0].extensions!.exception.errors);
+      }
+    },
+  });
+
+  function handleRegistration() {
+    registerUser();
+  }
+
   return (
     <form className="form" onSubmit={onSubmit}>
       <div className="form-control">
@@ -39,6 +65,9 @@ const RegisterForm: React.FC = () => {
           name="firstName"
           id="register-firstName"
         />
+        {errors.firstName !== "" && (
+          <h3 className="form-error">{errors.firstName}</h3>
+        )}
       </div>
       <div className="form-control">
         <label className="form-control__label" htmlFor="register-lastName">
@@ -52,6 +81,9 @@ const RegisterForm: React.FC = () => {
           name="lastName"
           id="register-lastName"
         />
+        {errors.lastName !== "" && (
+          <h3 className="form-error">{errors.lastName}</h3>
+        )}
       </div>
       <div className="form-control">
         <label className="form-control__label" htmlFor="register-username">
@@ -65,6 +97,9 @@ const RegisterForm: React.FC = () => {
           name="username"
           id="register-username"
         />
+        {errors.username !== "" && (
+          <h3 className="form-error">{errors.username}</h3>
+        )}
       </div>
       <div className="form-control">
         <label className="form-control__label" htmlFor="register-email">
@@ -78,6 +113,7 @@ const RegisterForm: React.FC = () => {
           name="email"
           id="register-email"
         />
+        {errors.email !== "" && <h3 className="form-error">{errors.email}</h3>}
       </div>
       <div className="form-control">
         <label className="form-control__label" htmlFor="register-password">
@@ -91,6 +127,9 @@ const RegisterForm: React.FC = () => {
           name="password"
           id="register-password"
         />
+        {errors.password !== "" && (
+          <h3 className="form-error">{errors.password}</h3>
+        )}
       </div>
       <div className="form-control">
         <label
@@ -107,6 +146,9 @@ const RegisterForm: React.FC = () => {
           name="confirmPassword"
           id="register-confirmPassword"
         />
+        {errors.confirmPassword !== "" && (
+          <h3 className="form-error">{errors.confirmPassword}</h3>
+        )}
       </div>
       <div className="form-control">
         <button type="submit" className="btn btn__basic">
@@ -116,5 +158,35 @@ const RegisterForm: React.FC = () => {
     </form>
   );
 };
+
+const REGISTER_USER = gql`
+  mutation(
+    $username: String!
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    register(
+      registerInput: {
+        username: $username
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        password: $password
+        confirmPassword: $confirmPassword
+      }
+    ) {
+      username
+      token
+      createdAt
+      firstName
+      lastName
+      email
+      id
+    }
+  }
+`;
 
 export default RegisterForm;
