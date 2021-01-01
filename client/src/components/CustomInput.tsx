@@ -35,7 +35,7 @@ const CustomInput: React.FC<Props> = ({
         {label}
       </label>
       <input
-        required={required ? true : false}
+        required={required}
         onChange={handleChange}
         value={value}
         type={type}

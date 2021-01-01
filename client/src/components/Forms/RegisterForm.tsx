@@ -1,7 +1,7 @@
 import React from "react";
 import { gql, useMutation } from "@apollo/client";
 
-import { AuthContext } from "../../context/AuthUser.context";
+import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
 import CustomInput from "../CustomInput";
 

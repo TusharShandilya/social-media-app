@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { createContext, useReducer } from "react";
-import { getCookie, setCookie } from "../utils/cookies";
+import { getCookie, setCookie } from "./utils/cookies";
 
 type User = {
   [props: string]: string;

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { AuthProvider } from "./context/AuthUser.context";
+import { AuthProvider } from "./AuthUser.context";
 import { ApolloProvider } from "@apollo/client";
 import client from "./utils/ApolloClient";
 import Navbar from "./components/Navbar";

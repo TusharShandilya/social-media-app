@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router";
 
-import AuthRoute from "../utils/AuthRoute";
+import AuthRoute from "./AuthRoute";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";

@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { AuthContext } from "../context/AuthUser.context";
-
 interface LinksProps {
   styleClass?: string;
+  user: object | null;
 }
 
-const Links: React.FC<LinksProps> = (props) => {
-  const { user } = React.useContext(AuthContext);
+const Links: React.FC<LinksProps> = ({ styleClass, user }) => {
   return (
-    <ul className={props.styleClass}>
+    <ul className={styleClass}>
       <li>
         <Link to="/">Home</Link>
       </li>

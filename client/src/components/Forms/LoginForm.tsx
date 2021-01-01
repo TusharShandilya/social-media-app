@@ -1,7 +1,7 @@
 import React from "react";
 import { gql, useMutation } from "@apollo/client";
 
-import { AuthContext } from "../../context/AuthUser.context";
+import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
 import CustomInput from "../CustomInput";
 
@@ -12,9 +12,8 @@ interface LoginFormValues {
 
 const LoginForm: React.FC = () => {
   const context = React.useContext(AuthContext);
-  const [errors, setErrors] = React.useState<LoginFormValues>({
-    username: "",
-    password: "",
+  const [errors, setErrors] = React.useState<{ general: string }>({
+    general: "",
   });
   const { values, onSubmit, onChange } = useForm<LoginFormValues>(
     {
@@ -42,6 +41,9 @@ const LoginForm: React.FC = () => {
 
   return (
     <form className="form" onSubmit={onSubmit}>
+      {errors.general !== "" && (
+        <h4 className="custom-input__error">{errors.general}</h4>
+      )}
       <div className="form-control">
         <CustomInput
           id="login-username"
@@ -50,7 +52,7 @@ const LoginForm: React.FC = () => {
           name="username"
           value={values.username}
           handleChange={onChange}
-          error={errors.username}
+          required
         />
       </div>
       <div className="form-control">
@@ -61,7 +63,7 @@ const LoginForm: React.FC = () => {
           name="password"
           value={values.password}
           handleChange={onChange}
-          error={errors.password}
+          required
         />
       </div>
       <div className="form-control">
