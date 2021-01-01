@@ -3,6 +3,7 @@ import { gql, useMutation } from "@apollo/client";
 
 import { AuthContext } from "../../context/AuthUser.context";
 import useForm from "../../hooks/useForm";
+import CustomInput from "../CustomInput";
 
 interface LoginFormValues {
   username: string;
@@ -42,36 +43,26 @@ const LoginForm: React.FC = () => {
   return (
     <form className="form" onSubmit={onSubmit}>
       <div className="form-control">
-        <label className="form-control__label" htmlFor="login-username">
-          Username
-        </label>
-        <input
-          onChange={onChange}
-          value={values.username}
-          className="form-control__input"
+        <CustomInput
+          id="login-username"
+          label="Username"
           type="text"
           name="username"
-          id="login-username"
+          value={values.username}
+          handleChange={onChange}
+          error={errors.username}
         />
-        {errors.username !== "" && (
-          <h3 className="form-error">{errors.username}</h3>
-        )}
       </div>
       <div className="form-control">
-        <label className="form-control__label" htmlFor="login-password">
-          Password
-        </label>
-        <input
-          onChange={onChange}
-          value={values.password}
-          className="form-control__input"
+        <CustomInput
+          id="login-password"
+          label="Password"
           type="password"
           name="password"
-          id="login-password"
+          value={values.password}
+          handleChange={onChange}
+          error={errors.password}
         />
-        {errors.password !== "" && (
-          <h3 className="form-error">{errors.password}</h3>
-        )}
       </div>
       <div className="form-control">
         <button type="submit" className="btn btn__basic">

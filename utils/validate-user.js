@@ -45,9 +45,9 @@ const validateRegistrationInput = (
   if (firstName.trim() === "") {
     errors.firstName = "First name should not be empty";
   }
-  if (lastName.trim() === "") {
-    errors.lastName = "Last name should not be empty";
-  }
+  // if (lastName.trim() === "") {
+  //   errors.lastName = "Last name should not be empty";
+  // }
   errors = { ...errors, ...validatePasswordInput(password) };
   if (confirmPassword.trim() === "") {
     errors.confirmPassword = "Confirm password should not be empty";

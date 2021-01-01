@@ -3,6 +3,7 @@ import { gql, useMutation } from "@apollo/client";
 
 import { AuthContext } from "../../context/AuthUser.context";
 import useForm from "../../hooks/useForm";
+import CustomInput from "../CustomInput";
 
 interface RegisterFormValues {
   firstName: string;
@@ -54,101 +55,73 @@ const RegisterForm: React.FC = () => {
   return (
     <form className="form" onSubmit={onSubmit}>
       <div className="form-control">
-        <label className="form-control__label" htmlFor="register-firstName">
-          First Name
-        </label>
-        <input
-          onChange={onChange}
-          value={values.firstName}
-          className="form-control__input"
-          type="text"
-          name="firstName"
+        <CustomInput
           id="register-firstName"
-        />
-        {errors.firstName !== "" && (
-          <h3 className="form-error">{errors.firstName}</h3>
-        )}
-      </div>
-      <div className="form-control">
-        <label className="form-control__label" htmlFor="register-lastName">
-          Last Name
-        </label>
-        <input
-          onChange={onChange}
-          value={values.lastName}
-          className="form-control__input"
+          label="First Name"
+          name="firstName"
           type="text"
-          name="lastName"
-          id="register-lastName"
+          value={values.firstName}
+          handleChange={onChange}
+          error={errors.firstName}
+          required
         />
-        {errors.lastName !== "" && (
-          <h3 className="form-error">{errors.lastName}</h3>
-        )}
+        <CustomInput
+          id="register-lastName"
+          label="Last Name"
+          name="lastName"
+          type="text"
+          value={values.lastName}
+          handleChange={onChange}
+          error={errors.lastName}
+        />
       </div>
       <div className="form-control">
-        <label className="form-control__label" htmlFor="register-username">
-          Username
-        </label>
-        <input
-          onChange={onChange}
-          value={values.username}
-          className="form-control__input"
+        <CustomInput
+          handleChange={onChange}
+          id="register-username"
+          label="Username"
           type="text"
           name="username"
-          id="register-username"
+          value={values.username}
+          error={errors.username}
+          required
         />
-        {errors.username !== "" && (
-          <h3 className="form-error">{errors.username}</h3>
-        )}
       </div>
       <div className="form-control">
-        <label className="form-control__label" htmlFor="register-email">
-          Email
-        </label>
-        <input
-          onChange={onChange}
-          value={values.email}
-          className="form-control__input"
+        <CustomInput
+          handleChange={onChange}
+          id="register-email"
+          label="Email"
           type="email"
           name="email"
-          id="register-email"
+          value={values.email}
+          error={errors.email}
+          required
         />
-        {errors.email !== "" && <h3 className="form-error">{errors.email}</h3>}
       </div>
       <div className="form-control">
-        <label className="form-control__label" htmlFor="register-password">
-          Password
-        </label>
-        <input
-          onChange={onChange}
-          value={values.password}
-          className="form-control__input"
+        <CustomInput
+          handleChange={onChange}
+          id="register-password"
+          label="Password"
           type="password"
           name="password"
-          id="register-password"
+          value={values.password}
+          error={errors.password}
+          required
         />
-        {errors.password !== "" && (
-          <h3 className="form-error">{errors.password}</h3>
-        )}
       </div>
       <div className="form-control">
-        <label
-          className="form-control__label"
-          htmlFor="register-confirmPassword"
-        >
-          Confirm password
-        </label>
-        <input
-          onChange={onChange}
-          value={values.confirmPassword}
-          className="form-control__input"
-          type="password"
-          name="confirmPassword"
+        <CustomInput
           id="register-confirmPassword"
+          label="Confirm password"
+          name="confirmPassword"
+          type="password"
+          value={values.confirmPassword}
+          handleChange={onChange}
+          error={errors.confirmPassword}
+          required
         />
-        {errors.confirmPassword !== "" && (
-          <h3 className="form-error">{errors.confirmPassword}</h3>
-        )}
       </div>
       <div className="form-control">
         <button type="submit" className="btn btn__basic">
