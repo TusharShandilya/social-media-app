@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "client": "cd frontend && npm start",
+    "client": "cd client && npm start",
+    "install-server": "npm i",
+    "install-client": "cd client && npm i",
+    "install-all": "npm run install-server && npm run install-client",
     "start": " concurrently \"npm:server\" \"npm:client\""
   },
   "keywords": [],
@@ -14,13 +17,13 @@
   "dependencies": {
     "apollo-server": "^2.19.0",
     "bcrypt": "^5.0.0",
-    "concurrently": "^5.3.0",
     "graphql": "^15.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "nodemon": "^2.0.6"
   }
 }
