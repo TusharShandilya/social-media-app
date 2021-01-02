@@ -93,11 +93,10 @@ module.exports = {
       } else {
         // Like not found
         post.likes.push({ username, createdAt: new Date().toISOString() });
-
-        await post.save();
-
-        return post;
       }
+      await post.save();
+
+      return post;
     },
   },
 };

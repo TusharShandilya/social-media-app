@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import React from "react";
 
 import useForm from "../../hooks/useForm";
-import { GET_ALL_POSTS } from "../../graphql/posts";
+import { GET_ALL_POSTS } from "../../utils/graphql";
 import CustomInput from "../CustomInput";
 
 interface NewPostFormValues {

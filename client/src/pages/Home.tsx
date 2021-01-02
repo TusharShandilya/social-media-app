@@ -5,7 +5,7 @@ import PostCard from "../components/PostCard";
 import { Post } from "../utils/types";
 import PostForm from "../components/Forms/PostForm";
 import { AuthContext } from "../AuthUser.context";
-import { GET_ALL_POSTS } from "../graphql/posts";
+import { GET_ALL_POSTS } from "../utils/graphql";
 
 const Home: React.FC = () => {
   const { user } = useContext(AuthContext);

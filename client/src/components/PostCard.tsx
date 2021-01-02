@@ -1,8 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
 import React from "react";
-import { GET_ALL_POSTS } from "../graphql/posts";
+import { Link } from "react-router-dom";
 
+import { GET_ALL_POSTS } from "../utils/graphql";
 import { Post, User } from "../utils/types";
+import LikeButton from "./LikeButton";
 
 interface Props {
   post: Post;
@@ -64,10 +66,8 @@ const PostCard: React.FC<Props> = ({
       <h2 className="title">
         {firstName} {lastName}
       </h2>
-      <h4 className="subtitle">
-        <a href="" className="link">
-          @{username}
-        </a>
+      <h4 className="subtitle link">
+        <Link to={`/${username}`}>@{username}</Link>
       </h4>
       <span className="post-card__meta">
         {new Date(createdAt).toLocaleDateString("en-gb", {
@@ -81,14 +81,19 @@ const PostCard: React.FC<Props> = ({
         {body}
       </p>
       <div className="post-card__extra">
-        <button className="btn">{likeCount}</button>
-        <button className="btn">{commentCount}</button>
+        <LikeButton
+          id={id}
+          username={username}
+          likes={likes}
+          likeCount={likeCount}
+        />
+        <button className="btn">CommentsIcon {commentCount}</button>
       </div>
     </div>
   );
 };
 
-const DELETE_POST = gql`
+export const DELETE_POST = gql`
   mutation deletePost($postId: ID!) {
     deletePost(postId: $postId) {
       id
