@@ -1,25 +1,18 @@
 import jwtDecode from "jwt-decode";
+
 import { createContext, useReducer } from "react";
 import { getCookie, setCookie } from "./utils/cookies";
-
-type User = {
-  [props: string]: string;
-  username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-};
+import { User } from "./utils/types";
 
 type State = {
-  user: object | null;
+  user: User | null;
   login: (userData: User) => void;
   logout: () => void;
 };
 
 type Actions = { type: "LOGIN"; payload: User } | { type: "LOGOUT" };
 
-type jwtToken = {
-  [rest: string]: string;
+type jwtToken = User & {
   exp: string;
   iat: string;
 };

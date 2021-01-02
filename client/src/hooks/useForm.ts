@@ -5,7 +5,7 @@ const useForm = <T extends object>(initialValues: T, callback: Function) => {
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     let element = e.target as HTMLFormElement;
-    setValues({ ...values, [element.name]: element.value });
+    setValues((values) => ({ ...values, [element.name]: element.value }));
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

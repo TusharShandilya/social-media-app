@@ -27,3 +27,11 @@ export type Post = {
     }
   ];
 };
+
+export type User = {
+  [props: string]: string;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+};
