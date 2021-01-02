@@ -5,7 +5,7 @@ import { AuthProvider } from "./AuthUser.context";
 import { ApolloProvider } from "@apollo/client";
 import client from "./utils/ApolloClient";
 import Navbar from "./components/Navbar";
-import Routes from "./components/Routes";
+import Routes from "./pages/Routes";
 
 function App() {
   return (

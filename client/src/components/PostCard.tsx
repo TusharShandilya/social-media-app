@@ -3,12 +3,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { GET_ALL_POSTS } from "../utils/graphql";
-import { Post, User } from "../utils/types";
+import { Post } from "../utils/types";
+import { AuthContext } from "../AuthUser.context";
 import LikeButton from "./LikeButton";
 
 interface Props {
   post: Post;
-  user: User | null;
 }
 
 const PostCard: React.FC<Props> = ({
@@ -25,8 +25,9 @@ const PostCard: React.FC<Props> = ({
     comments,
     likes,
   },
-  user,
 }) => {
+  const { user } = React.useContext(AuthContext);
+
   const [deletePost, { loading }] = useMutation(DELETE_POST, {
     update(proxy, { data: { deletePost: post } }) {
       let data: any = proxy.readQuery({ query: GET_ALL_POSTS });

@@ -12,11 +12,7 @@ const Links: React.FC<LinksProps> = ({ styleClass, user }) => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      {user ? (
-        <li>
-          <Link to="/settings">Settings</Link>
-        </li>
-      ) : (
+      {!user && (
         <React.Fragment>
           <li>
             <Link to="/login">Login</Link>
