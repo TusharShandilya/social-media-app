@@ -9,6 +9,7 @@ import LikeButton from "./LikeButton";
 import CommentForm from "./Forms/CommentForm";
 import Comment from "./Comment";
 import CommentButton from "./CommentButton";
+import EditForm from "./Forms/EditForm";
 
 interface Props {
   post: Post;
@@ -30,6 +31,7 @@ const PostCard: React.FC<Props> = ({
   },
 }) => {
   const [showCommentForm, setShowCommentForm] = React.useState(false);
+  const [showEditPost, setShowEditPost] = React.useState(false);
   const { user } = React.useContext(AuthContext);
 
   const [deletePost, { loading }] = useMutation(DELETE_POST, {
@@ -61,7 +63,12 @@ const PostCard: React.FC<Props> = ({
       {signedInUserPost && (
         <div className="post-card__menu">
           <ul className="post-card__menu-items">
-            <li className="post-card__menu-item">Edit</li>
+            <li
+              className="post-card__menu-item"
+              onClick={() => setShowEditPost((show) => !show)}
+            >
+              Edit
+            </li>
             <li className="post-card__menu-item" onClick={() => deletePost()}>
               Delete
             </li>
@@ -81,12 +88,20 @@ const PostCard: React.FC<Props> = ({
           day: "numeric",
         })}
       </span>
-      <Link to={`/post/${username}/${id}`}>
-        <p className="post-card__description">
-          {edited && <em>(edited)</em>}
-          {body}
-        </p>
-      </Link>
+      {showEditPost ? (
+        <EditForm
+          body={body}
+          postId={id}
+          callback={() => setShowEditPost((show) => !show)}
+        />
+      ) : (
+        <Link to={`/post/${username}/${id}`}>
+          <p className="post-card__description">
+            {edited && <em>(edited)</em>}
+            {body}
+          </p>
+        </Link>
+      )}
       <div className="post-card__extra">
         <LikeButton
           id={id}
