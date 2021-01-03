@@ -6,6 +6,9 @@ import { GET_ALL_POSTS } from "../utils/graphql";
 import { Post } from "../utils/types";
 import { AuthContext } from "../AuthUser.context";
 import LikeButton from "./LikeButton";
+import CommentForm from "./Forms/CommentForm";
+import Comment from "./Comment";
+import CommentButton from "./CommentButton";
 
 interface Props {
   post: Post;
@@ -26,6 +29,7 @@ const PostCard: React.FC<Props> = ({
     likes,
   },
 }) => {
+  const [showCommentForm, setShowCommentForm] = React.useState(false);
   const { user } = React.useContext(AuthContext);
 
   const [deletePost, { loading }] = useMutation(DELETE_POST, {
@@ -68,7 +72,7 @@ const PostCard: React.FC<Props> = ({
         {firstName} {lastName}
       </h2>
       <h4 className="subtitle link">
-        <Link to={`/${username}`}>@{username}</Link>
+        <Link to={`/user/${username}`}>@{username}</Link>
       </h4>
       <span className="post-card__meta">
         {new Date(createdAt).toLocaleDateString("en-gb", {
@@ -77,19 +81,32 @@ const PostCard: React.FC<Props> = ({
           day: "numeric",
         })}
       </span>
-      <p className="post-card__description">
-        {edited && <em>(edited)</em>}
-        {body}
-      </p>
+      <Link to={`/post/${username}/${id}`}>
+        <p className="post-card__description">
+          {edited && <em>(edited)</em>}
+          {body}
+        </p>
+      </Link>
       <div className="post-card__extra">
         <LikeButton
           id={id}
           username={username}
           likes={likes}
           likeCount={likeCount}
+          user={user}
         />
-        <button className="btn">CommentsIcon {commentCount}</button>
+        <CommentButton
+          count={commentCount}
+          user={user}
+          callback={() => {
+            setShowCommentForm((show) => !show);
+          }}
+        />
       </div>
+      {user && showCommentForm && <CommentForm postId={id} />}
+      {comments.map((comment) => (
+        <Comment key={comment.commentId} comment={comment} />
+      ))}
     </div>
   );
 };

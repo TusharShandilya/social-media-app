@@ -6,7 +6,6 @@ import { Post } from "../utils/types";
 import PostForm from "../components/Forms/PostForm";
 import { AuthContext } from "../AuthUser.context";
 import { GET_ALL_POSTS } from "../utils/graphql";
-import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   const { user } = useContext(AuthContext);
@@ -20,9 +19,7 @@ const Home: React.FC = () => {
         <h1>Loading...</h1>
       ) : data ? (
         data.getPosts.map((post: Post) => (
-          <Link to={`/${post.username}/${post.id}`}>
-            <PostCard key={post.id} post={post} />
-          </Link>
+          <PostCard key={post.id} post={post} />
         ))
       ) : (
         <h1>An error has occurred</h1>

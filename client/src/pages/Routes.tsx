@@ -12,8 +12,8 @@ const Routes: React.FC = () => {
   return (
     <React.Fragment>
       <Route exact path="/" component={Home} />
-      <Route exact path="/:username" component={SingleUser} />
-      <Route exact path="/:username/:postId" component={SinglePost} />
+      <Route exact path="/user/:username" component={SingleUser} />
+      <Route exact path="/post/:username/:postId" component={SinglePost} />
       <AuthRoute exact path="/login" component={Login} />
       <AuthRoute exact path="/register" component={Register} />
     </React.Fragment>
