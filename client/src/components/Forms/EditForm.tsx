@@ -14,6 +14,7 @@ interface Props {
 interface EditFormValues {
   body: string;
 }
+
 const EditForm: React.FC<Props> = ({ body, postId, callback }) => {
   let { values, onChange, onSubmit } = useForm<EditFormValues>(
     { body },
@@ -21,7 +22,7 @@ const EditForm: React.FC<Props> = ({ body, postId, callback }) => {
   );
 
   const [editPost, { loading }] = useMutation(EDIT_POST, {
-    update(proxy, { data: { editPost: post } }) {},
+    update(_, { data: { editPost: post } }) {},
     variables: {
       postId,
       body: values.body,

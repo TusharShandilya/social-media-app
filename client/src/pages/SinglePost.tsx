@@ -12,7 +12,7 @@ const SinglePost: React.FC<Props> = (props) => {
   const { data, loading } = useQuery(GET_POST, { variables: { postId } });
 
   return (
-    <div>
+    <div className="page">
       {loading ? (
         <h1>Loading...</h1>
       ) : data ? (

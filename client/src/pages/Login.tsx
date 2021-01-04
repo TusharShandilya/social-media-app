@@ -3,7 +3,7 @@ import LoginForm from "../components/Forms/LoginForm";
 
 const Login: React.FC = () => {
   return (
-    <div>
+    <div className="page">
       <LoginForm />
     </div>
   );

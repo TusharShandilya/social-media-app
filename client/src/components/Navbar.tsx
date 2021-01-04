@@ -7,12 +7,13 @@ const Navbar = () => {
   const { user, logout } = React.useContext(AuthContext);
 
   return (
-    <nav>
-      <h1>Navbar</h1>
+    <nav className="navbar">
       <Links user={user} />
-      <button className="btn" onClick={logout}>
-        Logout
-      </button>
+      {user && (
+        <button className="btn btn--danger" onClick={logout}>
+          Logout
+        </button>
+      )}
     </nav>
   );
 };

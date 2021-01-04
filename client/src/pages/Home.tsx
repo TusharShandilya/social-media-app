@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   const { loading, data } = useQuery(GET_ALL_POSTS);
 
   return (
-    <div>
+    <div className="page">
       <h1>All posts</h1>
       {user && <PostForm />}
       {loading ? (

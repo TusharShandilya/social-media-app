@@ -1,5 +1,5 @@
+import React, { useState, useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
-import React from "react";
 import { Link } from "react-router-dom";
 
 import { GET_ALL_POSTS } from "../utils/graphql";
@@ -10,6 +10,7 @@ import CommentForm from "./Forms/CommentForm";
 import Comment from "./Comment";
 import CommentButton from "./CommentButton";
 import EditForm from "./Forms/EditForm";
+import ConfirmModal from "./ConfirmModal";
 
 interface Props {
   post: Post;
@@ -30,9 +31,10 @@ const PostCard: React.FC<Props> = ({
     likes,
   },
 }) => {
-  const [showCommentForm, setShowCommentForm] = React.useState(false);
-  const [showEditPost, setShowEditPost] = React.useState(false);
-  const { user } = React.useContext(AuthContext);
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [showEditPost, setShowEditPost] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const [deletePost, { loading }] = useMutation(DELETE_POST, {
     update(proxy, { data: { deletePost: post } }) {
@@ -53,6 +55,10 @@ const PostCard: React.FC<Props> = ({
     variables: { postId: id },
   });
 
+  const confirmModal = (callback: Function) => {
+    callback();
+  };
+
   let signedInUserPost = false;
   if (user) {
     signedInUserPost = user.username === username;
@@ -60,6 +66,16 @@ const PostCard: React.FC<Props> = ({
 
   return (
     <div className="post-card">
+      {modalOpen && (
+        <ConfirmModal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          onCancel={() => setModalOpen(false)}
+          onConfirm={deletePost}
+        >
+          Do you want to delete this post?
+        </ConfirmModal>
+      )}
       {signedInUserPost && (
         <div className="post-card__menu">
           <ul className="post-card__menu-items">
@@ -69,7 +85,10 @@ const PostCard: React.FC<Props> = ({
             >
               Edit
             </li>
-            <li className="post-card__menu-item" onClick={() => deletePost()}>
+            <li
+              className="post-card__menu-item"
+              onClick={() => setModalOpen(true)}
+            >
               Delete
             </li>
           </ul>
