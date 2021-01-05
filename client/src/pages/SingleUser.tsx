@@ -17,12 +17,12 @@ const SingleUser: React.FC<Props> = (props) => {
       {loading ? (
         <h1>Loading...</h1>
       ) : data ? (
-        <div className="">
-          <h1>
+        <div className="user">
+          <h1 className="title">
             {data.getUser.firstName} {data.getUser.lastName}
           </h1>
-          <h4>{data.getUser.username}</h4>
-          <p>{data.getUser.email}</p>
+          <h4 className="">{data.getUser.username}</h4>
+          <p className="subtitle">{data.getUser.email}</p>
           {data.getUser.posts.map((post: Post) => (
             <PostCard key={post.id} post={post} />
           ))}

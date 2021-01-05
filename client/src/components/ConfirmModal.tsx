@@ -28,7 +28,7 @@ const ConfirmModal: React.FC<Props> = ({
     onClose();
   };
 
-  return (
+  return open ? (
     <div className={`modal ${open && "modal--active"}`}>
       <div className="modal__background" onClick={onClose}></div>
       <div className="modal__btn--close" onClick={onClose}>
@@ -47,6 +47,8 @@ const ConfirmModal: React.FC<Props> = ({
         </button>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 

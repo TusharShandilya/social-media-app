@@ -55,10 +55,6 @@ const PostCard: React.FC<Props> = ({
     variables: { postId: id },
   });
 
-  const confirmModal = (callback: Function) => {
-    callback();
-  };
-
   let signedInUserPost = false;
   if (user) {
     signedInUserPost = user.username === username;
@@ -66,16 +62,15 @@ const PostCard: React.FC<Props> = ({
 
   return (
     <div className="post-card">
-      {modalOpen && (
-        <ConfirmModal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          onCancel={() => setModalOpen(false)}
-          onConfirm={deletePost}
-        >
-          Do you want to delete this post?
-        </ConfirmModal>
-      )}
+      <ConfirmModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onCancel={() => setModalOpen(false)}
+        onConfirm={deletePost}
+      >
+        Do you want to delete this post?
+      </ConfirmModal>
+
       {signedInUserPost && (
         <div className="post-card__menu">
           <ul className="post-card__menu-items">
@@ -139,7 +134,7 @@ const PostCard: React.FC<Props> = ({
       </div>
       {user && showCommentForm && <CommentForm postId={id} />}
       {comments.map((comment) => (
-        <Comment key={comment.commentId} comment={comment} />
+        <Comment key={comment.commentId} postId={id} comment={comment} />
       ))}
     </div>
   );
