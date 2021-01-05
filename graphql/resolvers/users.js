@@ -1,14 +1,13 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const { UserInputError } = require("apollo-server");
 
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 const {
   validateRegistrationInput,
   validateLoginInput,
 } = require("../../utils/validate-user");
-const { findOne } = require("../../models/User");
 const { JWT_SECRET } = require("../../config");
 
 const generateToken = (user) => {
@@ -26,7 +25,33 @@ const generateToken = (user) => {
 };
 
 module.exports = {
-  Query: {},
+  Query: {
+    getUser: async (_, { username }) => {
+      const user = await User.findOne({
+        username,
+      });
+
+      if (!user) throw new UserInputError("User not found");
+
+      const { id, firstName, lastName, email } = user;
+      const userPosts = await Post.find({
+        $or: [
+          { username },
+          { "comments.username": username },
+          { "likes.username": username },
+        ],
+      }).sort({ createdAt: -1 });
+
+      return {
+        id,
+        username,
+        firstName,
+        lastName,
+        email,
+        posts: [...userPosts],
+      };
+    },
+  },
   Mutation: {
     register: async (
       _,
