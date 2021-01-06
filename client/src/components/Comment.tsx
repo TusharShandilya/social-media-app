@@ -1,10 +1,11 @@
 import { gql, useMutation } from "@apollo/client";
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { AuthContext } from "../AuthUser.context";
 import { GET_ALL_POSTS } from "../utils/graphql";
-
 import ConfirmModal from "./ConfirmModal";
+import EditCommentForm from "./Forms/EditCommentForm";
 
 interface Props {
   comment: {
@@ -32,7 +33,7 @@ const Comment: React.FC<Props> = ({
   },
   postId,
 }) => {
-  const [showEditPost, setShowEditPost] = React.useState(false);
+  const [showEditComment, setShowEditComment] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
   const { user } = React.useContext(AuthContext);
 
@@ -74,7 +75,7 @@ const Comment: React.FC<Props> = ({
           <ul className="comment__menu-items">
             <li
               className="comment__menu-item"
-              onClick={() => setShowEditPost((show) => !show)}
+              onClick={() => setShowEditComment((show) => !show)}
             >
               Edit
             </li>
@@ -100,10 +101,19 @@ const Comment: React.FC<Props> = ({
           day: "numeric",
         })}
       </span>
-      <p className="comment__description">
-        {edited && <em>(edited)</em>}
-        {body}
-      </p>
+      {showEditComment ? (
+        <EditCommentForm
+          body={body}
+          postId={postId}
+          commentId={commentId}
+          callback={() => setShowEditComment((show) => !show)}
+        />
+      ) : (
+        <p className="comment__description">
+          {edited && <em>(edited)</em>}
+          {body}
+        </p>
+      )}
     </div>
   );
 };

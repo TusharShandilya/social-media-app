@@ -9,7 +9,7 @@ import LikeButton from "./LikeButton";
 import CommentForm from "./Forms/CommentForm";
 import Comment from "./Comment";
 import CommentButton from "./CommentButton";
-import EditForm from "./Forms/EditForm";
+import EditPostForm from "./Forms/EditPostForm";
 import ConfirmModal from "./ConfirmModal";
 
 interface Props {
@@ -103,7 +103,7 @@ const PostCard: React.FC<Props> = ({
         })}
       </span>
       {showEditPost ? (
-        <EditForm
+        <EditPostForm
           body={body}
           postId={id}
           callback={() => setShowEditPost((show) => !show)}

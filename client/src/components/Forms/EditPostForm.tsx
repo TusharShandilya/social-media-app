@@ -15,7 +15,7 @@ interface EditFormValues {
   body: string;
 }
 
-const EditForm: React.FC<Props> = ({ body, postId, callback }) => {
+const EditPostForm: React.FC<Props> = ({ body, postId, callback }) => {
   let { values, onChange, onSubmit } = useForm<EditFormValues>(
     { body },
     handleEdit
@@ -84,4 +84,4 @@ const EDIT_POST = gql`
   }
 `;
 
-export default EditForm;
+export default EditPostForm;
