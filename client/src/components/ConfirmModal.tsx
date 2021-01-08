@@ -2,9 +2,9 @@ import React from "react";
 
 interface Props {
   open: boolean;
-  header?: string;
   onClose: () => void;
   onConfirm: () => void;
+  header?: string;
   onCancel?: () => void;
 }
 

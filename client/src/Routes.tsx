@@ -1,12 +1,12 @@
 import React from "react";
 import { Route } from "react-router";
 
-import AuthRoute from "../components/AuthRoute";
-import Home from "./Home";
-import Login from "./Login";
-import Register from "./Register";
-import SingleUser from "./SingleUser";
-import SinglePost from "./SinglePost";
+import AuthRoute from "./components/AuthRoute";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import SingleUser from "./pages/SingleUser";
+import SinglePost from "./pages/SinglePost";
 
 const Routes: React.FC = () => {
   return (

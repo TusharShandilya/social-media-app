@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { User } from "../utils/types";
 
-interface LinksProps {
+interface Props {
   styleClass?: string;
-  user: object | null;
+  user: User | null;
 }
 
-const Links: React.FC<LinksProps> = ({ styleClass, user }) => {
+const Links: React.FC<Props> = ({ styleClass, user }) => {
   return (
     <ul className={styleClass}>
       <li>

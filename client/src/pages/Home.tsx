@@ -17,12 +17,10 @@ const Home: React.FC = () => {
       {user && <PostForm />}
       {loading ? (
         <h1>Loading...</h1>
-      ) : data ? (
-        data.getPosts.map((post: Post) => (
-          <PostCard key={post.id} post={post} />
-        ))
       ) : (
-        <h1>An error has occurred</h1>
+        data?.getPosts.map((post: Post) => (
+          <PostCard key={post.id} post={post} />
+        )) ?? <h1>An error has occurred</h1>
       )}
     </div>
   );

@@ -6,9 +6,9 @@ interface Props {
   type: string;
   name: string;
   value: string | number;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
   styleClass?: string;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
 }
 
