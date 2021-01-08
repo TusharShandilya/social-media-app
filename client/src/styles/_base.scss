@@ -1,0 +1,70 @@
+// RESET
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+}
+
+body {
+  box-sizing: border-box;
+  padding: 2rem 1rem;
+}
+
+// TYPOGRAPHY
+
+body {
+  font-family: $font-family-primary;
+  font-weight: 400;
+  line-height: 1.6;
+  color: $color-text-primary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-secondary;
+  text-transform: uppercase;
+  color: $color-primary;
+}
+
+a,
+a:visited,
+a:link {
+  text-decoration: none;
+  color: $color-text-primary;
+}
+
+ul,
+ol {
+  li {
+    list-style: none;
+  }
+}
+
+// LAYOUT
+.page {
+  margin: auto;
+  margin-top: 7.5rem;
+  width: 120rem;
+}
+
+// ANIMATIONS
+
+@keyframes expand-middle {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

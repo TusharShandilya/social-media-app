@@ -1,0 +1,30 @@
+// VARIABLES
+
+// fonts
+$font-family-primary: "Roboto", sans-serif;
+$font-family-secondary: "Montserrat", sans-serif;
+
+$font-size-default: 1.6rem;
+
+// colors
+$color-red-light: #ff908a;
+$color-red: #d84747;
+
+$color-blue: #124281;
+$color-blue-dark: #16202d;
+
+$color-grey-lightest: #fcfcfc;
+$color-grey-lighter: #dfdfdf;
+$color-grey-light: #c0c0c0;
+$color-grey: #a0a0a0;
+$color-grey-dark: #484848;
+$color-grey-darker: #303030;
+$color-grey-darkest: #101010;
+
+$color-primary: $color-blue-dark;
+// $color-secondary:;
+$color-text-primary: $color-grey-darkest;
+$color-text-secondary: $color-grey-dark;
+
+//------------------------------------
+// MIXINS

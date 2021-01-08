@@ -1,27 +1,46 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { User } from "../utils/types";
+import { AuthContext } from "../AuthUser.context";
 
 interface Props {
   styleClass?: string;
-  user: User | null;
 }
 
-const Links: React.FC<Props> = ({ styleClass, user }) => {
+const Links: React.FC<Props> = ({ styleClass }) => {
+  const { user, logout } = React.useContext(AuthContext);
+
   return (
     <ul className={styleClass}>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      {!user && (
+      {!user ? (
         <React.Fragment>
           <li>
-            <Link to="/login">Login</Link>
+            <NavLink activeClassName={`${styleClass}--active`} to="/login">
+              Login
+            </NavLink>
           </li>
           <li>
-            <Link to="/register">Register</Link>
+            <NavLink activeClassName={`${styleClass}--active`} to="/register">
+              Register
+            </NavLink>
           </li>
         </React.Fragment>
+      ) : (
+        <li>
+          <NavLink
+            activeClassName={`${styleClass}--active`}
+            to={`/user/${user.username}`}
+          >
+            {user.firstName} {user.lastName}
+          </NavLink>
+        </li>
+      )}
+      {user && (
+        <li>
+          <button className="btn btn--danger" onClick={logout}>
+            Logout
+          </button>
+        </li>
       )}
     </ul>
   );

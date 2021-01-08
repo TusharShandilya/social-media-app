@@ -1,19 +1,16 @@
 import React from "react";
 
+import Logo from "./Logo";
+import { Link } from "react-router-dom";
 import Links from "./Links";
-import { AuthContext } from "../AuthUser.context";
 
 const Navbar = () => {
-  const { user, logout } = React.useContext(AuthContext);
-
   return (
     <nav className="navbar">
-      <Links user={user} />
-      {user && (
-        <button className="btn btn--danger" onClick={logout}>
-          Logout
-        </button>
-      )}
+      <Link to="/">
+        <Logo styleClass={"navbar-logo"} />
+      </Link>
+      <Links styleClass={"navbar-links"} />
     </nav>
   );
 };

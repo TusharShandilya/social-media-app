@@ -1,0 +1,101 @@
+// LOGO
+.logo {
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+// NAVBAR
+.navbar {
+  position: fixed;
+  padding: 0.75rem 2rem;
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  border-bottom: 3px solid $color-primary;
+
+  height: 6.5rem;
+  width: 120rem;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $color-grey-lightest;
+}
+
+.navbar-logo {
+  height: 5rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+
+  li {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &--active {
+    &::before {
+      animation: expand-middle ease-in-out 0.2s;
+      content: "";
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      bottom: 0;
+      background-color: $color-red;
+    }
+  }
+}
+
+// CUSTOM INPUT
+
+// BUTTONS
+.btn {
+  position: relative;
+  background: none;
+  padding: 0.5rem 1rem;
+  border: 2px solid $color-primary;
+
+  font-size: inherit;
+  text-transform: inherit;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  &:active,
+  &:focus {
+    transform: scale(0.95) translateY(5%);
+  }
+
+  &--danger {
+    opacity: 1;
+    color: $color-red;
+    border: 2px solid $color-red;
+    &:hover {
+      color: $color-grey-lightest;
+      background-color: $color-red;
+    }
+  }
+}
+
+// FORM
+
+// POST CARD
+
+// COMMENT
