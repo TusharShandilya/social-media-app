@@ -4,6 +4,7 @@ import { gql, useMutation } from "@apollo/client";
 import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
 import CustomInput from "../CustomInput";
+import CustomButton from "../CustomButton";
 
 interface LoginFormValues {
   username: string;
@@ -67,9 +68,7 @@ const LoginForm: React.FC = () => {
         />
       </div>
       <div className="form-control">
-        <button type="submit" className="btn btn__basic">
-          Login
-        </button>
+        <CustomButton type="submit">Login</CustomButton>
       </div>
     </form>
   );

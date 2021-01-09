@@ -3,6 +3,7 @@ import React from "react";
 
 import useForm from "../../hooks/useForm";
 import { GET_ALL_POSTS } from "../../utils/graphql";
+import CustomButton from "../CustomButton";
 import CustomInput from "../CustomInput";
 
 interface Props {
@@ -54,9 +55,7 @@ const EditCommentForm: React.FC<Props> = ({
         handleChange={onChange}
         required
       />
-      <button type="submit" className="btn">
-        Edit
-      </button>
+      <CustomButton type="submit">Edit</CustomButton>
     </form>
   );
 };

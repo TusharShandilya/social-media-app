@@ -8,7 +8,7 @@ interface Props {
 
 const Logo: React.FC<Props> = ({ styleClass }) => {
   return (
-    <div className={`logo ${styleClass}`}>
+    <div aria-label="social media logo" className={`logo ${styleClass}`}>
       <img src={LogoImage} alt="logo" />
     </div>
   );

@@ -3,6 +3,7 @@ import React from "react";
 
 import useForm from "../../hooks/useForm";
 import { GET_ALL_POSTS } from "../../utils/graphql";
+import CustomButton from "../CustomButton";
 import CustomInput from "../CustomInput";
 
 interface NewPostFormValues {
@@ -46,9 +47,7 @@ const PostForm: React.FC = () => {
         handleChange={onChange}
         required
       />
-      <button type="submit" className="btn">
-        Post!
-      </button>
+      <CustomButton type="submit">Post!</CustomButton>
     </form>
   );
 };

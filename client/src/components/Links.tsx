@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { User } from "../utils/types";
 import { AuthContext } from "../AuthUser.context";
+import CustomButton from "./CustomButton";
 
 interface Props {
   styleClass?: string;
@@ -37,9 +38,9 @@ const Links: React.FC<Props> = ({ styleClass }) => {
       )}
       {user && (
         <li>
-          <button className="btn btn--danger" onClick={logout}>
+          <CustomButton color="danger" onClick={logout}>
             Logout
-          </button>
+          </CustomButton>
         </li>
       )}
     </ul>

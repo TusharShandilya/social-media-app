@@ -23,7 +23,7 @@
 
   height: 6.5rem;
   width: 120rem;
-  top: 1rem;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background: $color-grey-lightest;
@@ -44,8 +44,10 @@
       margin-right: 2rem;
     }
 
-    &:hover {
-      opacity: 0.8;
+    a {
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -65,31 +67,53 @@
 // CUSTOM INPUT
 
 // BUTTONS
+
 .btn {
   position: relative;
-  background: none;
-  padding: 0.5rem 1rem;
-  border: 2px solid $color-primary;
 
-  font-size: inherit;
   text-transform: inherit;
-
+  font-size: inherit;
   cursor: pointer;
+
+  background-color: $color-grey-lightest;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  border: 2px solid $color-primary;
+  outline: none;
 
   transition: all 0.2s;
 
-  &:active,
+  &:hover,
   &:focus {
-    transform: scale(0.95) translateY(5%);
+    transform: translate(7%, -20%);
   }
 
-  &--danger {
-    opacity: 1;
+  &:active {
+    transform: translate(0%);
+  }
+
+  &-danger {
     color: $color-red;
     border: 2px solid $color-red;
     &:hover {
+      opacity: 1;
       color: $color-grey-lightest;
       background-color: $color-red;
+    }
+  }
+}
+
+.btn-background {
+  display: inline-block;
+  background: $color-blue-dark;
+
+  &--inactive {
+    background: none;
+
+    .btn {
+      &:hover {
+        transform: none;
+      }
     }
   }
 }

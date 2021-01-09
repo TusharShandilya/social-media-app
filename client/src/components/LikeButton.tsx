@@ -2,6 +2,7 @@ import React from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { User } from "../utils/types";
+import CustomButton from "./CustomButton";
 
 interface Props {
   id: string;
@@ -33,13 +34,10 @@ const LikeButton: React.FC<Props> = ({
   });
 
   return user ? (
-    <button className="btn btn--like" onClick={() => likePost()}>
-      LikeIcon {likeCount}
-    </button>
+    <CustomButton onClick={() => likePost()}>LikeIcon {likeCount}</CustomButton>
   ) : (
     <Link to="/login">
-      {" "}
-      <button className="btn btn--like">LikeIcon {likeCount}</button>
+      <CustomButton noBackground>LikeIcon {likeCount}</CustomButton>
     </Link>
   );
 };

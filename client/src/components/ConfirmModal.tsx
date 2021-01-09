@@ -1,4 +1,5 @@
 import React from "react";
+import CustomButton from "./CustomButton";
 
 interface Props {
   open: boolean;
@@ -38,13 +39,13 @@ const ConfirmModal: React.FC<Props> = ({
       <div className="modal__body">{children}</div>
       <div className="modal__btns">
         {onCancel && (
-          <button className="btn modal__btn--cancel" onClick={handleCancel}>
+          <CustomButton noBackground onClick={handleCancel}>
             Cancel
-          </button>
+          </CustomButton>
         )}
-        <button className="btn modal__btn--confirm" onClick={handleConfirm}>
+        <CustomButton noBackground onClick={handleConfirm}>
           Confirm
-        </button>
+        </CustomButton>
       </div>
     </div>
   ) : (

@@ -3,6 +3,7 @@ import { gql, useMutation } from "@apollo/client";
 
 import useForm from "../../hooks/useForm";
 import CustomInput from "../CustomInput";
+import CustomButton from "../CustomButton";
 
 interface Props {
   postId: string;
@@ -44,9 +45,7 @@ const CommentForm: React.FC<Props> = ({ postId }) => {
         />
       </div>
       <div className="form-control">
-        <button type="submit" className="btn btn__basic">
-          Comment
-        </button>
+        <CustomButton type="submit">Comment</CustomButton>
       </div>
     </form>
   );

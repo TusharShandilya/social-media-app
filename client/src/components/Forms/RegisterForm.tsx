@@ -4,6 +4,7 @@ import { gql, useMutation } from "@apollo/client";
 import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
 import CustomInput from "../CustomInput";
+import CustomButton from "../CustomButton";
 
 interface RegisterFormValues {
   firstName: string;
@@ -124,9 +125,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className="form-control">
-        <button type="submit" className="btn btn__basic">
-          Register
-        </button>
+        <CustomButton type="submit">Register</CustomButton>
       </div>
     </form>
   );
