@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  outline: none;
 }
 
 html {
@@ -14,7 +15,6 @@ html {
 
 body {
   box-sizing: border-box;
-  padding: 2rem 1rem;
 }
 
 // TYPOGRAPHY
@@ -51,11 +51,47 @@ ol {
   }
 }
 
+.heading {
+  &-primary {
+    font-size: 3.5rem;
+  }
+}
+
+.paragraph {
+  font-size: $font-size-default;
+}
+
 // LAYOUT
+
+.navbar {
+  height: 7rem;
+  width: 120rem;
+}
+
 .page {
   margin: auto;
-  padding-top: 7rem;
+  padding-top: 9rem;
   width: 120rem;
+  min-height: 100vh;
+  background: $color-backgournd-primary;
+}
+
+@media screen and (max-width: 1200px) {
+  .navbar,
+  .page {
+    width: 90rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .navbar {
+    width: 100%;
+  }
+  .page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+  }
 }
 
 // ANIMATIONS
@@ -67,4 +103,34 @@ ol {
   100% {
     transform: scaleY(1);
   }
+}
+
+// UTILITIES
+
+.margin {
+  &-y {
+    &-md {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &-lg {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &-r {
+    &-md {
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-centered {
+  text-align: center;
 }

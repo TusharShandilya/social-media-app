@@ -1,9 +1,10 @@
 import React from "react";
 import { gql, useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
-import CustomInput from "../CustomInput";
+import CustomInputText from "../CustomInputText";
 import CustomButton from "../CustomButton";
 
 interface LoginFormValues {
@@ -42,11 +43,13 @@ const LoginForm: React.FC = () => {
 
   return (
     <form className="form" onSubmit={onSubmit}>
+      <h1 className="heading-primary  text-centered">LOGIN</h1>
+
       {errors.general !== "" && (
-        <h4 className="custom-input__error">{errors.general}</h4>
+        <h4 className="input-text__error">{errors.general}</h4>
       )}
       <div className="form-control">
-        <CustomInput
+        <CustomInputText
           id="login-username"
           label="Username"
           type="text"
@@ -54,10 +57,11 @@ const LoginForm: React.FC = () => {
           value={values.username}
           handleChange={onChange}
           required
+          autoFocus
         />
       </div>
       <div className="form-control">
-        <CustomInput
+        <CustomInputText
           id="login-password"
           label="Password"
           type="password"
@@ -67,9 +71,17 @@ const LoginForm: React.FC = () => {
           required
         />
       </div>
-      <div className="form-control">
-        <CustomButton type="submit">Login</CustomButton>
+      <div className="form-control margin-y-lg">
+        <CustomButton type="submit" styleClass="full-width" color="success">
+          Login
+        </CustomButton>
       </div>
+      <p className="paragraph">
+        Not a member?
+        <Link to="/register">
+          <span className="link"> Sign up now.</span>
+        </Link>
+      </p>
     </form>
   );
 };

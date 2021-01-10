@@ -4,7 +4,7 @@ import React from "react";
 import useForm from "../../hooks/useForm";
 import { GET_ALL_POSTS } from "../../utils/graphql";
 import CustomButton from "../CustomButton";
-import CustomInput from "../CustomInput";
+import CustomInputText from "../CustomInputText";
 
 interface Props {
   body: string;
@@ -46,7 +46,7 @@ const EditCommentForm: React.FC<Props> = ({
 
   return (
     <form className="form post-form" onSubmit={onSubmit}>
-      <CustomInput
+      <CustomInputText
         id="edit-comment"
         label="Edit comment"
         name="body"

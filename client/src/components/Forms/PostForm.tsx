@@ -4,7 +4,7 @@ import React from "react";
 import useForm from "../../hooks/useForm";
 import { GET_ALL_POSTS } from "../../utils/graphql";
 import CustomButton from "../CustomButton";
-import CustomInput from "../CustomInput";
+import CustomInputText from "../CustomInputText";
 
 interface NewPostFormValues {
   body: string;
@@ -38,7 +38,7 @@ const PostForm: React.FC = () => {
 
   return (
     <form className="form post-form" onSubmit={onSubmit}>
-      <CustomInput
+      <CustomInputText
         id="new-post"
         label="Create a new post"
         name="body"

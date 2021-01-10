@@ -1,10 +1,11 @@
 import React from "react";
 
 interface Props {
+  styleClass?: string;
   ariaLabel?: string;
   type?: "submit";
   noBackground?: boolean;
-  color?: "primary" | "secondary" | "danger";
+  color?: "success" | "danger";
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
@@ -15,10 +16,11 @@ const CustomButton: React.FC<Props> = ({
   noBackground,
   onClick,
   children,
+  styleClass,
 }) => {
   return (
     <div
-      className={`btn-background ${
+      className={`btn-background ${styleClass} ${
         noBackground ? "btn-background--inactive" : ""
       }`}
     >

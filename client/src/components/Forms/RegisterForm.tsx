@@ -3,8 +3,9 @@ import { gql, useMutation } from "@apollo/client";
 
 import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
-import CustomInput from "../CustomInput";
+import CustomInputText from "../CustomInputText";
 import CustomButton from "../CustomButton";
+import { Link } from "react-router-dom";
 
 interface RegisterFormValues {
   firstName: string;
@@ -55,8 +56,10 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form className="form" onSubmit={onSubmit}>
+      <h1 className="heading-primary  text-centered">REGISTER</h1>
       <div className="form-control">
-        <CustomInput
+        <CustomInputText
+          autoFocus
           id="register-firstName"
           label="First Name"
           name="firstName"
@@ -65,8 +68,9 @@ const RegisterForm: React.FC = () => {
           handleChange={onChange}
           error={errors.firstName}
           required
+          styleClass="margin-r-md"
         />
-        <CustomInput
+        <CustomInputText
           id="register-lastName"
           label="Last Name"
           name="lastName"
@@ -77,7 +81,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className="form-control">
-        <CustomInput
+        <CustomInputText
           handleChange={onChange}
           id="register-username"
           label="Username"
@@ -89,7 +93,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className="form-control">
-        <CustomInput
+        <CustomInputText
           handleChange={onChange}
           id="register-email"
           label="Email"
@@ -101,7 +105,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className="form-control">
-        <CustomInput
+        <CustomInputText
           handleChange={onChange}
           id="register-password"
           label="Password"
@@ -113,7 +117,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className="form-control">
-        <CustomInput
+        <CustomInputText
           id="register-confirmPassword"
           label="Confirm password"
           name="confirmPassword"
@@ -124,9 +128,17 @@ const RegisterForm: React.FC = () => {
           required
         />
       </div>
-      <div className="form-control">
-        <CustomButton type="submit">Register</CustomButton>
+      <div className="form-control margin-y-lg">
+        <CustomButton type="submit" styleClass="full-width" color="success">
+          Register
+        </CustomButton>
       </div>
+      <p className="paragraph">
+        Already a member?
+        <Link to="/login">
+          <span className="link"> Sign in.</span>
+        </Link>
+      </p>
     </form>
   );
 };
