@@ -1,0 +1,71 @@
+// MODAL
+
+.modal {
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $color-background-primary;
+    font-size: $font-size-default + 0.2rem;
+  }
+
+  &__background {
+    position: absolute;
+    background: rgba($color-grey-darkest, 0.9);
+    height: 100%;
+    width: 100%;
+  }
+
+  &__header {
+    border: $border-default;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__btn-close {
+    color: $color-primary;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s;
+    font-weight: 600;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  &__body {
+    border: $border-default;
+    border-top: 0;
+    border-bottom: 0;
+    padding: 2.5rem 3.5rem;
+  }
+
+  &__controls {
+    width: 100%;
+    display: flex;
+  }
+
+  &__control {
+    flex: 1;
+    border: $border-default;
+
+    .btn {
+      border: 0;
+    }
+  }
+}

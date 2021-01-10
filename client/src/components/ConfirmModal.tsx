@@ -30,22 +30,35 @@ const ConfirmModal: React.FC<Props> = ({
   };
 
   return open ? (
-    <div className={`modal ${open && "modal--active"}`}>
+    <div className={`modal`}>
       <div className="modal__background" onClick={onClose}></div>
-      <div className="modal__btn--close" onClick={onClose}>
-        X
-      </div>
-      <div className="modal__header">{header}</div>
-      <div className="modal__body">{children}</div>
-      <div className="modal__btns">
-        {onCancel && (
-          <CustomButton noBackground onClick={handleCancel}>
-            Cancel
+      <div className="modal__container">
+        <div className="modal__header">
+          <span>{header}</span>
+          <div className="modal__btn-close" onClick={onClose}>
+            X
+          </div>
+        </div>
+        <div className="modal__body">{children}</div>
+        <div className="modal__controls">
+          {onCancel && (
+            <CustomButton
+              styleClass="modal__control"
+              noBackground
+              onClick={handleCancel}
+            >
+              Cancel
+            </CustomButton>
+          )}
+          <CustomButton
+            color="primary"
+            styleClass="modal__control"
+            noBackground
+            onClick={handleConfirm}
+          >
+            Confirm
           </CustomButton>
-        )}
-        <CustomButton noBackground onClick={handleConfirm}>
-          Confirm
-        </CustomButton>
+        </div>
       </div>
     </div>
   ) : (

@@ -1,0 +1,62 @@
+// BUTTONS
+
+.btn {
+  position: relative;
+
+  text-transform: uppercase;
+  font-size: inherit;
+  cursor: pointer;
+
+  background-color: $color-grey-lightest;
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  border: $border-default;
+  outline: none;
+
+  transition: all 0.2s;
+
+  width: 100%;
+  &:hover {
+    transform: translate(1rem, -1rem);
+  }
+
+  &:active {
+    transform: translate(0%);
+  }
+
+  &-danger {
+    border: 3px solid $color-red;
+
+    color: $color-grey-lightest;
+    background-color: $color-red;
+  }
+
+  &-success {
+    border: 3px solid $color-green;
+
+    color: $color-grey-lightest;
+    background-color: $color-green;
+  }
+
+  &-primary {
+    border: 3px solid $color-blue-light;
+
+    color: $color-grey-lightest;
+    background-color: $color-blue-light;
+  }
+}
+
+.btn-background {
+  display: inline-block;
+  background: $color-blue-dark;
+
+  &--inactive {
+    background: none;
+
+    .btn {
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

@@ -31,9 +31,13 @@ const PostCard: React.FC<Props> = ({
     likes,
   },
 }) => {
-  const [showCommentForm, setShowCommentForm] = useState(false);
-  const [showEditPost, setShowEditPost] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [visibility, setVisibility] = useState({
+    commentForm: false,
+    editPost: false,
+    modal: false,
+    comments: false,
+  });
+
   const { user } = useContext(AuthContext);
 
   const [deletePost, { loading }] = useMutation(DELETE_POST, {
@@ -63,9 +67,9 @@ const PostCard: React.FC<Props> = ({
   return (
     <div className="post-card">
       <ConfirmModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onCancel={() => setModalOpen(false)}
+        open={visibility.modal}
+        onClose={() => setVisibility({ ...visibility, modal: false })}
+        onCancel={() => setVisibility({ ...visibility, modal: false })}
         onConfirm={deletePost}
       >
         Do you want to delete this post?
@@ -76,13 +80,13 @@ const PostCard: React.FC<Props> = ({
           <ul className="post-card__menu-items">
             <li
               className="post-card__menu-item"
-              onClick={() => setShowEditPost((show) => !show)}
+              onClick={() => setVisibility({ ...visibility, editPost: true })}
             >
               Edit
             </li>
             <li
               className="post-card__menu-item"
-              onClick={() => setModalOpen(true)}
+              onClick={() => setVisibility({ ...visibility, modal: true })}
             >
               Delete
             </li>
@@ -102,11 +106,11 @@ const PostCard: React.FC<Props> = ({
           day: "numeric",
         })}
       </span>
-      {showEditPost ? (
+      {visibility.editPost ? (
         <EditPostForm
           body={body}
           postId={id}
-          callback={() => setShowEditPost((show) => !show)}
+          callback={() => setVisibility({ ...visibility, editPost: false })}
         />
       ) : (
         <Link to={`/post/${username}/${id}`}>
@@ -128,11 +132,14 @@ const PostCard: React.FC<Props> = ({
           count={commentCount}
           user={user}
           callback={() => {
-            setShowCommentForm((show) => !show);
+            setVisibility({
+              ...visibility,
+              commentForm: !visibility.commentForm,
+            });
           }}
         />
       </div>
-      {user && showCommentForm && <CommentForm postId={id} />}
+      {user && visibility.commentForm && <CommentForm postId={id} />}
       {comments.map((comment) => (
         <Comment key={comment.commentId} postId={id} comment={comment} />
       ))}

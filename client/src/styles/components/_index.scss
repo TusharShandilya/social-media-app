@@ -1,0 +1,23 @@
+
+@import "./navbar";
+@import "./button";
+@import "./input";
+@import "./form";
+@import "./modal";
+@import "./postCard";
+
+// LOGO
+.logo {
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+// LINK
+
+.link {
+  color: $color-blue-light;
+}
+
+

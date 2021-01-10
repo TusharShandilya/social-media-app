@@ -65,25 +65,18 @@ ol {
 
 .navbar {
   height: 7rem;
-  width: 120rem;
+  width: 90rem;
 }
 
 .page {
   margin: auto;
   padding-top: 9rem;
-  width: 120rem;
+  width: 90rem;
   min-height: 100vh;
-  background: $color-backgournd-primary;
+  background: $color-background-primary;
 }
 
-@media screen and (max-width: 1200px) {
-  .navbar,
-  .page {
-    width: 90rem;
-  }
-}
-
-@media screen and (max-width: 1200px) {
+@include respond("laptop") {
   .navbar {
     width: 100%;
   }

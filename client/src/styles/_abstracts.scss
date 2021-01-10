@@ -25,9 +25,39 @@ $color-grey-darker: #303030;
 $color-grey-darkest: #101010;
 
 $color-primary: $color-blue-dark;
-$color-backgournd-primary: $color-grey-lightest;
+$color-background-primary: $color-grey-lightest;
 $color-text-primary: $color-grey-darkest;
 $color-text-secondary: $color-grey-dark;
 
+// Others
+
+$border-default: 3px solid $color-primary;
+
 //------------------------------------
 // MIXINS
+
+@mixin respond($breakpoint) {
+  /*
+        BREAKPOINTS:
+        * mobile: 0 - 400px
+        * tablet: 401 - 768px
+        * laptop: 769 - 900px
+        * desktop: 901px+
+        
+    */
+  @if $breakpoint == mobile {
+    @media screen and (max-width: 25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    @media screen and (max-width: 48em) {
+      @content;
+    }
+  }
+  @if $breakpoint == laptop {
+    @media screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+}
