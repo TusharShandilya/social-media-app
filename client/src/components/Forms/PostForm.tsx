@@ -1,4 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
+import { faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import useForm from "../../hooks/useForm";
@@ -71,7 +73,10 @@ const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
         required
       />
       {isEdit && <CustomButton onClick={callback}>Cancel</CustomButton>}
-      <CustomButton type="submit">{isEdit ? "Edit" : "Post!"}</CustomButton>
+      <CustomButton type="submit">
+        <FontAwesomeIcon icon={isEdit ? faEdit : faPencilAlt} />{" "}
+        {isEdit ? "Edit" : "Post!"}
+      </CustomButton>
     </form>
   );
 };

@@ -1,3 +1,5 @@
+import { faBan, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import CustomButton from "./CustomButton";
 
@@ -40,7 +42,7 @@ const ConfirmModal: React.FC<Props> = ({
               noBackground
               onClick={onCancel}
             >
-              Cancel
+              <FontAwesomeIcon icon={faBan} /> Cancel
             </CustomButton>
           )}
           <CustomButton
@@ -49,7 +51,7 @@ const ConfirmModal: React.FC<Props> = ({
             noBackground
             onClick={handleConfirm}
           >
-            Confirm
+            <FontAwesomeIcon icon={faCheckCircle} /> Confirm
           </CustomButton>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { faComments } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 import { User } from "../utils/types";
@@ -11,10 +13,14 @@ interface Props {
 
 const CommentButton: React.FC<Props> = ({ user, count }) => {
   return user ? (
-    <CustomButton>CommentsIcon {count}</CustomButton>
+    <CustomButton>
+      <FontAwesomeIcon icon={faComments} /> {count}
+    </CustomButton>
   ) : (
     <Link to="/login">
-      <CustomButton noBackground>CommentsIcon {count}</CustomButton>
+      <CustomButton noBackground>
+        <FontAwesomeIcon icon={faComments} /> {count}
+      </CustomButton>
     </Link>
   );
 };

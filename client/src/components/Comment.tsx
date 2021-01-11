@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthUser.context";
 import { GET_ALL_POSTS } from "../utils/graphql";
 import ConfirmModal from "./ConfirmModal";
-import EditCommentForm from "./Forms/EditCommentForm";
+import CommentForm from "./Forms/CommentForm";
 
 interface Props {
   comment: {
@@ -102,7 +102,8 @@ const Comment: React.FC<Props> = ({
         })}
       </span>
       {showEditComment ? (
-        <EditCommentForm
+        <CommentForm
+          isEdit
           body={body}
           postId={postId}
           commentId={commentId}

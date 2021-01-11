@@ -6,6 +6,8 @@ import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
 import CustomInputText from "../CustomInputText";
 import CustomButton from "../CustomButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 interface LoginFormValues {
   username: string;
@@ -73,7 +75,7 @@ const LoginForm: React.FC = () => {
       </div>
       <div className="form-control margin-y-lg">
         <CustomButton type="submit" styleClass="full-width" color="success">
-          Login
+          <FontAwesomeIcon icon={faSignInAlt} /> Login
         </CustomButton>
       </div>
       <p className="paragraph">

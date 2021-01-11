@@ -3,6 +3,8 @@ import { gql, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { User } from "../utils/types";
 import CustomButton from "./CustomButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   id: string;
@@ -39,12 +41,12 @@ const LikeButton: React.FC<Props> = ({ id, likes, likeCount, user }) => {
       color={isLiked ? "primary" : "basic"}
       onClick={() => likePost()}
     >
-      LikeIcon {likeCount}
+      <FontAwesomeIcon icon={faThumbsUp} /> {likeCount}
     </CustomButton>
   ) : (
     <Link to="/login">
       <CustomButton styleClass="margin-r-md" noBackground>
-        LikeIcon {likeCount}
+        <FontAwesomeIcon icon={faThumbsUp} /> {likeCount}
       </CustomButton>
     </Link>
   );

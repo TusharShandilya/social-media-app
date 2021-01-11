@@ -10,6 +10,9 @@ import LikeButton from "./LikeButton";
 import CommentButton from "./CommentButton";
 import ConfirmModal from "./ConfirmModal";
 import PostForm from "./Forms/PostForm";
+import CustomButton from "./CustomButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   post: Post;
@@ -146,6 +149,9 @@ const PostCard: React.FC<Props> = ({
           </Link>
         )}
         <div className="post-card__extra">
+          <CustomButton styleClass="margin-r-md">
+            <FontAwesomeIcon icon={faShareAlt} />
+          </CustomButton>
           <LikeButton id={id} likes={likes} likeCount={likeCount} user={user} />
           <Link to={`/post/${username}/${id}`}>
             <CommentButton count={commentCount} user={user} />

@@ -1,8 +1,15 @@
 import React, { Fragment, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { User } from "../utils/types";
 import { AuthContext } from "../AuthUser.context";
 import CustomButton from "./CustomButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEdit,
+  faSignInAlt,
+  faSignOutAlt,
+  faUser,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   styleClass?: string;
@@ -17,12 +24,12 @@ const Links: React.FC<Props> = ({ styleClass }) => {
         <Fragment>
           <li>
             <NavLink activeClassName={`${styleClass}--active`} to="/login">
-              Login
+              <FontAwesomeIcon icon={faSignInAlt} /> Login
             </NavLink>
           </li>
           <li>
             <NavLink activeClassName={`${styleClass}--active`} to="/register">
-              Register
+              <FontAwesomeIcon icon={faUserPlus} /> Register
             </NavLink>
           </li>
         </Fragment>
@@ -30,7 +37,8 @@ const Links: React.FC<Props> = ({ styleClass }) => {
         <Fragment>
           <li>
             <NavLink activeClassName={`${styleClass}--active`} to="/post/new">
-              New Post
+              <FontAwesomeIcon icon={faEdit} />
+              &nbsp;New Post
             </NavLink>
           </li>
           <li>
@@ -38,6 +46,8 @@ const Links: React.FC<Props> = ({ styleClass }) => {
               activeClassName={`${styleClass}--active`}
               to={`/user/${user.username}`}
             >
+              <FontAwesomeIcon icon={faUser} />
+              &nbsp;
               {user.firstName} {user.lastName}
             </NavLink>
           </li>
@@ -46,7 +56,7 @@ const Links: React.FC<Props> = ({ styleClass }) => {
       {user && (
         <li>
           <CustomButton color="danger" onClick={logout}>
-            Logout
+            <FontAwesomeIcon icon={faSignOutAlt} /> Logout
           </CustomButton>
         </li>
       )}

@@ -6,6 +6,8 @@ import useForm from "../../hooks/useForm";
 import CustomInputText from "../CustomInputText";
 import CustomButton from "../CustomButton";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 interface RegisterFormValues {
   firstName: string;
@@ -130,7 +132,7 @@ const RegisterForm: React.FC = () => {
       </div>
       <div className="form-control margin-y-lg">
         <CustomButton type="submit" styleClass="full-width" color="success">
-          Register
+          <FontAwesomeIcon icon={faUserPlus} /> Register
         </CustomButton>
       </div>
       <p className="paragraph">

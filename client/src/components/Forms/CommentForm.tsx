@@ -4,34 +4,62 @@ import { gql, useMutation } from "@apollo/client";
 import useForm from "../../hooks/useForm";
 import CustomInputText from "../CustomInputText";
 import CustomButton from "../CustomButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   postId: string;
   isEdit?: boolean;
   body?: string;
-  commmentId?: string;
+  commentId?: string;
+  callback?: () => void;
 }
 
-const CommentForm: React.FC<Props> = ({ postId }) => {
+const CommentForm: React.FC<Props> = ({
+  postId,
+  body,
+  callback,
+  commentId,
+  isEdit,
+}) => {
   const { values, onSubmit, onChange } = useForm<{ comment: string }>(
     {
-      comment: "",
+      comment: body ?? "",
     },
-    handleComment
+    handleFormSubmit
   );
 
-  const [createComment, { loading }] = useMutation(CREATE_COMMENT, {
-    update(_, { data: { createComment: post } }) {
-      values.comment = "";
-    },
+  const [createComment, { loading: createLoading }] = useMutation(
+    CREATE_COMMENT,
+    {
+      update(_, { data: { createComment: post } }) {
+        values.comment = "";
+      },
+      variables: {
+        body: values.comment,
+        postId,
+      },
+    }
+  );
+
+  const [editComment, { loading: editLoading }] = useMutation(EDIT_COMMENT, {
+    update(_, { data: { editComment: post } }) {},
     variables: {
-      body: values.comment,
       postId,
+      commentId,
+      body: values.comment,
     },
   });
 
-  function handleComment() {
-    createComment();
+  function handleFormSubmit() {
+    if (isEdit) {
+      editComment();
+      if (callback) {
+        callback();
+      }
+    } else {
+      createComment();
+    }
   }
 
   return (
@@ -48,7 +76,10 @@ const CommentForm: React.FC<Props> = ({ postId }) => {
         />
       </div>
       <div className="form-control">
-        <CustomButton type="submit">Comment</CustomButton>
+        <CustomButton type="submit">
+          <FontAwesomeIcon icon={isEdit ? faCommentDots : faComment} />{" "}
+          {isEdit ? "Edit Comment" : "Comment"}
+        </CustomButton>
       </div>
     </form>
   );
@@ -70,6 +101,23 @@ const CREATE_COMMENT = gql`
         username
       }
       commentCount
+      comments {
+        id
+        commentId
+        body
+        username
+        firstName
+        lastName
+        createdAt
+        edited
+      }
+    }
+  }
+`;
+
+const EDIT_COMMENT = gql`
+  mutation($postId: ID!, $commentId: ID!, $body: String!) {
+    editComment(postId: $postId, commentId: $commentId, body: $body) {
       comments {
         id
         commentId
