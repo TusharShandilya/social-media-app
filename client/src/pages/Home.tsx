@@ -13,17 +13,19 @@ const Home: React.FC = () => {
 
   return (
     <div className="page">
-      <h1>All posts</h1>
-      {user && <PostForm />}
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        data?.getPosts.map((post: Post) => (
-          <div className="grid">
-            <PostCard key={post.id} post={post} />
-          </div>
-        )) ?? <h1>An error has occurred</h1>
-      )}
+      <div className="page-container">
+        <h1 className="text-centered heading-primary">All posts</h1>
+        {/* {user && <PostForm />} */}
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          data?.getPosts.map((post: Post) => (
+            <div className="grid">
+              <PostCard key={post.id} post={post} />
+            </div>
+          )) ?? <h1>An error has occurred</h1>
+        )}
+      </div>
     </div>
   );
 };

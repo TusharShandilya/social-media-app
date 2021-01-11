@@ -22,13 +22,6 @@ const ConfirmModal: React.FC<Props> = ({
     onClose();
   };
 
-  const handleCancel = () => {
-    if (onCancel) {
-      onCancel();
-    }
-    onClose();
-  };
-
   return open ? (
     <div className={`modal`}>
       <div className="modal__background" onClick={onClose}></div>
@@ -45,7 +38,7 @@ const ConfirmModal: React.FC<Props> = ({
             <CustomButton
               styleClass="modal__control"
               noBackground
-              onClick={handleCancel}
+              onClick={onCancel}
             >
               Cancel
             </CustomButton>

@@ -1,25 +1,55 @@
+// TODO: Refactor this
+import React, { useContext, Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
-import React from "react";
+
 import PostCard from "../components/PostCard";
+import { AuthContext } from "../AuthUser.context";
+import Comment from "../components/Comment";
+import CommentForm from "../components/Forms/CommentForm";
 
 interface Props {
   match: { params: { postId: string } };
 }
 
 const SinglePost: React.FC<Props> = (props) => {
+  const { user } = useContext(AuthContext);
+
   const { postId } = props.match.params;
 
   const { data, loading } = useQuery(GET_POST, { variables: { postId } });
 
   return (
     <div className="page">
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : data ? (
-        <PostCard post={data.getPost} />
-      ) : (
-        <h1>An error has occured</h1>
-      )}
+      <div className="page-container">
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : data ? (
+          <Fragment>
+            <PostCard post={data.getPost} />
+            {user && <CommentForm postId={postId} />}
+            {data.getPost.comments.map(
+              (comment: {
+                commentId: any;
+                id: string;
+                body: string;
+                username: string;
+                firstName: string;
+                lastName: string;
+                createdAt: string;
+                edited: boolean;
+              }) => (
+                <Comment
+                  key={comment.commentId}
+                  postId={postId}
+                  comment={comment}
+                />
+              )
+            )}
+          </Fragment>
+        ) : (
+          <h1>An error has occured</h1>
+        )}
+      </div>
     </div>
   );
 };

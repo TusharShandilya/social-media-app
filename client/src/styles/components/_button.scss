@@ -44,6 +44,12 @@
     color: $color-grey-lightest;
     background-color: $color-blue-light;
   }
+  &-filled {
+    border: 3px solid $color-primary;
+
+    color: $color-grey-lightest;
+    background-color: $color-primary;
+  }
 }
 
 .btn-background {

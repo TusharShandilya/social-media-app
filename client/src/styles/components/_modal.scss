@@ -52,7 +52,8 @@
     border: $border-default;
     border-top: 0;
     border-bottom: 0;
-    padding: 2.5rem 3.5rem;
+    padding: 2.5rem 5rem;
+    min-width: 40rem;
   }
 
   &__controls {
@@ -63,6 +64,10 @@
   &__control {
     flex: 1;
     border: $border-default;
+
+    &:hover {
+      opacity: 0.85;
+    }
 
     .btn {
       border: 0;

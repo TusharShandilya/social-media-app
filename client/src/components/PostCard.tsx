@@ -6,14 +6,17 @@ import { GET_ALL_POSTS } from "../utils/graphql";
 import { Post } from "../utils/types";
 import { AuthContext } from "../AuthUser.context";
 import LikeButton from "./LikeButton";
-import CommentForm from "./Forms/CommentForm";
-import Comment from "./Comment";
+
 import CommentButton from "./CommentButton";
-import EditPostForm from "./Forms/EditPostForm";
 import ConfirmModal from "./ConfirmModal";
+import PostForm from "./Forms/PostForm";
 
 interface Props {
   post: Post;
+}
+
+interface Visibility {
+  [props: string]: boolean;
 }
 
 const PostCard: React.FC<Props> = ({
@@ -27,15 +30,16 @@ const PostCard: React.FC<Props> = ({
     body,
     likeCount,
     commentCount,
-    comments,
     likes,
+    ...props
   },
 }) => {
-  const [visibility, setVisibility] = useState({
+  const [visibility, setVisibility] = useState<Visibility>({
     commentForm: false,
     editPost: false,
     modal: false,
     comments: false,
+    postMenu: false,
   });
 
   const { user } = useContext(AuthContext);
@@ -64,85 +68,90 @@ const PostCard: React.FC<Props> = ({
     signedInUserPost = user.username === username;
   }
 
+  const toggleVisibility = (items: string[]) => {
+    items.forEach((item) => {
+      setVisibility((visibility) => ({
+        ...visibility,
+        [item]: !visibility[item],
+      }));
+    });
+  };
+
   return (
-    <div className="post-card">
+    <div className="post-card__background margin-y-md">
       <ConfirmModal
         open={visibility.modal}
-        onClose={() => setVisibility({ ...visibility, modal: false })}
-        onCancel={() => setVisibility({ ...visibility, modal: false })}
+        onClose={() => toggleVisibility(["modal"])}
+        onCancel={() => toggleVisibility(["modal"])}
         onConfirm={deletePost}
       >
         Do you want to delete this post?
       </ConfirmModal>
+      <div className="post-card">
+        {signedInUserPost && (
+          <div className="post-card__menu">
+            <div
+              className="post-card__menu-icon"
+              onClick={() => toggleVisibility(["postMenu"])}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            {visibility.postMenu && (
+              <ul className="post-card__menu-items">
+                <li
+                  className="post-card__menu-item"
+                  onClick={() => toggleVisibility(["editPost", "postMenu"])}
+                >
+                  Edit
+                </li>
+                <li
+                  className="post-card__menu-item"
+                  onClick={() => toggleVisibility(["modal", "postMenu"])}
+                >
+                  Delete
+                </li>
+              </ul>
+            )}
+          </div>
+        )}
 
-      {signedInUserPost && (
-        <div className="post-card__menu">
-          <ul className="post-card__menu-items">
-            <li
-              className="post-card__menu-item"
-              onClick={() => setVisibility({ ...visibility, editPost: true })}
-            >
-              Edit
-            </li>
-            <li
-              className="post-card__menu-item"
-              onClick={() => setVisibility({ ...visibility, modal: true })}
-            >
-              Delete
-            </li>
-          </ul>
-        </div>
-      )}
-      <h2 className="title">
-        {firstName} {lastName}
-      </h2>
-      <h4 className="subtitle link">
-        <Link to={`/user/${username}`}>@{username}</Link>
-      </h4>
-      <span className="post-card__meta">
-        {new Date(createdAt).toLocaleDateString("en-gb", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </span>
-      {visibility.editPost ? (
-        <EditPostForm
-          body={body}
-          postId={id}
-          callback={() => setVisibility({ ...visibility, editPost: false })}
-        />
-      ) : (
-        <Link to={`/post/${username}/${id}`}>
-          <p className="post-card__description">
-            {edited && <em>(edited)</em>}
-            {body}
-          </p>
+        <Link to={`/user/${username}`}>
+          <h2 className="post-card__title">
+            {firstName} {lastName}
+            <span className="post-card__username link"> @{username}</span>
+          </h2>
         </Link>
-      )}
-      <div className="post-card__extra">
-        <LikeButton
-          id={id}
-          username={username}
-          likes={likes}
-          likeCount={likeCount}
-          user={user}
-        />
-        <CommentButton
-          count={commentCount}
-          user={user}
-          callback={() => {
-            setVisibility({
-              ...visibility,
-              commentForm: !visibility.commentForm,
-            });
-          }}
-        />
+        <span className="post-card__meta">
+          {new Date(createdAt).toLocaleDateString("en-gb", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </span>
+        {visibility.editPost ? (
+          <PostForm
+            isEdit
+            body={body}
+            postId={id}
+            callback={() => setVisibility({ ...visibility, editPost: false })}
+          />
+        ) : (
+          <Link to={`/post/${username}/${id}`}>
+            <p className="post-card__description ">
+              {body}
+              {edited && <em>(edited)</em>}
+            </p>
+          </Link>
+        )}
+        <div className="post-card__extra">
+          <LikeButton id={id} likes={likes} likeCount={likeCount} user={user} />
+          <Link to={`/post/${username}/${id}`}>
+            <CommentButton count={commentCount} user={user} />
+          </Link>
+        </div>
       </div>
-      {user && visibility.commentForm && <CommentForm postId={id} />}
-      {comments.map((comment) => (
-        <Comment key={comment.commentId} postId={id} comment={comment} />
-      ))}
     </div>
   );
 };

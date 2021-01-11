@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { User } from "../utils/types";
@@ -6,26 +6,26 @@ import CustomButton from "./CustomButton";
 
 interface Props {
   id: string;
-  username: string;
+
   likes: [{ username: string; id: string }];
   likeCount: number;
   user: User | null;
 }
 
-const LikeButton: React.FC<Props> = ({
-  id,
-  username,
-  likes,
-  likeCount,
-  user,
-}) => {
+const LikeButton: React.FC<Props> = ({ id, likes, likeCount, user }) => {
+  const [isLiked, setisLiked] = useState(false);
+
+  useEffect(() => {
+    if (user && likes.find((like) => like.username === user.username)) {
+      setisLiked(true);
+    } else {
+      setisLiked(false);
+    }
+  });
+
   const [likePost] = useMutation(LIKE_POST, {
     update(proxy, { data: { likePost: post } }) {
-      if (likes.find((like) => like.username === username)) {
-        likeCount--;
-      } else {
-        likeCount++;
-      }
+      likeCount = post.likeCount;
     },
     onError(err) {
       console.log(err);
@@ -34,10 +34,18 @@ const LikeButton: React.FC<Props> = ({
   });
 
   return user ? (
-    <CustomButton onClick={() => likePost()}>LikeIcon {likeCount}</CustomButton>
+    <CustomButton
+      styleClass="margin-r-md"
+      color={isLiked ? "primary" : "basic"}
+      onClick={() => likePost()}
+    >
+      LikeIcon {likeCount}
+    </CustomButton>
   ) : (
     <Link to="/login">
-      <CustomButton noBackground>LikeIcon {likeCount}</CustomButton>
+      <CustomButton styleClass="margin-r-md" noBackground>
+        LikeIcon {likeCount}
+      </CustomButton>
     </Link>
   );
 };

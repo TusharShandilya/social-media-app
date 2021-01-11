@@ -7,6 +7,9 @@ import CustomButton from "../CustomButton";
 
 interface Props {
   postId: string;
+  isEdit?: boolean;
+  body?: string;
+  commmentId?: string;
 }
 
 const CommentForm: React.FC<Props> = ({ postId }) => {

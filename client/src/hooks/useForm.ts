@@ -3,9 +3,11 @@ import React, { useState } from "react";
 const useForm = <T extends object>(initialValues: T, callback: Function) => {
   const [values, setValues] = useState<T>(initialValues);
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    let element = e.target as HTMLFormElement;
-    setValues((values) => ({ ...values, [element.name]: element.value }));
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    let element = e.target as HTMLInputElement;
+    setValues((values) => ({ ...values, [element.name]: element?.value }));
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

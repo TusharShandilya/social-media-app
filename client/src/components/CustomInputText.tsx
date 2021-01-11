@@ -3,10 +3,12 @@ import React from "react";
 interface Props {
   id: string;
   label: string;
-  type: "text" | "password" | "email";
+  type: "text" | "password" | "email" | "textarea";
   name: string;
   value: string;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   error?: string;
   styleClass?: string;
   required?: boolean;
@@ -31,16 +33,28 @@ const CustomInputText: React.FC<Props> = ({
         error?.length ? "input-text--error" : ""
       }`}
     >
-      <input
-        autoFocus={autoFocus}
-        required={required}
-        onChange={handleChange}
-        value={value}
-        type={type}
-        name={name}
-        id={id}
-        className="input-text__input"
-      />
+      {type === "textarea" ? (
+        <textarea
+          autoFocus={autoFocus}
+          required={required}
+          onChange={handleChange}
+          value={value}
+          name={name}
+          id={id}
+          className="input-text__input"
+        />
+      ) : (
+        <input
+          autoFocus={autoFocus}
+          required={required}
+          onChange={handleChange}
+          value={value}
+          type={type}
+          name={name}
+          id={id}
+          className="input-text__input"
+        />
+      )}
       <label
         className={`input-text__label ${
           value.length ? "input-text__label--active" : ""

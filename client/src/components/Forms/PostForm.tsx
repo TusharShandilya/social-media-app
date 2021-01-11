@@ -10,10 +10,17 @@ interface NewPostFormValues {
   body: string;
 }
 
-const PostForm: React.FC = () => {
+interface Props {
+  isEdit?: boolean;
+  body?: string;
+  postId?: string;
+  callback?: () => void;
+}
+
+const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
   let { values, onChange, onSubmit } = useForm<NewPostFormValues>(
-    { body: "" },
-    handleNewPostCreation
+    { body: body ?? "" },
+    handleFormSubmit
   );
 
   const [createPost, { loading }] = useMutation(CREATE_POST, {
@@ -32,8 +39,24 @@ const PostForm: React.FC = () => {
     variables: values,
   });
 
-  function handleNewPostCreation() {
-    createPost();
+  const [editPost, { error }] = useMutation(EDIT_POST, {
+    update(_, { data: { editPost: post } }) {},
+    variables: {
+      postId,
+      body: values.body,
+    },
+  });
+
+  function handleFormSubmit() {
+    if (isEdit) {
+      editPost();
+
+      if (callback) {
+        callback();
+      }
+    } else {
+      createPost();
+    }
   }
 
   return (
@@ -42,12 +65,13 @@ const PostForm: React.FC = () => {
         id="new-post"
         label="Create a new post"
         name="body"
-        type="text"
+        type="textarea"
         value={values.body}
         handleChange={onChange}
         required
       />
-      <CustomButton type="submit">Post!</CustomButton>
+      {isEdit && <CustomButton onClick={callback}>Cancel</CustomButton>}
+      <CustomButton type="submit">{isEdit ? "Edit" : "Post!"}</CustomButton>
     </form>
   );
 };
@@ -82,4 +106,33 @@ const CREATE_POST = gql`
   }
 `;
 
+const EDIT_POST = gql`
+  mutation($postId: ID!, $body: String!) {
+    editPost(postId: $postId, body: $body) {
+      id
+      body
+      username
+      firstName
+      lastName
+      edited
+      createdAt
+      likeCount
+      likes {
+        id
+        username
+      }
+      commentCount
+      comments {
+        id
+        commentId
+        body
+        username
+        firstName
+        lastName
+        createdAt
+        edited
+      }
+    }
+  }
+`;
 export default PostForm;

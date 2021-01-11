@@ -6,7 +6,6 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-  outline: none;
 }
 
 html {
@@ -24,6 +23,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: $color-text-primary;
+  background-color: $color-primary;
 }
 
 h1,
@@ -70,10 +70,16 @@ ol {
 
 .page {
   margin: auto;
+
+  padding: 2rem;
   padding-top: 9rem;
   width: 90rem;
   min-height: 100vh;
   background: $color-background-primary;
+}
+
+.page-container {
+  animation: fade-in ease-in-out 0.3s;
 }
 
 @include respond("laptop") {
@@ -95,6 +101,15 @@ ol {
   }
   100% {
     transform: scaleY(1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

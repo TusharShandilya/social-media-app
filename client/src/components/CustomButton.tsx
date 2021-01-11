@@ -5,7 +5,7 @@ interface Props {
   ariaLabel?: string;
   type?: "submit";
   noBackground?: boolean;
-  color?: "success" | "danger" | "primary";
+  color?: "success" | "danger" | "primary" | "basic" | "filled";
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 

@@ -14,22 +14,24 @@ const SingleUser: React.FC<Props> = (props) => {
 
   return (
     <div className="page">
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : data ? (
-        <div className="user">
-          <h1 className="title">
-            {data.getUser.firstName} {data.getUser.lastName}
-          </h1>
-          <h4 className="">{data.getUser.username}</h4>
-          <p className="subtitle">{data.getUser.email}</p>
-          {data.getUser.posts.map((post: Post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
-      ) : (
-        <h1>An error has occured</h1>
-      )}
+      <div className="page-container">
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : data ? (
+          <div className="user">
+            <h1 className="title">
+              {data.getUser.firstName} {data.getUser.lastName}
+            </h1>
+            <h4 className="">{data.getUser.username}</h4>
+            <p className="subtitle">{data.getUser.email}</p>
+            {data.getUser.posts.map((post: Post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <h1>An error has occured</h1>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { User } from "../utils/types";
 import { AuthContext } from "../AuthUser.context";
@@ -9,12 +9,12 @@ interface Props {
 }
 
 const Links: React.FC<Props> = ({ styleClass }) => {
-  const { user, logout } = React.useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <ul className={styleClass}>
       {!user ? (
-        <React.Fragment>
+        <Fragment>
           <li>
             <NavLink activeClassName={`${styleClass}--active`} to="/login">
               Login
@@ -25,16 +25,23 @@ const Links: React.FC<Props> = ({ styleClass }) => {
               Register
             </NavLink>
           </li>
-        </React.Fragment>
+        </Fragment>
       ) : (
-        <li>
-          <NavLink
-            activeClassName={`${styleClass}--active`}
-            to={`/user/${user.username}`}
-          >
-            {user.firstName} {user.lastName}
-          </NavLink>
-        </li>
+        <Fragment>
+          <li>
+            <NavLink activeClassName={`${styleClass}--active`} to="/post/new">
+              New Post
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              activeClassName={`${styleClass}--active`}
+              to={`/user/${user.username}`}
+            >
+              {user.firstName} {user.lastName}
+            </NavLink>
+          </li>
+        </Fragment>
       )}
       {user && (
         <li>
