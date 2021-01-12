@@ -44,7 +44,7 @@ const LoginForm: React.FC = () => {
   }
 
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form className="form login-form " onSubmit={onSubmit}>
       <h1 className="heading-primary  text-centered">LOGIN</h1>
 
       {errors.general !== "" && (

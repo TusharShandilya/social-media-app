@@ -15,6 +15,13 @@
 
     font-size: $font-size-default;
     border: $border-default;
+
+    &--textarea {
+      font-family: $font-family-primary;
+      height: 17rem;
+      width: 100%;
+      resize: none;
+    }
   }
   &__label {
     transition: all 0.2s;

@@ -12,3 +12,17 @@
   font-size: 2rem;
   display: flex;
 }
+
+// LOGIN FORM
+
+.login-form {
+  width: 40rem;
+}
+
+.comment-form {
+  max-width: 95%;
+
+  textarea {
+    height: 11rem;
+  }
+}

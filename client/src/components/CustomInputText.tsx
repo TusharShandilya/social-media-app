@@ -41,7 +41,7 @@ const CustomInputText: React.FC<Props> = ({
           value={value}
           name={name}
           id={id}
-          className="input-text__input"
+          className="input-text__input input-text__input--textarea"
         />
       ) : (
         <input

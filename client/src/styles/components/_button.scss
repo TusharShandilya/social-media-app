@@ -49,6 +49,10 @@
 
     color: $color-grey-lightest;
     background-color: $color-primary;
+
+    &:hover {
+      border: 3px solid $color-blue;
+    }
   }
 }
 

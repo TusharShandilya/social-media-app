@@ -1,5 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import { faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
@@ -62,21 +62,37 @@ const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
   }
 
   return (
-    <form className="form post-form" onSubmit={onSubmit}>
-      <CustomInputText
-        id="new-post"
-        label="Create a new post"
-        name="body"
-        type="textarea"
-        value={values.body}
-        handleChange={onChange}
-        required
-      />
-      {isEdit && <CustomButton onClick={callback}>Cancel</CustomButton>}
-      <CustomButton type="submit">
-        <FontAwesomeIcon icon={isEdit ? faEdit : faPencilAlt} />{" "}
-        {isEdit ? "Edit" : "Post!"}
-      </CustomButton>
+    <form className="form post-form full-width margin-y-md" onSubmit={onSubmit}>
+      <h3 className="heading-primary text-5">
+        {isEdit ? "Edit your post" : "Post something!"}
+      </h3>
+      {/* <h1>{values.body.length}</h1> TODO: keep limit 350 */}
+      <div className="form-control">
+        <CustomInputText
+          id="new-post"
+          label={isEdit ? "Edit post..." : "What's on your mind?"}
+          name="body"
+          type="textarea"
+          value={values.body}
+          handleChange={onChange}
+          required
+        />
+      </div>
+      <div className="form-control">
+        {isEdit && (
+          <CustomButton styleClass="full-width text-4" onClick={callback}>
+            <FontAwesomeIcon icon={faBan} /> Cancel
+          </CustomButton>
+        )}
+        <CustomButton
+          color="filled"
+          styleClass="full-width text-4"
+          type="submit"
+        >
+          <FontAwesomeIcon icon={isEdit ? faEdit : faPencilAlt} />{" "}
+          {isEdit ? "Edit" : "Post!"}
+        </CustomButton>
+      </div>
     </form>
   );
 };

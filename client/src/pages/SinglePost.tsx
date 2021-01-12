@@ -37,6 +37,7 @@ const SinglePost: React.FC<Props> = (props) => {
         <Fragment>
           <PostCard post={data.getPost} />
           {user && <CommentForm postId={postId} />}
+          <h3 className="text-4">Comments ({data.getPost.commentCount})</h3>
           <div className="scrollable-container">
             {data.getPost.comments.map((comment: Comment) => (
               <Comment

@@ -103,10 +103,51 @@ ol {
     }
   }
 
+  &-t {
+    &-md {
+      margin-top: 1.5rem;
+    }
+  }
+
   &-r {
     &-md {
       margin-right: 1.5rem;
     }
+  }
+}
+
+.no-margin {
+  margin: 0;
+
+  &-t {
+    margin-top: 0;
+  }
+  &-l {
+    margin-left: 0;
+  }
+  &-r {
+    margin-right: 0;
+  }
+  &-x {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.no-padding {
+  margin: 0;
+
+  &-t {
+    margin-top: 0;
+  }
+  &-l {
+    margin-left: 0;
+  }
+  &-r {
+    margin-right: 0;
+  }
+  &-x {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
