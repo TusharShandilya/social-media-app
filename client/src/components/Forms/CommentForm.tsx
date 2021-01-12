@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
 
 import useForm from "../../hooks/useForm";
@@ -26,12 +26,28 @@ const CommentForm: React.FC<Props> = ({
   commentId,
   isEdit,
 }) => {
+  const [error, setError] = useState("");
   const { values, onSubmit, onChange } = useForm<{ comment: string }>(
     {
       comment: body ?? "",
     },
     handleFormSubmit
   );
+  const commentLengthLimit = 350;
+
+  useEffect(() => {
+    if (values.comment.length > commentLengthLimit) {
+      if (
+        error !== `Post needs to be less than ${commentLengthLimit} in length`
+      ) {
+        setError(`Post needs to be less than ${commentLengthLimit} in length`);
+      }
+    } else {
+      if (error !== "") {
+        setError("");
+      }
+    }
+  }, [values.comment]);
 
   const [createComment, { loading: createLoading }] = useMutation(
     CREATE_COMMENT,
@@ -74,15 +90,16 @@ const CommentForm: React.FC<Props> = ({
       <h3 className="heading-primary text-5">
         {isEdit ? "Edit your comment" : "Comment on this post"}
       </h3>
-      {/* <h3>{values.comment.length}</h3> TODO: keep limit 250 */}
+
       <div className="form-control">
         <CustomInputText
           id="comment"
-          label="Comment"
+          label={`Comment... (${values.comment.length}/${commentLengthLimit})`}
           name="comment"
           type="textarea"
           value={values.comment}
           handleChange={onChange}
+          error={error}
           required
         />
       </div>

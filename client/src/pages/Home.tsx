@@ -18,9 +18,7 @@ const Home: React.FC = () => {
           <h1>Loading...</h1>
         ) : (
           data?.getPosts.map((post: Post) => (
-            <div className="grid">
-              <PostCard key={post.id} post={post} />
-            </div>
+            <PostCard key={post.id} post={post} />
           )) ?? <h1>An error has occurred</h1>
         )}
       </div>

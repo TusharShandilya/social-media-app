@@ -63,6 +63,7 @@ const CustomInputText: React.FC<Props> = ({
       >
         {label}
       </label>
+
       {error?.length ? <h4 className="input-text__error">{error}</h4> : ""}
     </div>
   );

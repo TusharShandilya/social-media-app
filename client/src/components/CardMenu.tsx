@@ -20,8 +20,9 @@ const CardMenu: React.FC<Props> = ({ menuItems }) => {
       </div>
       {showMenu && (
         <ul className="card-menu__items">
-          {menuItems.map(({ callback, value }) => (
+          {menuItems.map(({ callback, value }, idx) => (
             <li
+              key={Math.random()}
               className="card-menu__item text-2"
               onClick={() => {
                 callback();
