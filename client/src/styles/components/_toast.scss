@@ -1,0 +1,50 @@
+.toast {
+  color: #000;
+  background: $color-grey-lightest;
+  border: $border-default;
+  transform: translate(0.5rem, -0.5rem);
+  font-size: 2rem;
+  padding: 0.5rem 1.5rem;
+
+  &__background {
+    display: none;
+
+    background: $color-blue-dark;
+    position: fixed;
+    top: 3rem;
+    left: 50%;
+
+    transform: translateX(-50%);
+    z-index: 300;
+  }
+
+  &--active {
+    display: inline-block;
+    animation: fade-in ease-in-out 0.2s;
+    .toast {
+      display: flex;
+    }
+  }
+
+  &__icon {
+    margin-right: 1rem;
+  }
+
+  &__message {
+    flex: 1;
+    word-wrap: break-word;
+  }
+
+  &--info {
+    border: 3px solid $color-blue-light;
+    color: $color-blue-light;
+  }
+
+  &--danger {
+    border: 3px solid $color-red;
+    color: $color-red;
+  }
+
+  &--warning {
+  }
+}

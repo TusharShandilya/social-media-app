@@ -1,10 +1,10 @@
-
 @import "./navbar";
 @import "./button";
 @import "./input";
 @import "./form";
 @import "./modal";
 @import "./postCard";
+@import "./toast";
 
 // LOGO
 .logo {
@@ -19,5 +19,3 @@
 .link {
   color: $color-blue-light;
 }
-
-

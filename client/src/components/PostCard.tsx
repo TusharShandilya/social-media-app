@@ -1,26 +1,25 @@
 import React, { useState, useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-
-import { GET_ALL_POSTS } from "../utils/graphql";
-import { Post } from "../utils/types";
-import { AuthContext } from "../AuthUser.context";
-import LikeButton from "./LikeButton";
-
-import CommentButton from "./CommentButton";
-import ConfirmModal from "./ConfirmModal";
-import PostForm from "./Forms/PostForm";
-import CustomButton from "./CustomButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faEllipsisH,
   faPenSquare,
   faShareAlt,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import CardMenu from "./CardMenu";
-import { spawn } from "child_process";
+
+import { GET_ALL_POSTS } from "../utils/graphql";
+import { Post } from "../utils/types";
+import { AuthContext } from "../AuthUser.context";
 import { getDate } from "../utils/date";
+import { useToast } from "../hooks/useToast";
+import LikeButton from "./LikeButton";
+import CommentButton from "./CommentButton";
+import ConfirmModal from "./ConfirmModal";
+import PostForm from "./Forms/PostForm";
+import CustomButton from "./CustomButton";
+import CardMenu from "./CardMenu";
+import Toast from "./Toast";
 
 interface Props {
   post: Post;
@@ -52,7 +51,7 @@ const PostCard: React.FC<Props> = ({
     comments: false,
     postMenu: false,
   });
-
+  const { toastState, displayToast } = useToast();
   const { user } = useContext(AuthContext);
 
   const [deletePost, { loading }] = useMutation(DELETE_POST, {
@@ -88,8 +87,25 @@ const PostCard: React.FC<Props> = ({
     });
   };
 
+  const handleCopyTextToClipboard = () => {
+    let aux = document.createElement("input");
+
+    aux.setAttribute("value", `http://localhost:3000/post/${username}/${id}`);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+
+    displayToast("Link to post copied", "info");
+  };
+
   return (
     <div className="card__background margin-y-md">
+      <Toast
+        active={toastState.active}
+        message={toastState.message}
+        type={toastState.type}
+      />
       <ConfirmModal
         open={visibility.modal}
         onClose={() => toggleVisibility(["modal"])}
@@ -145,7 +161,10 @@ const PostCard: React.FC<Props> = ({
           </Link>
         )}
         <div className="card__extra">
-          <CustomButton styleClass="margin-r-md">
+          <CustomButton
+            styleClass="margin-r-md"
+            onClick={handleCopyTextToClipboard}
+          >
             <FontAwesomeIcon icon={faShareAlt} />
           </CustomButton>
           <LikeButton id={id} likes={likes} likeCount={likeCount} user={user} />
