@@ -1,14 +1,13 @@
 import React from "react";
 
 import RegisterForm from "../components/Forms/RegisterForm";
+import Layout from "../components/Layout";
 
 const Register: React.FC = () => {
   return (
-    <div className="page">
-      <div className="page-container">
-        <RegisterForm />
-      </div>
-    </div>
+    <Layout>
+      <RegisterForm />;
+    </Layout>
   );
 };
 

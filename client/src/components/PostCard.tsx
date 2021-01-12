@@ -12,7 +12,15 @@ import ConfirmModal from "./ConfirmModal";
 import PostForm from "./Forms/PostForm";
 import CustomButton from "./CustomButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisH,
+  faPenSquare,
+  faShareAlt,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import CardMenu from "./CardMenu";
+import { spawn } from "child_process";
+import { getDate } from "../utils/date";
 
 interface Props {
   post: Post;
@@ -81,7 +89,7 @@ const PostCard: React.FC<Props> = ({
   };
 
   return (
-    <div className="post-card__background margin-y-md">
+    <div className="card__background margin-y-md">
       <ConfirmModal
         open={visibility.modal}
         onClose={() => toggleVisibility(["modal"])}
@@ -90,49 +98,37 @@ const PostCard: React.FC<Props> = ({
       >
         Do you want to delete this post?
       </ConfirmModal>
-      <div className="post-card">
+      <div className="card">
         {signedInUserPost && (
-          <div className="post-card__menu">
-            <div
-              className="post-card__menu-icon"
-              onClick={() => toggleVisibility(["postMenu"])}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            {visibility.postMenu && (
-              <ul className="post-card__menu-items">
-                <li
-                  className="post-card__menu-item"
-                  onClick={() => toggleVisibility(["editPost", "postMenu"])}
-                >
-                  Edit
-                </li>
-                <li
-                  className="post-card__menu-item"
-                  onClick={() => toggleVisibility(["modal", "postMenu"])}
-                >
-                  Delete
-                </li>
-              </ul>
-            )}
-          </div>
+          <CardMenu
+            menuItems={[
+              {
+                callback: () => toggleVisibility(["editPost"]),
+                value: (
+                  <span>
+                    <FontAwesomeIcon icon={faPenSquare} /> Edit
+                  </span>
+                ),
+              },
+              {
+                callback: () => toggleVisibility(["modal"]),
+                value: (
+                  <span>
+                    <FontAwesomeIcon icon={faTrash} /> Delete
+                  </span>
+                ),
+              },
+            ]}
+          />
         )}
 
         <Link to={`/user/${username}`}>
-          <h2 className="post-card__title">
+          <h2 className="card__title text-2">
             {firstName} {lastName}
-            <span className="post-card__username link"> @{username}</span>
+            <span className="card__username link text-2"> @{username}</span>
           </h2>
         </Link>
-        <span className="post-card__meta">
-          {new Date(createdAt).toLocaleDateString("en-gb", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </span>
+        <span className="card__meta text-1">{getDate(createdAt)}</span>
         {visibility.editPost ? (
           <PostForm
             isEdit
@@ -142,13 +138,13 @@ const PostCard: React.FC<Props> = ({
           />
         ) : (
           <Link to={`/post/${username}/${id}`}>
-            <p className="post-card__description ">
+            <p className="card__description paragraph-3">
               {body}
-              {edited && <em>(edited)</em>}
+              {edited && <em className="text-4">(edited)</em>}
             </p>
           </Link>
         )}
-        <div className="post-card__extra">
+        <div className="card__extra">
           <CustomButton styleClass="margin-r-md">
             <FontAwesomeIcon icon={faShareAlt} />
           </CustomButton>

@@ -3,19 +3,17 @@ import { useQuery } from "@apollo/client";
 
 import PostCard from "../components/PostCard";
 import { Post } from "../utils/types";
-import PostForm from "../components/Forms/PostForm";
-import { AuthContext } from "../AuthUser.context";
+
 import { GET_ALL_POSTS } from "../utils/graphql";
+import Layout from "../components/Layout";
 
 const Home: React.FC = () => {
-  const { user } = useContext(AuthContext);
   const { loading, data } = useQuery(GET_ALL_POSTS);
 
   return (
-    <div className="page">
-      <div className="page-container">
-        <h1 className="text-centered heading-primary">All posts</h1>
-        {/* {user && <PostForm />} */}
+    <Layout hasSidebar>
+      <h1 className="text-centered heading-primary">All posts</h1>
+      <div className="scrollable-container">
         {loading ? (
           <h1>Loading...</h1>
         ) : (
@@ -26,7 +24,7 @@ const Home: React.FC = () => {
           )) ?? <h1>An error has occurred</h1>
         )}
       </div>
-    </div>
+    </Layout>
   );
 };
 

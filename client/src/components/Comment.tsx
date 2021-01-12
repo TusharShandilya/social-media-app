@@ -1,11 +1,19 @@
+import React, { useState, useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
-import React from "react";
+import {
+  faEllipsisH,
+  faPenSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../AuthUser.context";
 import { GET_ALL_POSTS } from "../utils/graphql";
 import ConfirmModal from "./ConfirmModal";
 import CommentForm from "./Forms/CommentForm";
+import CardMenu from "./CardMenu";
+import { getDate } from "../utils/date";
 
 interface Props {
   comment: {
@@ -33,9 +41,9 @@ const Comment: React.FC<Props> = ({
   },
   postId,
 }) => {
-  const [showEditComment, setShowEditComment] = React.useState(false);
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const { user } = React.useContext(AuthContext);
+  const [showEditComment, setShowEditComment] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const [deleteComment, { loading }] = useMutation(DELETE_COMMENT, {
     update(proxy, { data: { deleteComment: post } }) {
@@ -61,7 +69,7 @@ const Comment: React.FC<Props> = ({
   }
 
   return (
-    <div className="comment">
+    <div className=" card__background">
       <ConfirmModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
@@ -70,51 +78,51 @@ const Comment: React.FC<Props> = ({
       >
         Do you want to delete this comment?
       </ConfirmModal>
-      {user && signedInUserComment && (
-        <div className="comment__menu">
-          <ul className="comment__menu-items">
-            <li
-              className="comment__menu-item"
-              onClick={() => setShowEditComment((show) => !show)}
-            >
-              Edit
-            </li>
-            <li
-              className="comment__menu-item"
-              onClick={() => setModalOpen(true)}
-            >
-              Delete
-            </li>
-          </ul>
-        </div>
-      )}
-      <span className="comment__title">
-        {firstName} {lastName}
-      </span>
-      <span className="comment__subtitle">
-        <Link to={`/user/${username}`}>@{username}</Link>
-      </span>
-      <span className="comment__meta">
-        {new Date(createdAt).toLocaleDateString("en-gb", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </span>
-      {showEditComment ? (
-        <CommentForm
-          isEdit
-          body={body}
-          postId={postId}
-          commentId={commentId}
-          callback={() => setShowEditComment((show) => !show)}
-        />
-      ) : (
-        <p className="comment__description">
-          {edited && <em>(edited)</em>}
-          {body}
-        </p>
-      )}
+      <div className=" card">
+        {user && signedInUserComment && (
+          <CardMenu
+            menuItems={[
+              {
+                callback: () => setShowEditComment((show) => !show),
+                value: (
+                  <span>
+                    <FontAwesomeIcon icon={faPenSquare} /> Edit
+                  </span>
+                ),
+              },
+              {
+                callback: () => () => setModalOpen(true),
+                value: (
+                  <span>
+                    <FontAwesomeIcon icon={faTrash} /> Delete
+                  </span>
+                ),
+              },
+            ]}
+          />
+        )}
+        <Link to={`/user/${username}`}>
+          <h2 className="card__title">
+            {firstName} {lastName}
+            <span className="card__username link"> @{username}</span>
+          </h2>
+        </Link>
+        <span className="card__meta">{getDate(createdAt)}</span>
+        {showEditComment ? (
+          <CommentForm
+            isEdit
+            body={body}
+            postId={postId}
+            commentId={commentId}
+            callback={() => setShowEditComment((show) => !show)}
+          />
+        ) : (
+          <p className="card__description paragraph">
+            {edited && <em>(edited)</em>}
+            {body}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

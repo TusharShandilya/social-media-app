@@ -59,37 +59,12 @@ ol {
 
 .paragraph {
   font-size: $font-size-default;
-}
 
-// LAYOUT
-
-.navbar {
-  height: 7rem;
-  width: 90rem;
-}
-
-.page {
-  margin: auto;
-
-  padding: 2rem;
-  padding-top: 9rem;
-  width: 90rem;
-  min-height: 100vh;
-  background: $color-background-primary;
-}
-
-.page-container {
-  animation: fade-in ease-in-out 0.3s;
-}
-
-@include respond("laptop") {
-  .navbar {
-    width: 100%;
+  &-2 {
+    font-size: 2rem;
   }
-  .page {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100%;
+  &-3 {
+    font-size: 2.4rem;
   }
 }
 
@@ -141,4 +116,22 @@ ol {
 
 .text-centered {
   text-align: center;
+}
+
+.text {
+  &-1 {
+    font-size: 1.2rem;
+  }
+  &-2 {
+    font-size: 1.4rem;
+  }
+  &-3 {
+    font-size: 1.6rem;
+  }
+  &-4 {
+    font-size: 1.8rem;
+  }
+  &-5 {
+    font-size: 2rem;
+  }
 }

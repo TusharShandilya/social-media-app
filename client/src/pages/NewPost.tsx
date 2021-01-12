@@ -1,13 +1,12 @@
 import React from "react";
 import PostForm from "../components/Forms/PostForm";
+import Layout from "../components/Layout";
 
 const NewPost: React.FC = () => {
   return (
-    <div className="page">
-      <div className="page-container">
-        <PostForm />
-      </div>
-    </div>
+    <Layout hasSidebar>
+      <PostForm />;
+    </Layout>
   );
 };
 

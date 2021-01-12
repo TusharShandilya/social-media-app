@@ -1,5 +1,6 @@
+import React, { Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
-import React from "react";
+import Layout from "../components/Layout";
 import PostCard from "../components/PostCard";
 import { Post } from "../utils/types";
 
@@ -13,26 +14,25 @@ const SingleUser: React.FC<Props> = (props) => {
   });
 
   return (
-    <div className="page">
-      <div className="page-container">
-        {loading ? (
-          <h1>Loading...</h1>
-        ) : data ? (
-          <div className="user">
-            <h1 className="title">
-              {data.getUser.firstName} {data.getUser.lastName}
-            </h1>
-            <h4 className="">{data.getUser.username}</h4>
-            <p className="subtitle">{data.getUser.email}</p>
+    <Layout hasSidebar>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : data ? (
+        <Fragment>
+          <h1 className="heading-primary margin-y-md">
+            {data.getUser.firstName} {data.getUser.lastName}
+            <span className="link"> @{data.getUser.username}</span>
+          </h1>
+          <div className="scrollable-container">
             {data.getUser.posts.map((post: Post) => (
               <PostCard key={post.id} post={post} />
             ))}
           </div>
-        ) : (
-          <h1>An error has occured</h1>
-        )}
-      </div>
-    </div>
+        </Fragment>
+      ) : (
+        <h1>An error has occured</h1>
+      )}
+    </Layout>
   );
 };
 

@@ -1,4 +1,3 @@
-// TODO: Refactor this
 import React, { useContext, Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
 
@@ -6,10 +5,22 @@ import PostCard from "../components/PostCard";
 import { AuthContext } from "../AuthUser.context";
 import Comment from "../components/Comment";
 import CommentForm from "../components/Forms/CommentForm";
+import Layout from "../components/Layout";
 
 interface Props {
   match: { params: { postId: string } };
 }
+
+type Comment = {
+  commentId: any;
+  id: string;
+  body: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  createdAt: string;
+  edited: boolean;
+};
 
 const SinglePost: React.FC<Props> = (props) => {
   const { user } = useContext(AuthContext);
@@ -19,38 +30,27 @@ const SinglePost: React.FC<Props> = (props) => {
   const { data, loading } = useQuery(GET_POST, { variables: { postId } });
 
   return (
-    <div className="page">
-      <div className="page-container">
-        {loading ? (
-          <h1>Loading...</h1>
-        ) : data ? (
-          <Fragment>
-            <PostCard post={data.getPost} />
-            {user && <CommentForm postId={postId} />}
-            {data.getPost.comments.map(
-              (comment: {
-                commentId: any;
-                id: string;
-                body: string;
-                username: string;
-                firstName: string;
-                lastName: string;
-                createdAt: string;
-                edited: boolean;
-              }) => (
-                <Comment
-                  key={comment.commentId}
-                  postId={postId}
-                  comment={comment}
-                />
-              )
-            )}
-          </Fragment>
-        ) : (
-          <h1>An error has occured</h1>
-        )}
-      </div>
-    </div>
+    <Layout hasSidebar>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : data ? (
+        <Fragment>
+          <PostCard post={data.getPost} />
+          {user && <CommentForm postId={postId} />}
+          <div className="scrollable-container">
+            {data.getPost.comments.map((comment: Comment) => (
+              <Comment
+                key={comment.commentId}
+                postId={postId}
+                comment={comment}
+              />
+            ))}
+          </div>
+        </Fragment>
+      ) : (
+        <h1>An error has occured</h1>
+      )}
+    </Layout>
   );
 };
 

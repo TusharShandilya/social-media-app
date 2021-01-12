@@ -1,11 +1,11 @@
 // POST CARD
 
-.post-card {
+.card {
   position: relative;
   display: flex;
   flex-direction: column;
 
-  width: 60rem;
+  width: 100%;
 
   padding: 1rem 1.5rem;
   border: $border-default;
@@ -13,64 +13,20 @@
   transform: translate(0.7rem, -0.7rem);
 
   &__background {
+    width: 95%;
     display: inline-block;
     background: $color-blue-dark;
   }
 
-  &__menu {
-    position: absolute;
-    top: 0.75rem;
-    right: 1rem;
-  }
-
-  &__menu-icon {
-    cursor: pointer;
-    // transform: rotate(90deg);
-    span {
-      display: inline-block;
-      background-color: $color-grey-dark;
-      width: 0.4rem;
-      height: 0.4rem;
-      border-radius: 1000px;
-
-      margin: 2px;
-    }
-  }
-  &__menu-items {
-    position: absolute;
-    top: 1.3rem;
-    left: 60%;
-
-    background-color: $color-grey-lightest;
-    border: $border-default;
-  }
-  &__menu-item {
-    padding: 0.75rem;
-    padding-right: 2rem;
-    font-size: $font-size-default;
-    cursor: pointer;
-
-    &:not(:last-child) {
-      border-bottom: $border-default;
-    }
-    &:hover {
-      background-color: $color-grey-lighter;
-    }
-  }
-
   &__title {
-    font-size: $font-size-default;
     color: $color-grey-dark;
-    font-size: 1.4rem;
   }
+
   &__username {
-    font-size: $font-size-default;
-    font-size: 1.4rem;
     text-transform: none;
   }
 
   &__meta {
-    font-size: 1.3rem;
     color: $color-grey-dark;
   }
 
@@ -78,11 +34,9 @@
     color: $color-grey-darkest;
     margin-top: 1rem;
     margin-bottom: 2rem;
-    font-size: 2.4rem;
     word-wrap: break-word;
 
     em {
-      font-size: 1.6rem;
       color: $color-grey;
       margin-left: 0.5rem;
     }
@@ -94,4 +48,43 @@
   }
 }
 
-// COMMENT
+.card-menu {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+}
+
+.card-menu__icon {
+  cursor: pointer;
+
+  height: 3rem;
+  width: 3rem;
+  text-align: center;
+  &:hover {
+    border-radius: 1000px;
+    background: $color-grey-light;
+  }
+}
+.card-menu__items {
+  position: absolute;
+  top: 2rem;
+  right: 60%;
+
+  background-color: $color-grey-lightest;
+  border: $border-default;
+}
+.card-menu__item {
+  display: inline-block;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  width: 9rem;
+
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-bottom: $border-default;
+  }
+  &:hover {
+    background-color: $color-grey-lighter;
+  }
+}
