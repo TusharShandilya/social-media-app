@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 
-import PostCard from "../components/PostCard";
 import { Post } from "../utils/types";
-
 import { GET_ALL_POSTS } from "../utils/graphql";
+import PostCard from "../components/PostCard";
 import Layout from "../components/Layout";
 
 const Home: React.FC = () => {

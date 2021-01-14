@@ -11,7 +11,7 @@ interface Props {
   onCancel?: () => void;
 }
 
-const ConfirmModal: React.FC<Props> = ({
+const Modal: React.FC<Props> = ({
   open,
   header,
   onClose,
@@ -61,4 +61,4 @@ const ConfirmModal: React.FC<Props> = ({
   );
 };
 
-export default ConfirmModal;
+export default Modal;

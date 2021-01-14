@@ -27,7 +27,7 @@ const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
     { body: body ?? "" },
     handleFormSubmit
   );
-  const bodyLengthLimit = 350;
+  const bodyLengthLimit = 250;
 
   useEffect(() => {
     if (values.body.length > bodyLengthLimit) {

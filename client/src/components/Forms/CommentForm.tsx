@@ -33,7 +33,7 @@ const CommentForm: React.FC<Props> = ({
     },
     handleFormSubmit
   );
-  const commentLengthLimit = 350;
+  const commentLengthLimit = 200;
 
   useEffect(() => {
     if (values.comment.length > commentLengthLimit) {

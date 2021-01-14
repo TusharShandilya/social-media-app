@@ -11,7 +11,7 @@ interface Props {
   match: { params: { postId: string } };
 }
 
-type Comment = {
+type CommentType = {
   commentId: any;
   id: string;
   body: string;
@@ -24,33 +24,34 @@ type Comment = {
 
 const SinglePost: React.FC<Props> = (props) => {
   const { user } = useContext(AuthContext);
-
   const { postId } = props.match.params;
-
   const { data, loading } = useQuery(GET_POST, { variables: { postId } });
 
   return (
     <Layout hasSidebar>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : data ? (
-        <Fragment>
-          <PostCard post={data.getPost} />
-          {user && <CommentForm postId={postId} />}
-          <h3 className="text-4">Comments ({data.getPost.commentCount})</h3>
-          <div className="scrollable-container">
-            {data.getPost.comments.map((comment: Comment) => (
+      <div className="scrollable-container">
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : data ? (
+          <Fragment>
+            <PostCard post={data.getPost} />
+            {user && <CommentForm postId={postId} />}
+            <h3 className="text-4 margin-y-lg">
+              Comments ({data.getPost.commentCount})
+            </h3>
+            {data.getPost.comments.map((comment: CommentType) => (
               <Comment
                 key={comment.commentId}
                 postId={postId}
                 comment={comment}
               />
             ))}
-          </div>
-        </Fragment>
-      ) : (
-        <h1>An error has occured</h1>
-      )}
+          </Fragment>
+        ) : (
+          <h1>An error has occured</h1>
+        )}
+        <div className="margin-b-xl"></div>
+      </div>
     </Layout>
   );
 };

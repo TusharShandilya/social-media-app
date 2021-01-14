@@ -15,18 +15,15 @@ import { getDate } from "../utils/date";
 import { useToast } from "../hooks/useToast";
 import LikeButton from "./LikeButton";
 import CommentButton from "./CommentButton";
-import ConfirmModal from "./ConfirmModal";
+import Modal from "./Modal";
 import PostForm from "./Forms/PostForm";
 import CustomButton from "./CustomButton";
 import CardMenu from "./CardMenu";
 import Toast from "./Toast";
+import useModal from "../hooks/useModal";
 
 interface Props {
   post: Post;
-}
-
-interface Visibility {
-  [props: string]: boolean;
 }
 
 const PostCard: React.FC<Props> = ({
@@ -41,18 +38,12 @@ const PostCard: React.FC<Props> = ({
     likeCount,
     commentCount,
     likes,
-    ...props
   },
 }) => {
-  const [visibility, setVisibility] = useState<Visibility>({
-    commentForm: false,
-    editPost: false,
-    modal: false,
-    comments: false,
-    postMenu: false,
-  });
+  const [editForm, setEditForm] = useState(false);
   const { toastState, displayToast } = useToast();
   const { user } = useContext(AuthContext);
+  const { modalOpen, toggleModal } = useModal();
 
   const [deletePost, { loading }] = useMutation(DELETE_POST, {
     update(proxy, { data: { deletePost: post } }) {
@@ -78,15 +69,6 @@ const PostCard: React.FC<Props> = ({
     signedInUserPost = user.username === username;
   }
 
-  const toggleVisibility = (items: string[]) => {
-    items.forEach((item) => {
-      setVisibility((visibility) => ({
-        ...visibility,
-        [item]: !visibility[item],
-      }));
-    });
-  };
-
   const handleCopyTextToClipboard = () => {
     let aux = document.createElement("input");
 
@@ -106,20 +88,20 @@ const PostCard: React.FC<Props> = ({
         message={toastState.message}
         type={toastState.type}
       />
-      <ConfirmModal
-        open={visibility.modal}
-        onClose={() => toggleVisibility(["modal"])}
-        onCancel={() => toggleVisibility(["modal"])}
+      <Modal
+        open={modalOpen}
+        onClose={toggleModal}
+        onCancel={toggleModal}
         onConfirm={deletePost}
       >
         Do you want to delete this post?
-      </ConfirmModal>
+      </Modal>
       <div className="card">
         {signedInUserPost && (
           <CardMenu
             menuItems={[
               {
-                callback: () => toggleVisibility(["editPost"]),
+                callback: () => setEditForm(!editForm),
                 value: (
                   <span>
                     <FontAwesomeIcon icon={faPenSquare} /> Edit
@@ -127,7 +109,7 @@ const PostCard: React.FC<Props> = ({
                 ),
               },
               {
-                callback: () => toggleVisibility(["modal"]),
+                callback: toggleModal,
                 value: (
                   <span>
                     <FontAwesomeIcon icon={faTrash} /> Delete
@@ -145,12 +127,12 @@ const PostCard: React.FC<Props> = ({
           </h2>
         </Link>
         <span className="card__meta text-1">{getDate(createdAt)}</span>
-        {visibility.editPost ? (
+        {editForm ? (
           <PostForm
             isEdit
             body={body}
             postId={id}
-            callback={() => setVisibility({ ...visibility, editPost: false })}
+            callback={() => setEditForm(!editForm)}
           />
         ) : (
           <Link to={`/post/${username}/${id}`}>

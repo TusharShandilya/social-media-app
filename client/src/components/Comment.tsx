@@ -1,19 +1,16 @@
 import React, { useState, useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
-import {
-  faEllipsisH,
-  faPenSquare,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../AuthUser.context";
 import { GET_ALL_POSTS } from "../utils/graphql";
-import ConfirmModal from "./ConfirmModal";
+import { getDate } from "../utils/date";
+import Modal from "./Modal";
 import CommentForm from "./Forms/CommentForm";
 import CardMenu from "./CardMenu";
-import { getDate } from "../utils/date";
+import useModal from "../hooks/useModal";
 
 interface Props {
   comment: {
@@ -42,7 +39,7 @@ const Comment: React.FC<Props> = ({
   postId,
 }) => {
   const [showEditComment, setShowEditComment] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const { modalOpen, toggleModal } = useModal();
   const { user } = useContext(AuthContext);
 
   const [deleteComment, { loading }] = useMutation(DELETE_COMMENT, {
@@ -70,14 +67,14 @@ const Comment: React.FC<Props> = ({
 
   return (
     <div className=" card__background">
-      <ConfirmModal
+      <Modal
         open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onCancel={() => setModalOpen(false)}
+        onClose={toggleModal}
+        onCancel={toggleModal}
         onConfirm={deleteComment}
       >
         Do you want to delete this comment?
-      </ConfirmModal>
+      </Modal>
       <div className=" card">
         {user && signedInUserComment && (
           <CardMenu
@@ -91,7 +88,7 @@ const Comment: React.FC<Props> = ({
                 ),
               },
               {
-                callback: () => () => setModalOpen(true),
+                callback: toggleModal,
                 value: (
                   <span>
                     <FontAwesomeIcon icon={faTrash} /> Delete
@@ -118,8 +115,8 @@ const Comment: React.FC<Props> = ({
           />
         ) : (
           <p className="card__description paragraph">
-            {edited && <em>(edited)</em>}
             {body}
+            {edited && <em>(edited)</em>}
           </p>
         )}
       </div>
@@ -131,17 +128,6 @@ const DELETE_COMMENT = gql`
   mutation deleteComment($postId: ID!, $commentId: ID!) {
     deleteComment(postId: $postId, commentId: $commentId) {
       id
-      commentCount
-      comments {
-        id
-        commentId
-        body
-        username
-        firstName
-        lastName
-        createdAt
-        edited
-      }
     }
   }
 `;

@@ -51,14 +51,12 @@ const Links: React.FC<Props> = ({ styleClass }) => {
               {user.firstName} {user.lastName}
             </NavLink>
           </li>
+          <li>
+            <CustomButton color="danger" onClick={logout}>
+              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+            </CustomButton>
+          </li>
         </Fragment>
-      )}
-      {user && (
-        <li>
-          <CustomButton color="danger" onClick={logout}>
-            <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-          </CustomButton>
-        </li>
       )}
     </ul>
   );
