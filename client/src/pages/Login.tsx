@@ -5,7 +5,7 @@ import { LoginForm } from "../containers/Forms";
 
 const Login: React.FC = () => {
   return (
-    <Layout>
+    <Layout title="Login">
       <LoginForm />
     </Layout>
   );

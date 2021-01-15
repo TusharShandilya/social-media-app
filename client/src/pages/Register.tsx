@@ -5,7 +5,7 @@ import { RegisterForm } from "../containers/Forms";
 
 const Register: React.FC = () => {
   return (
-    <Layout>
+    <Layout title="Register">
       <RegisterForm />;
     </Layout>
   );

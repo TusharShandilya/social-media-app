@@ -1,14 +1,17 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 interface Props {
-  hasSidebar?: boolean;
+  title?: string;
 }
 
-const Layout: React.FC<Props> = ({ children, hasSidebar }) => {
+const Layout: React.FC<Props> = ({ children, title }) => {
   return (
     <div className="page">
+      <Helmet>
+        <title>Social Media {title ? `| ${title}` : ""} </title>
+      </Helmet>
       <main className="page-container">{children}</main>
-      {hasSidebar && <aside className="page-sidebar"></aside>}
     </div>
   );
 };

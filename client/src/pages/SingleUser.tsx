@@ -17,13 +17,16 @@ const SingleUser: React.FC<Props> = (props) => {
     variables: { username: props.match.params.username },
   });
 
-  let singleUserComponent: JSX.Element;
-
   if (loading) {
-    singleUserComponent = <Heading>Loading...</Heading>;
+    return (
+      <Layout>
+        {" "}
+        <Heading>Loading...</Heading>{" "}
+      </Layout>
+    );
   } else if (data) {
-    singleUserComponent = (
-      <Fragment>
+    return (
+      <Layout title={`${data.getUser.firstName} ${data.getUser.lastName}`}>
         <Heading size="xl">
           {data.getUser.firstName} {data.getUser.lastName}
           <span className="link"> @{data.getUser.username}</span>
@@ -36,13 +39,16 @@ const SingleUser: React.FC<Props> = (props) => {
             </Fragment>
           ))}
         </Container>
-      </Fragment>
+      </Layout>
     );
   } else {
-    singleUserComponent = <Heading>An error has occured</Heading>;
+    return (
+      <Layout>
+        {" "}
+        <Heading>An error has occured</Heading>{" "}
+      </Layout>
+    );
   }
-
-  return <Layout hasSidebar>{singleUserComponent}</Layout>;
 };
 
 const GET_USER = gql`

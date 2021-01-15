@@ -19,31 +19,39 @@ const SinglePost: React.FC<Props> = (props) => {
   const { postId } = props.match.params;
   const { data, loading } = useQuery(GET_POST, { variables: { postId } });
 
-  let singlePostComponent: JSX.Element;
   if (loading) {
-    singlePostComponent = <Heading>Loading...</Heading>;
+    return (
+      <Layout>
+        {" "}
+        <Heading>Loading...</Heading>{" "}
+      </Layout>
+    );
   } else if (data) {
-    singlePostComponent = (
-      <Container scrollable>
-        <PostCard post={data.getPost} />
-        {user && <CommentForm postId={postId} />}
-        <Spacer size="sm" />
-        <Heading size="xs">Comments ({data.getPost.commentCount})</Heading>
-        <Spacer size="xs" />
-        {data.getPost.comments.map((comment: CommentType) => (
-          <CommentCard
-            key={comment.commentId}
-            postId={postId}
-            comment={comment}
-          />
-        ))}
-      </Container>
+    return (
+      <Layout title={`${data.getPost.body.substring(0, 10)}...`}>
+        <Container scrollable>
+          <PostCard post={data.getPost} />
+          {user && <CommentForm postId={postId} />}
+          <Spacer size="sm" />
+          <Heading size="xs">Comments ({data.getPost.commentCount})</Heading>
+          <Spacer size="xs" />
+          {data.getPost.comments.map((comment: CommentType) => (
+            <CommentCard
+              key={comment.commentId}
+              postId={postId}
+              comment={comment}
+            />
+          ))}
+        </Container>
+      </Layout>
     );
   } else {
-    singlePostComponent = <Heading>An error has occured</Heading>;
+    return (
+      <Layout>
+        <Heading>An error has occured</Heading>{" "}
+      </Layout>
+    );
   }
-
-  return <Layout hasSidebar>{singlePostComponent}</Layout>;
 };
 
 const GET_POST = gql`

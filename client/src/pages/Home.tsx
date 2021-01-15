@@ -31,7 +31,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <Layout hasSidebar>
+    <Layout>
       <Heading size="lg">All posts</Heading>
       {homeComponent}
     </Layout>

@@ -5,7 +5,7 @@ import { PostForm } from "../containers/Forms";
 
 const NewPost: React.FC = () => {
   return (
-    <Layout hasSidebar>
+    <Layout title="New Post">
       <PostForm />;
     </Layout>
   );
