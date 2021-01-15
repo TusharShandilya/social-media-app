@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useOutsideAlerter = (
+const useOutsideAlerter = (
   ref: React.MutableRefObject<any>,
   callback: () => void
 ) => {
@@ -17,3 +17,5 @@ export const useOutsideAlerter = (
     };
   }, [ref]);
 };
+
+export default useOutsideAlerter;

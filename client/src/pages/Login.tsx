@@ -1,6 +1,7 @@
 import React from "react";
-import LoginForm from "../components/Forms/LoginForm";
-import Layout from "../components/Layout";
+
+import { Layout } from "../components/Layout";
+import { LoginForm } from "../containers/Forms";
 
 const Login: React.FC = () => {
   return (

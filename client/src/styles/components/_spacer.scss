@@ -1,0 +1,27 @@
+.spacer {
+  visibility: hidden;
+  &-xs {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &-sm {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  &-md {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+  }
+
+  &-lg {
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  &-xl {
+    margin-top: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+}

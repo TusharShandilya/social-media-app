@@ -1,8 +1,12 @@
 import React, { Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
-import Layout from "../components/Layout";
-import PostCard from "../components/PostCard";
-import { Post } from "../utils/types";
+
+import { PostType } from "../config/types";
+
+import { Container, Layout } from "../components/Layout";
+import { Heading } from "../components/Typography";
+import { Spacer } from "../components/Helpers";
+import { PostCard } from "../containers/Cards";
 
 interface Props {
   match: { params: { username: string } };
@@ -13,27 +17,32 @@ const SingleUser: React.FC<Props> = (props) => {
     variables: { username: props.match.params.username },
   });
 
-  return (
-    <Layout hasSidebar>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : data ? (
-        <Fragment>
-          <h1 className="heading-primary margin-y-md">
-            {data.getUser.firstName} {data.getUser.lastName}
-            <span className="link"> @{data.getUser.username}</span>
-          </h1>
-          <div className="scrollable-container">
-            {data.getUser.posts.map((post: Post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        </Fragment>
-      ) : (
-        <h1>An error has occured</h1>
-      )}
-    </Layout>
-  );
+  let singleUserComponent: JSX.Element;
+
+  if (loading) {
+    singleUserComponent = <Heading>Loading...</Heading>;
+  } else if (data) {
+    singleUserComponent = (
+      <Fragment>
+        <Heading size="xl">
+          {data.getUser.firstName} {data.getUser.lastName}
+          <span className="link"> @{data.getUser.username}</span>
+        </Heading>
+        <Container scrollable>
+          {data.getUser.posts.map((post: PostType) => (
+            <Fragment key={post.id}>
+              <PostCard post={post} />
+              <Spacer size="sm" />
+            </Fragment>
+          ))}
+        </Container>
+      </Fragment>
+    );
+  } else {
+    singleUserComponent = <Heading>An error has occured</Heading>;
+  }
+
+  return <Layout hasSidebar>{singleUserComponent}</Layout>;
 };
 
 const GET_USER = gql`

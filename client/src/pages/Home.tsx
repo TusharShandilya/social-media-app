@@ -1,26 +1,39 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useQuery } from "@apollo/client";
 
-import { Post } from "../utils/types";
-import { GET_ALL_POSTS } from "../utils/graphql";
-import PostCard from "../components/PostCard";
-import Layout from "../components/Layout";
+import { PostType } from "../config/types";
+import { GET_ALL_POSTS } from "../graphql";
+
+import { Container, Layout } from "../components/Layout";
+import { Heading } from "../components/Typography";
+import { Spacer } from "../components/Helpers";
+import { PostCard } from "../containers/Cards";
 
 const Home: React.FC = () => {
   const { loading, data } = useQuery(GET_ALL_POSTS);
 
+  let homeComponent: JSX.Element;
+  if (loading) {
+    homeComponent = <Heading>Loading...</Heading>;
+  } else if (data) {
+    homeComponent = (
+      <Container scrollable>
+        {data?.getPosts.map((post: PostType) => (
+          <Fragment key={post.id}>
+            <PostCard post={post} />
+            <Spacer size="xs" />
+          </Fragment>
+        ))}
+      </Container>
+    );
+  } else {
+    homeComponent = <Heading>An Error has occured</Heading>;
+  }
+
   return (
     <Layout hasSidebar>
-      <h1 className="text-centered heading-primary">All posts</h1>
-      <div className="scrollable-container">
-        {loading ? (
-          <h1>Loading...</h1>
-        ) : (
-          data?.getPosts.map((post: Post) => (
-            <PostCard key={post.id} post={post} />
-          )) ?? <h1>An error has occurred</h1>
-        )}
-      </div>
+      <Heading size="lg">All posts</Heading>
+      {homeComponent}
     </Layout>
   );
 };

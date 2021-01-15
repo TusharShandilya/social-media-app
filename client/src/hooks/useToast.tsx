@@ -6,7 +6,7 @@ interface ToastState {
   type: "info" | "warning" | "danger" | undefined;
 }
 
-export const useToast = (seconds?: number) => {
+const useToast = (seconds?: number) => {
   const [toastState, setToastState] = useState<ToastState>({
     active: false,
     message: "",
@@ -39,3 +39,5 @@ export const useToast = (seconds?: number) => {
 
   return { toastState, displayToast };
 };
+
+export default useToast;

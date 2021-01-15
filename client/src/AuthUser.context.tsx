@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 
 import { createContext, useReducer } from "react";
 import { getCookie, setCookie } from "./utils/cookies";
-import { User } from "./utils/types";
+import { User } from "./config/types";
 
 type State = {
   user: User | null;

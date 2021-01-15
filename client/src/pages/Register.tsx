@@ -1,7 +1,7 @@
 import React from "react";
 
-import RegisterForm from "../components/Forms/RegisterForm";
-import Layout from "../components/Layout";
+import { Layout } from "../components/Layout";
+import { RegisterForm } from "../containers/Forms";
 
 const Register: React.FC = () => {
   return (

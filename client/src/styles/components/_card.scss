@@ -1,0 +1,96 @@
+// CARD
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  padding: 1rem 1.5rem;
+  border: $border-default;
+  background: $color-background-primary;
+  transform: translate(0.7rem, -0.7rem);
+}
+
+.card-menu {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+}
+
+.card-menu__icon {
+  cursor: pointer;
+
+  height: 3rem;
+  width: 3rem;
+  text-align: center;
+  font-size: 2rem;
+
+  &:hover {
+    border-radius: 1000px;
+    background: $color-grey-light;
+  }
+}
+.card-menu__items {
+  position: absolute;
+  top: 2rem;
+  right: 60%;
+
+  background-color: $color-grey-lightest;
+  border: $border-default;
+}
+.card-menu__item {
+  display: inline-block;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  width: 9rem;
+
+  cursor: pointer;
+  font-size: 1.6rem;
+
+  &:not(:last-child) {
+    border-bottom: $border-default;
+  }
+  &:hover {
+    background-color: $color-grey-lighter;
+  }
+}
+
+.card-background {
+  width: 95%;
+  display: inline-block;
+  background: $color-blue-dark;
+}
+
+.card-content {
+  display: block;
+  color: $color-grey-darkest;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  word-wrap: break-word;
+
+  em {
+    color: $color-grey;
+    margin-left: 0.75rem;
+  }
+}
+
+.card-title {
+  color: $color-grey-dark;
+  font-size: 1.6rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.card-meta {
+  color: $color-grey-dark;
+  font-size: 1.4rem;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+}
