@@ -48,6 +48,14 @@
   overflow: auto;
 }
 
+.box {
+  display: flex;
+
+  &-v {
+    flex-direction: column;
+  }
+}
+
 @include respond("laptop") {
   .navbar {
     width: 100%;

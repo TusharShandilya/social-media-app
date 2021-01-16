@@ -6,7 +6,7 @@ import { PostType } from "../config/types";
 import { Container, Layout } from "../components/Layout";
 import { Heading } from "../components/Typography";
 import { Spacer } from "../components/Helpers";
-import { PostCard } from "../containers/Cards";
+import { PostCard, UserCard } from "../containers/Cards";
 
 interface Props {
   match: { params: { username: string } };
@@ -27,10 +27,10 @@ const SingleUser: React.FC<Props> = (props) => {
   } else if (data) {
     return (
       <Layout title={`${data.getUser.firstName} ${data.getUser.lastName}`}>
-        <Heading size="xl">
-          {data.getUser.firstName} {data.getUser.lastName}
-          <span className="link"> @{data.getUser.username}</span>
-        </Heading>
+        <Spacer />
+        <UserCard user={data.getUser} />
+        <Spacer size="xs" />
+
         <Container scrollable>
           {data.getUser.posts.map((post: PostType) => (
             <Fragment key={post.id}>

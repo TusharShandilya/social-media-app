@@ -33,7 +33,7 @@ const CommentForm: React.FC<Props> = ({
     {
       comment: body ?? "",
     },
-    handleFormSubmit
+    hoistedFunction
   );
   const commentLengthLimit = 200;
 
@@ -73,7 +73,7 @@ const CommentForm: React.FC<Props> = ({
     },
   });
 
-  function handleFormSubmit() {
+  function hoistedFunction() {
     if (isEdit) {
       editComment();
       if (callback) {
@@ -84,10 +84,19 @@ const CommentForm: React.FC<Props> = ({
     }
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (values.comment.length <= commentLengthLimit) {
+      onSubmit(e);
+    } else {
+      e.preventDefault();
+      alert("Comment length limit exceeded");
+    }
+  };
+
   return (
     <form
       className="form comment-form full-width margin-y-md no-margin-x no-padding-t"
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <Heading size="sm">
         {isEdit ? "Edit your comment" : "Comment on this post"}

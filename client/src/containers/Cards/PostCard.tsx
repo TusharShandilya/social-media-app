@@ -23,9 +23,13 @@ import {
   CardContent,
   CardActions,
   CardMenu,
+  CardImage,
 } from "../../components/Card";
 import { PostForm } from "../Forms";
 import { Heading, Text } from "../../components/Typography";
+
+import UserDefaultImage from "../../assets/img/user-default.jpg";
+import { Box } from "../../components/Layout";
 
 interface Props {
   post: PostType;
@@ -108,16 +112,21 @@ const PostCard: React.FC<Props> = ({
         {signedInUserPost && <CardMenu menuItems={cardMenuItems} />}
         <Link to={`/user/${username}`}>
           <CardTitle>
-            <Heading size="xs">
-              {firstName} {lastName}
-            </Heading>
-            <Heading size="xs" className="link">
-              &nbsp;@{username}
-            </Heading>
+            <CardImage
+              src={UserDefaultImage}
+              alt={`${firstName} ${lastName} image`}
+            />
+            <Box vertical>
+              <Heading size="xs">
+                {firstName} {lastName}
+                <Text size="xl" className="link">
+                  &nbsp;@{username}
+                </Text>
+              </Heading>
+              <CardMeta>{getDate(createdAt)}</CardMeta>
+            </Box>
           </CardTitle>
         </Link>
-
-        <CardMeta>{getDate(createdAt)}</CardMeta>
 
         <CardContent>
           {editForm ? (

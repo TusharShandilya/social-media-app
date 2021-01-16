@@ -94,3 +94,33 @@
   justify-content: flex-end;
   font-size: 1.2rem;
 }
+
+.card-image {
+  overflow: hidden;
+  border: $border-default;
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  &-xs {
+    height: 3rem;
+    width: 3rem;
+  }
+  &-sm {
+    height: 5rem;
+    width: 5rem;
+  }
+  &-md {
+    height: 7rem;
+    width: 7rem;
+  }
+  &-lg {
+    height: 9rem;
+    width: 9rem;
+  }
+  &-xl {
+    height: 11rem;
+    width: 11rem;
+  }
+}

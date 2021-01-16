@@ -16,16 +16,18 @@ const ShareButton: React.FC<Props> = ({ share }) => {
     toastState: { active, message, type },
   } = useToast();
   return (
-    <CustomButton
-      styleClass="margin-r-md"
-      onClick={() => {
-        handleCopyTextToClipboard(share);
-        displayToast("Link to post copied", "info");
-      }}
-    >
+    <React.Fragment>
       <Toast active={active} message={message} type={type} />
-      <FontAwesomeIcon icon={faShareAlt} />
-    </CustomButton>
+      <CustomButton
+        styleClass="margin-r-md"
+        onClick={() => {
+          handleCopyTextToClipboard(share);
+          displayToast("Link copied", "info");
+        }}
+      >
+        <FontAwesomeIcon icon={faShareAlt} />
+      </CustomButton>
+    </React.Fragment>
   );
 };
 

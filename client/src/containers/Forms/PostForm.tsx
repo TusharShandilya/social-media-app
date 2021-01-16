@@ -27,7 +27,7 @@ const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
   const [error, setError] = useState("");
   let { values, onChange, onSubmit } = useForm<NewPostFormValues>(
     { body: body ?? "" },
-    handleFormSubmit
+    hoistedFunction
   );
   const bodyLengthLimit = 250;
 
@@ -68,7 +68,7 @@ const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
   });
 
   //  Regular function to allow hoisting to useForm hook
-  function handleFormSubmit() {
+  function hoistedFunction() {
     if (isEdit) {
       editPost();
       if (callback) {

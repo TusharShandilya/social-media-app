@@ -7,6 +7,18 @@ const UserSchema = Schema({
   email: String,
   createdAt: String,
   password: String,
+  followers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
+  following: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
 });
 
 module.exports = model("User", UserSchema);

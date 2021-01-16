@@ -9,6 +9,7 @@ const {
   validateLoginInput,
 } = require("../../utils/validate-user");
 const { JWT_SECRET } = require("../../config");
+const checkAuth = require("../../utils/check-auth");
 
 const generateToken = (user) => {
   return jwt.sign(
@@ -33,7 +34,7 @@ module.exports = {
 
       if (!user) throw new UserInputError("User not found");
 
-      const { id, firstName, lastName, email } = user;
+      const { id, firstName, lastName, email, followers, following } = user;
       const userPosts = await Post.find({
         $or: [
           { username },
@@ -48,9 +49,12 @@ module.exports = {
         firstName,
         lastName,
         email,
+        followerCount: followers.length,
+        followingCount: following.length,
         posts: [...userPosts],
       };
     },
+    getFollowers: async (_, { username }) => {},
   },
   Mutation: {
     register: async (
@@ -140,6 +144,51 @@ module.exports = {
         throw new UserInputError("Invalid credentials", {
           errors: { general: "Invalid credentials" },
         });
+      }
+    },
+    followUser: async (_, { username }, context) => {
+      try {
+        const user = checkAuth(context);
+
+        const currentUser = await User.findById(user.id);
+        if (!currentUser) throw new UserInputError("Signed in user not found");
+
+        const followUser = await User.findOne({ username });
+        if (!followUser) throw new UserInputError("User not found");
+
+        if (currentUser.id === followUser.id)
+          throw new UserInputError("User can't follow themself");
+
+        if (
+          currentUser.following.find(
+            (userId) => userId.toString() === followUser.id
+          )
+        ) {
+          currentUser.following = currentUser.following.filter(
+            (userId) => userId.toString() !== followUser.id
+          );
+          followUser.followers = followUser.followers.filter(
+            (userId) => userId.toString() !== currentUser.id
+          );
+        } else {
+          currentUser.following.unshift(followUser.id);
+          followUser.followers.unshift(currentUser.id);
+        }
+
+        await currentUser.save();
+        await followUser.save();
+
+        return {
+          id: currentUser.id,
+          username: currentUser.username,
+          firstName: currentUser.firstName,
+          lastName: currentUser.lastName,
+          email: currentUser.email,
+          followerCount: currentUser.followers.length,
+          followingCount: currentUser.following.length,
+        };
+      } catch (err) {
+        throw new Error(err);
       }
     },
     editUser: async (_, { firstName, lastName, email }, context) => {},

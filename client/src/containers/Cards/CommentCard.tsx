@@ -13,12 +13,16 @@ import useModal from "../../hooks/useModal";
 import {
   Card,
   CardContent,
+  CardImage,
   CardMenu,
   CardMeta,
   CardTitle,
 } from "../../components/Card";
 import { Heading, Text } from "../../components/Typography";
 import CommentForm from "../Forms/CommentForm";
+import { Box } from "../../components/Layout";
+
+import UserDefaultImage from "../../assets/img/user-default.jpg";
 
 interface Props {
   comment: {
@@ -108,15 +112,20 @@ const CommentCard: React.FC<Props> = ({
         {signedInUserComment && <CardMenu menuItems={cardMenuOptions} />}
         <Link to={`/user/${username}`}>
           <CardTitle>
-            <Heading size="xs">
-              {firstName} {lastName}
-            </Heading>
-            <Heading size="xs" className="link">
-              &nbsp; @{username}
-            </Heading>
+            <CardImage
+              size="sm"
+              src={UserDefaultImage}
+              alt={`${firstName} ${lastName}`}
+            />
+            <Box vertical>
+              <Heading size="xs">
+                {firstName} {lastName}
+                <span className="link is-lowercase"> @{username}</span>
+              </Heading>
+              <CardMeta>{getDate(createdAt)}</CardMeta>
+            </Box>
           </CardTitle>
         </Link>
-        <CardMeta>{getDate(createdAt)}</CardMeta>
         <CardContent>
           {showEditComment ? (
             <CommentForm
