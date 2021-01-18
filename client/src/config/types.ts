@@ -29,11 +29,16 @@ export type PostType = {
 };
 
 export type User = {
-  [props: string]: string;
+  id: string;
   username: string;
   email: string;
   firstName: string;
   lastName: string;
+  followers: string[];
+  following: string[];
+  followerCount: number;
+  followingCount: number;
+  token: string;
 };
 
 export type StyleSize = "xs" | "sm" | "md" | "lg" | "xl";

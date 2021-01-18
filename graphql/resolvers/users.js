@@ -34,23 +34,17 @@ module.exports = {
 
       if (!user) throw new UserInputError("User not found");
 
-      const { id, firstName, lastName, email, followers, following } = user;
       const userPosts = await Post.find({
         $or: [
-          { username },
-          { "comments.username": username },
-          { "likes.username": username },
+          { username: user.username },
+          { "comments.username": user.username },
+          { "likes.username": user.username },
         ],
       }).sort({ createdAt: -1 });
 
       return {
-        id,
-        username,
-        firstName,
-        lastName,
-        email,
-        followerCount: followers.length,
-        followingCount: following.length,
+        ...user._doc,
+        id: user._id,
         posts: [...userPosts],
       };
     },
@@ -178,15 +172,7 @@ module.exports = {
         await currentUser.save();
         await followUser.save();
 
-        return {
-          id: currentUser.id,
-          username: currentUser.username,
-          firstName: currentUser.firstName,
-          lastName: currentUser.lastName,
-          email: currentUser.email,
-          followerCount: currentUser.followers.length,
-          followingCount: currentUser.following.length,
-        };
+        return { ...currentUser._doc, id: currentUser._id, token: "" };
       } catch (err) {
         throw new Error(err);
       }

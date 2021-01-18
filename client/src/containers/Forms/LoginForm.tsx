@@ -32,6 +32,7 @@ const LoginForm: React.FC = () => {
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       context.login(userData);
+      console.log(userData);
     },
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors) {
@@ -101,6 +102,10 @@ const LOGIN_USER = gql`
       lastName
       token
       email
+      followers
+      followerCount
+      following
+      followingCount
       createdAt
     }
   }
