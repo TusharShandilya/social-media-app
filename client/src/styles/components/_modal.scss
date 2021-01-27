@@ -11,7 +11,7 @@
 
 .modal-background {
   position: absolute;
-  background: rgba($color-grey-darkest, 0.9);
+  background: rgba($clr-neutral-500, 0.9);
   height: 100%;
   width: 100%;
 }
@@ -28,7 +28,7 @@
   justify-content: center;
   align-items: center;
 
-  background-color: $color-background-primary;
+  background-color: $clr-neutral-100;
 }
 
 .modal-header {
@@ -51,8 +51,8 @@
   top: 0;
   right: 1rem;
   position: absolute;
-  color: $color-primary;
-  background: $color-grey-lightest;
+  color: $clr-primary-500;
+  background: $clr-neutral-100;
   transition: all 0.2s;
   &:hover {
     cursor: pointer;

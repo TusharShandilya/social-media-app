@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
 
-import { Heading, Text } from "../../components/Typography";
+import { Heading, Paragraph } from "../../components/Typography";
 import { CustomInputText } from "../../components/Inputs";
 import { CustomButton } from "../../components/Button";
 
@@ -83,12 +83,12 @@ const LoginForm: React.FC = () => {
           <FontAwesomeIcon icon={faSignInAlt} /> Login
         </CustomButton>
       </div>
-      <Text>
+      <Paragraph>
         Not a member?
         <Link to="/register">
           <span className="link"> Sign up now.</span>
         </Link>
-      </Text>
+      </Paragraph>
     </form>
   );
 };

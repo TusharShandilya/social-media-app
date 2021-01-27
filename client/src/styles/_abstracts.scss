@@ -1,37 +1,56 @@
 // VARIABLES
 
 // fonts
-$font-family-primary: "Roboto", sans-serif;
-$font-family-secondary: "Montserrat", sans-serif;
+$ff-primary: "Roboto", sans-serif;
+$ff-secondary: "Montserrat", sans-serif;
 
-$font-size-default: 1.6rem;
+$fs-h1: 6.73rem;
+$fs-h2: 5.05rem;
+$fs-h3: 3.8rem;
+$fs-h4: 2.85rem;
+$fs-h5: 2.15rem;
+$fs-h6: 1.6rem;
+$fs-paragraph: 1.6rem;
+$fs-subtext: 1.4rem;
+$fs-caption: 1.2rem;
 
 // colors
-$color-red-light: #ff908a;
-$color-red: #d84747;
 
-$color-green: #1ba052;
+$clr-primary-100: #c8c2ff;
+$clr-primary-200: #8075ff;
+$clr-primary-300: #6320ee;
+$clr-primary-400: #3e09ae;
+$clr-primary-500: #220561;
 
-$color-blue-light: #3576ca;
-$color-blue: #124281;
-$color-blue-dark: #16202d;
+$clr-neutral-100: #ffffff;
+$clr-neutral-200: #f4f5f7;
+$clr-neutral-300: #e1e1e1;
+$clr-neutral-400: #737581;
+$clr-neutral-500: #4a4b53;
+$clr-neutral-600: #000000;
 
-$color-grey-lightest: #fcfcfc;
-$color-grey-lighter: #dfdfdf;
-$color-grey-light: #c0c0c0;
-$color-grey: #a0a0a0;
-$color-grey-dark: #484848;
-$color-grey-darker: #303030;
-$color-grey-darkest: #101010;
+$clr-success-100: #529e66;
+$clr-success-200: #367b48;
+$clr-success-300: #276738;
 
-$color-primary: $color-blue-dark;
-$color-background-primary: $color-grey-lightest;
-$color-text-primary: $color-grey-darkest;
-$color-text-secondary: $color-grey-dark;
+$clr-danger-100: #d0454c;
+$clr-danger-200: #b54248;
+$clr-danger-300: #95353a;
+
+$clr-warning-100: #e1c542;
+$clr-warning-200: #cab23f;
+$clr-warning-300: #b49e35;
+
+$clr-info-100: #92cffb;
+$clr-info-200: #349ce7;
+$clr-info-300: #0772bf;
+
+$clr-text: #272727;
+$clr-text-inverted: #ffffff;
 
 // Others
 
-$border-default: 3px solid $color-primary;
+$border-default: 3px solid $clr-primary-500;
 
 //------------------------------------
 // MIXINS

@@ -1,7 +1,7 @@
 // CUSTOM INPUT TEXT
 
 .input-text {
-  font-size: $font-size-default;
+  font-size: $fs-h6;
   position: relative;
   width: 100%;
 
@@ -13,11 +13,11 @@
 
     width: 100%;
 
-    font-size: $font-size-default;
+    font-size: $fs-h6;
     border: $border-default;
 
     &--textarea {
-      font-family: $font-family-primary;
+      font-family: $ff-primary;
       height: 17rem;
       width: 100%;
       resize: none;
@@ -26,13 +26,12 @@
   &__label {
     transition: all 0.2s;
     position: absolute;
-    font-size: $font-size-default;
-    color: $color-grey-dark;
+    font-size: $fs-h6;
+    color: $clr-text;
     top: 4.5rem;
     left: 1.6rem;
 
     &--active {
-      color: $color-text-primary;
       top: 1.5rem;
       left: 0.75rem;
       font-size: 1.4rem;
@@ -42,7 +41,7 @@
 
   &__error {
     display: inline-block;
-    color: $color-red;
+    color: $clr-danger-200;
     margin: auto;
     font-size: 1.4rem;
     margin-bottom: 1rem;
@@ -51,15 +50,15 @@
 
 .input-text--error {
   .input-text__label {
-    color: $color-red-light;
+    color: $clr-danger-200;
     font-weight: 500;
     &--active {
-      color: $color-red;
+      color: $clr-danger-200;
     }
   }
   .input-text__input {
-    border: 3px solid $color-red;
-    background-color: rgba($color-red-light, 0.1);
+    border: 3px solid $clr-danger-200;
+    background-color: rgba($clr-danger-100, 0.1);
   }
   .input-text__error {
   }

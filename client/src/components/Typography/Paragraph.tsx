@@ -6,12 +6,12 @@ interface Props {
   size?: StyleSize;
 }
 
-const Text: React.FC<Props> = ({ children, size, className }) => {
+const Paragraph: React.FC<Props> = ({ children, size, className }) => {
   return (
-    <span className={`text text-${size ?? "md"} ${className ?? ""}`}>
+    <span className={`paragraph paragraph-${size ?? "md"} ${className ?? ""}`}>
       {children}
     </span>
   );
 };
 
-export default Text;
+export default Paragraph;

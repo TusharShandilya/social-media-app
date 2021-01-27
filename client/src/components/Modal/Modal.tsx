@@ -2,7 +2,7 @@ import { faBan, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { CustomButton } from "../Button";
-import { Text } from "../Typography";
+import { Paragraph } from "../Typography";
 
 interface Props {
   open: boolean;
@@ -41,9 +41,9 @@ export const Modal: React.FC<Props> = ({
               noBackground
               onClick={onCancel}
             >
-              <Text size="lg">
+              <Paragraph size="lg">
                 <FontAwesomeIcon icon={faBan} /> Cancel
-              </Text>
+              </Paragraph>
             </CustomButton>
           )}
           <CustomButton
@@ -52,9 +52,9 @@ export const Modal: React.FC<Props> = ({
             noBackground
             onClick={handleConfirm}
           >
-            <Text size="lg">
+            <Paragraph size="lg">
               <FontAwesomeIcon icon={faCheckCircle} /> Confirm
-            </Text>
+            </Paragraph>
           </CustomButton>
         </div>
       </div>

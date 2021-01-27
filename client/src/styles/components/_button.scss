@@ -7,15 +7,15 @@
   font-size: inherit;
   cursor: pointer;
 
-  background-color: $color-grey-lightest;
+  background-color: $clr-neutral-100;
   padding: 0.75rem 1rem;
   border-radius: 0;
   border: $border-default;
   outline: none;
 
   transition: all 0.2s;
-
   width: 100%;
+
   &:hover {
     transform: translate(0.5rem, -0.5rem);
   }
@@ -24,41 +24,52 @@
     transform: translate(0%);
   }
 
-  &-danger {
-    border: 3px solid $color-red;
-
-    color: $color-grey-lightest;
-    background-color: $color-red;
-  }
-
-  &-success {
-    border: 3px solid $color-green;
-
-    color: $color-grey-lightest;
-    background-color: $color-green;
+  &:focus {
+    outline: 3px solid $clr-primary-200;
   }
 
   &-primary {
-    border: 3px solid $color-blue-light;
+    border: $border-default;
 
-    color: $color-grey-lightest;
-    background-color: $color-blue-light;
-  }
-  &-filled {
-    border: 3px solid $color-primary;
-
-    color: $color-grey-lightest;
-    background-color: $color-primary;
-
+    color: $clr-primary-500;
+    background-color: $clr-primary-500;
     &:hover {
-      border: 3px solid $color-blue;
+      border: 3px solid $clr-primary-300;
     }
+  }
+
+  &-secondary {
+    border: 3px solid $clr-primary-500;
+
+    color: $clr-primary-500;
+    background-color: $clr-neutral-100;
+  }
+
+  &-danger {
+    border: 3px solid $clr-danger-100;
+
+    color: $clr-neutral-100;
+    background-color: $clr-danger-100;
+  }
+
+  &-success {
+    border: 3px solid $clr-success-100;
+
+    color: $clr-text-inverted;
+    background-color: $clr-success-100;
+  }
+
+  &-info {
+    border: 3px solid $clr-info-100;
+
+    color: $clr-text-inverted;
+    background-color: $clr-info-100;
   }
 }
 
 .btn-background {
   display: inline-block;
-  background: $color-blue-dark;
+  background: $clr-primary-500;
 
   &--inactive {
     background: none;

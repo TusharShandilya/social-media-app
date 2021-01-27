@@ -4,7 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { CustomButton } from ".";
-import { Text } from "../Typography";
+import { Paragraph } from "../Typography";
 import { AuthContext } from "../../AuthUser.context";
 import { User } from "../../config/types";
 
@@ -25,11 +25,11 @@ const FollowButton: React.FC<Props> = ({ followUser }) => {
   });
 
   return (
-    <Text>
+    <Paragraph>
       <CustomButton color={isFollowing ? "primary" : undefined}>
         <FontAwesomeIcon icon={faPlus} /> {isFollowing ? "Unfollow" : "Follow"}
       </CustomButton>
-    </Text>
+    </Paragraph>
   );
 };
 

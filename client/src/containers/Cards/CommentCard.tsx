@@ -18,7 +18,7 @@ import {
   CardMeta,
   CardTitle,
 } from "../../components/Card";
-import { Heading, Text } from "../../components/Typography";
+import { Heading, Paragraph } from "../../components/Typography";
 import CommentForm from "../Forms/CommentForm";
 import { Box } from "../../components/Layout";
 
@@ -104,9 +104,9 @@ const CommentCard: React.FC<Props> = ({
         onCancel={toggleModal}
         onConfirm={deleteComment}
       >
-        <Text className="text-centered" size="lg">
+        <Paragraph className="text-centered" size="lg">
           Do you want to delete this comment?
-        </Text>
+        </Paragraph>
       </Modal>
       <Card>
         {signedInUserComment && <CardMenu menuItems={cardMenuOptions} />}
@@ -136,10 +136,10 @@ const CommentCard: React.FC<Props> = ({
               callback={() => setShowEditComment((show) => !show)}
             />
           ) : (
-            <Text>
+            <Paragraph>
               {body}
               {edited && <em>(edited)</em>}
-            </Text>
+            </Paragraph>
           )}
         </CardContent>
       </Card>

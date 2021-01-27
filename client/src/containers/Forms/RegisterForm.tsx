@@ -7,7 +7,7 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../AuthUser.context";
 import useForm from "../../hooks/useForm";
 
-import { Heading, Text } from "../../components/Typography";
+import { Heading, Paragraph } from "../../components/Typography";
 import { CustomInputText } from "../../components/Inputs";
 import { CustomButton } from "../../components/Button";
 
@@ -139,12 +139,12 @@ const RegisterForm: React.FC = () => {
           <FontAwesomeIcon icon={faUserPlus} /> Register
         </CustomButton>
       </div>
-      <Text>
+      <Paragraph>
         Already a member?
         <Link to="/login">
           <span className="link"> Sign in.</span>
         </Link>
-      </Text>
+      </Paragraph>
     </form>
   );
 };

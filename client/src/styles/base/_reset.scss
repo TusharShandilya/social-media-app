@@ -14,14 +14,14 @@ html {
 
 body {
   box-sizing: border-box;
+  background-color: $clr-primary-500;
 }
-
 
 a,
 a:visited,
 a:link {
   text-decoration: none;
-  color: $color-text-primary;
+  color: $clr-text;
 }
 
 ul,

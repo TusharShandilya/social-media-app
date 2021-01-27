@@ -9,7 +9,7 @@
 
   padding: 1rem 1.5rem;
   border: $border-default;
-  background: $color-background-primary;
+  background: $clr-neutral-100;
   transform: translate(0.7rem, -0.7rem);
 }
 
@@ -29,7 +29,7 @@
 
   &:hover {
     border-radius: 1000px;
-    background: $color-grey-light;
+    background: $clr-neutral-100;
   }
 }
 .card-menu__items {
@@ -37,7 +37,7 @@
   top: 2rem;
   right: 60%;
 
-  background-color: $color-grey-lightest;
+  background-color: $clr-neutral-100;
   border: $border-default;
 }
 .card-menu__item {
@@ -53,46 +53,44 @@
     border-bottom: $border-default;
   }
   &:hover {
-    background-color: $color-grey-lighter;
+    background-color: $clr-neutral-300;
   }
 }
 
 .card-background {
   width: 95%;
   display: inline-block;
-  background: $color-blue-dark;
+  background: $clr-primary-500;
 }
 
 .card-content {
   display: block;
-  color: $color-grey-darkest;
+  color: $clr-text;
   margin-top: 1rem;
   margin-bottom: 2rem;
   word-wrap: break-word;
 
   em {
-    color: $color-grey;
+    color: $clr-neutral-500;
     margin-left: 0.75rem;
   }
 }
 
 .card-title {
-  color: $color-grey-dark;
-  font-size: 1.6rem;
+  color: $clr-text;
 
   display: flex;
   align-items: center;
 }
 
 .card-meta {
-  color: $color-grey-dark;
-  font-size: 1.4rem;
+  color: $clr-text;
 }
 
 .card-actions {
   display: flex;
   justify-content: flex-end;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .card-image {

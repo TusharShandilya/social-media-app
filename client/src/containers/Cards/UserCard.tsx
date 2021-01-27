@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { FollowButton, ShareButton } from "../../components/Button";
 import { Card, CardImage, CardActions, CardTitle } from "../../components/Card";
-import { Heading, Text } from "../../components/Typography";
+import { Heading, Paragraph } from "../../components/Typography";
 import { User } from "../../config/types";
 import { Box } from "../../components/Layout";
 
@@ -32,15 +32,15 @@ const UserCard: React.FC<Props> = ({ user }) => {
       </CardTitle>
 
       <CardActions>
-        <Text>
+        <Paragraph>
           <ShareButton share={`http://localhost:3000/user/${user.username}`} />
-        </Text>
+        </Paragraph>
         <FollowButton followUser={user} />
-        {/* <Text>
+        {/* <Paragraph>
           <CustomButton>
             <FontAwesomeIcon icon={faPen} /> Edit
           </CustomButton>
-        </Text> */}
+        </Paragraph> */}
       </CardActions>
     </Card>
   );

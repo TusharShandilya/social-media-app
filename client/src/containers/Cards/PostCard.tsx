@@ -26,7 +26,7 @@ import {
   CardImage,
 } from "../../components/Card";
 import { PostForm } from "../Forms";
-import { Heading, Text } from "../../components/Typography";
+import { Heading, Paragraph } from "../../components/Typography";
 
 import UserDefaultImage from "../../assets/img/user-default.jpg";
 import { Box } from "../../components/Layout";
@@ -104,9 +104,9 @@ const PostCard: React.FC<Props> = ({
         onCancel={toggleModal}
         onConfirm={deletePost}
       >
-        <Text className="text-centered" size="lg">
+        <Paragraph className="text-centered" size="lg">
           Do you want to delete this post?
-        </Text>
+        </Paragraph>
       </Modal>
       <Card>
         {signedInUserPost && <CardMenu menuItems={cardMenuItems} />}
@@ -119,11 +119,11 @@ const PostCard: React.FC<Props> = ({
             <Box vertical>
               <Heading size="xs">
                 {firstName} {lastName}
-                <Text size="xl" className="link">
+                <Paragraph size="lg" className="link">
                   &nbsp;@{username}
-                </Text>
+                </Paragraph>
               </Heading>
-              <CardMeta>{getDate(createdAt)}</CardMeta>
+              <Paragraph>{getDate(createdAt)}</Paragraph>
             </Box>
           </CardTitle>
         </Link>
@@ -138,14 +138,14 @@ const PostCard: React.FC<Props> = ({
             />
           ) : (
             <Link to={`/post/${username}/${id}`}>
-              <Text size="xl">
+              <Paragraph size="xl">
                 {body}
                 {edited && (
-                  <Text>
+                  <Paragraph>
                     <em>(edited)</em>
-                  </Text>
+                  </Paragraph>
                 )}
-              </Text>
+              </Paragraph>
             </Link>
           )}
         </CardContent>

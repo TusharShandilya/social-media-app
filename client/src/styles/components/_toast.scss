@@ -1,6 +1,6 @@
 .toast {
   color: #000;
-  background: $color-grey-lightest;
+  background: $clr-neutral-100;
   border: $border-default;
   transform: translate(0.5rem, -0.5rem);
   font-size: 2rem;
@@ -9,7 +9,7 @@
   &__background {
     display: none;
 
-    background: $color-blue-dark;
+    background: $clr-primary-500;
     position: fixed;
     top: 3rem;
     left: 50%;
@@ -36,13 +36,13 @@
   }
 
   &--info {
-    border: 3px solid $color-blue-light;
-    color: $color-blue-light;
+    border: 3px solid $clr-info-200;
+    color: $clr-info-200;
   }
 
   &--danger {
-    border: 3px solid $color-red;
-    color: $color-red;
+    border: 3px solid $clr-danger-200;
+    color: $clr-danger-200;
   }
 
   &--warning {
