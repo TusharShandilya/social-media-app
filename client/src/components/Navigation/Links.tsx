@@ -53,7 +53,7 @@ const Links: React.FC<Props> = ({ styleClass }) => {
             </NavLink>
           </li>
           <li>
-            <CustomButton color="danger" onClick={logout}>
+            <CustomButton variant="danger" onClick={logout}>
               <FontAwesomeIcon icon={faSignOutAlt} /> Logout
             </CustomButton>
           </li>

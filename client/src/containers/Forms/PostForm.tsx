@@ -112,15 +112,16 @@ const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
       </div>
       <div className="form-control">
         {isEdit && (
-          <CustomButton styleClass="full-width text-4" onClick={callback}>
+          <CustomButton
+            noBackground
+            variant="secondary"
+            styleClass="full-width text-4"
+            onClick={callback}
+          >
             <FontAwesomeIcon icon={faBan} /> Cancel
           </CustomButton>
         )}
-        <CustomButton
-          color="filled"
-          styleClass="full-width text-4"
-          type="submit"
-        >
+        <CustomButton styleClass="full-width text-4" type="submit">
           <FontAwesomeIcon icon={isEdit ? faEdit : faPencilAlt} />{" "}
           {isEdit ? "Edit" : "Post!"}
         </CustomButton>

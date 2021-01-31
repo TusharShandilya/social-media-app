@@ -1,6 +1,6 @@
 // VARIABLES
 
-// fonts
+// FONTS
 $ff-primary: "Roboto", sans-serif;
 $ff-secondary: "Montserrat", sans-serif;
 
@@ -14,8 +14,7 @@ $fs-paragraph: 1.6rem;
 $fs-subtext: 1.4rem;
 $fs-caption: 1.2rem;
 
-// colors
-
+// COLORS
 $clr-primary-100: #c8c2ff;
 $clr-primary-200: #8075ff;
 $clr-primary-300: #6320ee;
@@ -48,11 +47,19 @@ $clr-info-300: #0772bf;
 $clr-text: #272727;
 $clr-text-inverted: #ffffff;
 
-// Others
-
+// BORDER
 $border-default: 3px solid $clr-primary-500;
 
-//------------------------------------
+$outline-default: 3px solid $clr-primary-200;
+
+// REM sizes
+$rem-size-xs: 0.75rem;
+$rem-size-sm: 1rem;
+$rem-size-md: 1.5rem;
+$rem-size-lg: 2rem;
+$rem-size-xl: 3.5rem;
+
+//----------------------------------------------------
 // MIXINS
 
 @mixin respond($breakpoint) {
@@ -61,9 +68,9 @@ $border-default: 3px solid $clr-primary-500;
         * mobile: 0 - 400px
         * tablet: 401 - 768px
         * laptop: 769 - 900px
-        * desktop: 901px+
-        
-    */
+        * desktop: 901px+      
+  */
+
   @if $breakpoint == mobile {
     @media screen and (max-width: 25em) {
       @content;

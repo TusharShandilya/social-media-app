@@ -6,10 +6,9 @@ import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { GET_ALL_POSTS } from "../../graphql";
 import { PostType } from "../../config/types";
-import { getDate } from "../../utils/date";
 import { AuthContext } from "../../AuthUser.context";
+import { getDate } from "../../utils/date";
 import { useModal } from "../../hooks";
-
 import { Modal } from "../../components/Modal/Modal";
 import {
   CommentButton,
@@ -19,7 +18,6 @@ import {
 import {
   Card,
   CardTitle,
-  CardMeta,
   CardContent,
   CardActions,
   CardMenu,
@@ -27,9 +25,9 @@ import {
 } from "../../components/Card";
 import { PostForm } from "../Forms";
 import { Heading, Paragraph } from "../../components/Typography";
+import { Box } from "../../components/Layout";
 
 import UserDefaultImage from "../../assets/img/user-default.jpg";
-import { Box } from "../../components/Layout";
 
 interface Props {
   post: PostType;

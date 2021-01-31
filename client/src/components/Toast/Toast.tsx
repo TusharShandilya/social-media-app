@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  faCheckCircle,
   faExclamationCircle,
   faExclamationTriangle,
   faInfoCircle,
@@ -10,18 +11,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface Props {
   active: boolean;
   message: string;
-  type?: "info" | "warning" | "danger" | undefined;
+  variant?: "info" | "warning" | "danger" | "success";
 }
 
-const Toast: React.FC<Props> = ({ type, active, message }) => {
+const Toast: React.FC<Props> = ({ variant, active, message }) => {
   const toastIcon = () => {
-    switch (type) {
+    switch (variant) {
       case "info":
         return <FontAwesomeIcon icon={faInfoCircle} />;
       case "warning":
         return <FontAwesomeIcon icon={faExclamationCircle} />;
       case "danger":
         return <FontAwesomeIcon icon={faExclamationTriangle} />;
+      case "success":
+        return <FontAwesomeIcon icon={faCheckCircle} />;
       default:
         return <FontAwesomeIcon icon={faQuestion} />;
     }
@@ -29,7 +32,7 @@ const Toast: React.FC<Props> = ({ type, active, message }) => {
 
   return (
     <div className={`toast__background ${active ? "toast--active" : ""}`}>
-      <div className={`toast toast--${type}`}>
+      <div className={`toast toast--${variant}`}>
         <div className="toast__icon">{toastIcon()}</div>
         <div className="toast__message">{message}</div>
       </div>

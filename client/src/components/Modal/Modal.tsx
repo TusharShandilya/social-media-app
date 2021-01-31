@@ -37,6 +37,7 @@ export const Modal: React.FC<Props> = ({
         <div className="modal-controls">
           {onCancel && (
             <CustomButton
+              variant="secondary"
               styleClass="modal-control"
               noBackground
               onClick={onCancel}
@@ -47,7 +48,6 @@ export const Modal: React.FC<Props> = ({
             </CustomButton>
           )}
           <CustomButton
-            color="primary"
             styleClass="modal-control"
             noBackground
             onClick={handleConfirm}

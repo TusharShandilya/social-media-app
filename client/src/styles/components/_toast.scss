@@ -36,8 +36,8 @@
   }
 
   &--info {
-    border: 3px solid $clr-info-200;
-    color: $clr-info-200;
+    border: 3px solid $clr-info-300;
+    color: $clr-info-300;
   }
 
   &--danger {
@@ -46,5 +46,12 @@
   }
 
   &--warning {
+    border: 3px solid $clr-warning-200;
+    color: $clr-warning-200;
+  }
+
+  &--success {
+    border: 3px solid $clr-success-200;
+    color: $clr-success-200;
   }
 }

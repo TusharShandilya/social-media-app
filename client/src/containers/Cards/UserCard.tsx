@@ -1,12 +1,10 @@
 import React from "react";
-import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { FollowButton, ShareButton } from "../../components/Button";
 import { Card, CardImage, CardActions, CardTitle } from "../../components/Card";
 import { Heading, Paragraph } from "../../components/Typography";
-import { User } from "../../config/types";
 import { Box } from "../../components/Layout";
+import { User } from "../../config/types";
 
 import UserDefaultImage from "../../assets/img/user-default.jpg";
 
@@ -24,7 +22,7 @@ const UserCard: React.FC<Props> = ({ user }) => {
           alt={`${user.firstName} ${user.lastName} image`}
         />
         <Box vertical>
-          <Heading size="xl">
+          <Heading size="md">
             {user.firstName} {user.lastName}
             <span className="link is-lowercase"> @{user.username}</span>
           </Heading>

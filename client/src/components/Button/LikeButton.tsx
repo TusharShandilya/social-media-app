@@ -46,14 +46,14 @@ const LikeButton: React.FC<Props> = ({
   return loggedInUser ? (
     <CustomButton
       styleClass="margin-r-md"
-      color={isLiked ? "primary" : "basic"}
+      variant={isLiked ? "info" : "secondary"}
       onClick={() => likePost()}
     >
       <FontAwesomeIcon icon={faThumbsUp} /> {likeCount}
     </CustomButton>
   ) : (
     <Link to="/login">
-      <CustomButton styleClass="margin-r-md">
+      <CustomButton variant="secondary" styleClass="margin-r-md">
         <FontAwesomeIcon icon={faThumbsUp} /> {likeCount}
       </CustomButton>
     </Link>

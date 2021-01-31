@@ -17,8 +17,9 @@ const ShareButton: React.FC<Props> = ({ share }) => {
   } = useToast();
   return (
     <React.Fragment>
-      <Toast active={active} message={message} type={type} />
+      <Toast active={active} message={message} variant={type} />
       <CustomButton
+        variant="secondary"
         styleClass="margin-r-md"
         onClick={() => {
           handleCopyTextToClipboard(share);

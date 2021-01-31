@@ -7,6 +7,7 @@ import { CustomButton } from ".";
 import { Paragraph } from "../Typography";
 import { AuthContext } from "../../AuthUser.context";
 import { User } from "../../config/types";
+import { Link } from "react-router-dom";
 
 interface Props {
   followUser: User;
@@ -24,13 +25,26 @@ const FollowButton: React.FC<Props> = ({ followUser }) => {
     }
   });
 
-  return (
-    <Paragraph>
-      <CustomButton color={isFollowing ? "primary" : undefined}>
-        <FontAwesomeIcon icon={faPlus} /> {isFollowing ? "Unfollow" : "Follow"}
-      </CustomButton>
-    </Paragraph>
-  );
+  if (user) {
+    return (
+      <Paragraph>
+        <CustomButton variant={isFollowing ? "info" : "secondary"}>
+          <FontAwesomeIcon icon={faPlus} />{" "}
+          {isFollowing ? "Unfollow" : "Follow"}
+        </CustomButton>
+      </Paragraph>
+    );
+  } else {
+    return (
+      <Link to="/login">
+        <Paragraph>
+          <CustomButton variant="secondary">
+            <FontAwesomeIcon icon={faPlus} /> Follow
+          </CustomButton>
+        </Paragraph>
+      </Link>
+    );
+  }
 };
 
 const FOLLOW_USER = gql`

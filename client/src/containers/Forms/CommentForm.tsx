@@ -95,7 +95,7 @@ const CommentForm: React.FC<Props> = ({
 
   return (
     <form
-      className="form comment-form full-width margin-y-md no-margin-x no-padding-t"
+      className="form comment-form full-width  no-margin-x no-padding-t"
       onSubmit={handleSubmit}
     >
       <Heading size="sm">
@@ -116,11 +116,16 @@ const CommentForm: React.FC<Props> = ({
       </div>
       <div className="form-control margin-t-md">
         {isEdit && (
-          <CustomButton styleClass="full-width" onClick={callback}>
+          <CustomButton
+            variant="secondary"
+            styleClass="full-width"
+            onClick={callback}
+            noBackground
+          >
             <FontAwesomeIcon icon={faBan} /> Cancel
           </CustomButton>
         )}
-        <CustomButton color="filled" styleClass="full-width" type="submit">
+        <CustomButton styleClass="full-width" type="submit">
           <FontAwesomeIcon icon={isEdit ? faCommentDots : faComment} />{" "}
           {isEdit ? "Edit Comment" : "Comment"}
         </CustomButton>

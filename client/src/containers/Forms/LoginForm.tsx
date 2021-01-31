@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <form className="form login-form " onSubmit={onSubmit}>
-      <Heading size="xl" className="text-centered">
+      <Heading size="lg" className="text-centered is-uppercase">
         LOGIN
       </Heading>
 
@@ -79,7 +79,7 @@ const LoginForm: React.FC = () => {
         />
       </div>
       <div className="form-control margin-y-lg">
-        <CustomButton type="submit" styleClass="full-width" color="success">
+        <CustomButton type="submit" styleClass="full-width" variant="success">
           <FontAwesomeIcon icon={faSignInAlt} /> Login
         </CustomButton>
       </div>

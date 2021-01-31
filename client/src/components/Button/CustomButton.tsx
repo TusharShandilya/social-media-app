@@ -5,13 +5,13 @@ interface Props {
   ariaLabel?: string;
   type?: "submit";
   noBackground?: boolean;
-  color?: "success" | "danger" | "primary" | "basic" | "filled";
+  variant?: "primary" | "secondary" | "info" | "danger" | "warning" | "success";
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const CustomButton: React.FC<Props> = ({
   ariaLabel,
-  color,
+  variant = "primary",
   type,
   noBackground,
   onClick,
@@ -29,7 +29,7 @@ const CustomButton: React.FC<Props> = ({
         tabIndex={0}
         onClick={onClick}
         type={type}
-        className={`btn btn-${color ? color : "basic"}`}
+        className={`btn btn-${variant}`}
       >
         {children}
       </button>

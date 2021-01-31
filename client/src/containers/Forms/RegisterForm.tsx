@@ -60,7 +60,7 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form className="form" onSubmit={onSubmit}>
-      <Heading size="xl" className="text-centered">
+      <Heading size="lg" className="text-centered is-uppercase">
         REGISTER
       </Heading>
       <div className="form-control">
@@ -135,7 +135,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className="form-control margin-y-lg">
-        <CustomButton type="submit" styleClass="full-width" color="success">
+        <CustomButton type="submit" styleClass="full-width" variant="success">
           <FontAwesomeIcon icon={faUserPlus} /> Register
         </CustomButton>
       </div>

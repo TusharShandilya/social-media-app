@@ -26,7 +26,9 @@ const SingleUser: React.FC<Props> = (props) => {
     );
   } else if (data) {
     return (
-      <Layout title={`${data.getUser.firstName} ${data.getUser.lastName}`}>
+      <Layout
+        title={`${data.getUser.firstName.toUpperCase()} ${data.getUser.lastName.toUpperCase()}`}
+      >
         <Spacer />
         <UserCard user={data.getUser} />
         <Spacer size="xs" />

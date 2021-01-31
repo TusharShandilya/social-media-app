@@ -34,7 +34,6 @@
 
 .no-margin {
   margin: 0;
-
   &-t {
     margin-top: 0;
   }
@@ -49,21 +48,22 @@
     margin-right: 0;
   }
 }
+
 .no-padding {
-  margin: 0;
+  padding: 0;
 
   &-t {
-    margin-top: 0;
+    padding-top: 0;
   }
   &-l {
-    margin-left: 0;
+    padding-left: 0;
   }
   &-r {
-    margin-right: 0;
+    padding-right: 0;
   }
   &-x {
-    margin-left: 0;
-    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
