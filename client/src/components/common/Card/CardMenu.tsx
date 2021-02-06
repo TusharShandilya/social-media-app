@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useOutsideAlerter } from "../../hooks";
+import { useOutsideAlerter } from "../../../hooks";
 
 interface Props {
   menuItems: { value: JSX.Element; callback: () => void }[];

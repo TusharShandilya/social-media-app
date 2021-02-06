@@ -7,9 +7,10 @@ import { useHistory } from "react-router";
 import useForm from "../../hooks/useForm";
 import { GET_ALL_POSTS } from "../../graphql";
 
-import { Heading } from "../../components/Typography";
-import { CustomInputText } from "../../components/Inputs";
-import { CustomButton } from "../../components/Button";
+import { Heading } from "../common/Typography";
+import { CustomInputText } from "../common/Inputs";
+import { CustomButton } from "../common/Button";
+import { Card } from "../common/Card";
 
 interface NewPostFormValues {
   body: string;
@@ -94,38 +95,40 @@ const PostForm: React.FC<Props> = ({ isEdit, body, postId, callback }) => {
       className="form post-form full-width margin-y-md"
       onSubmit={handleSubmit}
     >
-      <Heading>{isEdit ? "Edit your post" : "Post something!"}</Heading>
+      <Card>
+        <Heading>{isEdit ? "Edit your post" : "Post something!"}</Heading>
 
-      <div className="form-control">
-        <CustomInputText
-          id="new-post"
-          label={`${isEdit ? "Edit post..." : "What's on your mind?"} (${
-            values.body.length
-          }/${bodyLengthLimit})`}
-          name="body"
-          type="textarea"
-          value={values.body}
-          handleChange={onChange}
-          required
-          error={error}
-        />
-      </div>
-      <div className="form-control">
-        {isEdit && (
-          <CustomButton
-            noBackground
-            variant="secondary"
-            styleClass="full-width text-4"
-            onClick={callback}
-          >
-            <FontAwesomeIcon icon={faBan} /> Cancel
+        <div className="form-control">
+          <CustomInputText
+            id="new-post"
+            label={`${isEdit ? "Edit post..." : "What's on your mind?"} (${
+              values.body.length
+            }/${bodyLengthLimit})`}
+            name="body"
+            type="textarea"
+            value={values.body}
+            handleChange={onChange}
+            required
+            error={error}
+          />
+        </div>
+        <div className="form-control">
+          {isEdit && (
+            <CustomButton
+              noBackground
+              variant="secondary"
+              styleClass="full-width text-4"
+              onClick={callback}
+            >
+              <FontAwesomeIcon icon={faBan} /> Cancel
+            </CustomButton>
+          )}
+          <CustomButton styleClass="full-width text-4" type="submit">
+            <FontAwesomeIcon icon={isEdit ? faEdit : faPencilAlt} />{" "}
+            {isEdit ? "Edit" : "Post!"}
           </CustomButton>
-        )}
-        <CustomButton styleClass="full-width text-4" type="submit">
-          <FontAwesomeIcon icon={isEdit ? faEdit : faPencilAlt} />{" "}
-          {isEdit ? "Edit" : "Post!"}
-        </CustomButton>
-      </div>
+        </div>
+      </Card>
     </form>
   );
 };

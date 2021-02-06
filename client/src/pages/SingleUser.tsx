@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
 
-import { PostType } from "../config/types";
+import { PostType } from "../types";
 
-import { Container, Layout } from "../components/Layout";
-import { Heading } from "../components/Typography";
-import { Spacer } from "../components/Helpers";
-import { PostCard, UserCard } from "../containers/Cards";
+import { Container, Layout } from "../components/common/Layout";
+import { Heading } from "../components/common/Typography";
+import { Spacer } from "../components/common/Helpers";
+import { PostCard, UserCard } from "../components/Cards";
 
 interface Props {
   match: { params: { username: string } };
@@ -32,6 +32,9 @@ const SingleUser: React.FC<Props> = (props) => {
         <Spacer />
         <UserCard user={data.getUser} />
         <Spacer size="xs" />
+        <Heading className="title" size="md">
+          Feed
+        </Heading>
 
         <Container scrollable>
           {data.getUser.posts.map((post: PostType) => (

@@ -40,6 +40,10 @@ h6 {
   }
 }
 
+.title {
+  text-shadow: -0.25rem 0.25rem 0 $clr-primary-100;
+}
+
 .paragraph {
   text-transform: none;
   &-xs {
@@ -61,4 +65,20 @@ h6 {
   &-xl {
     font-size: $fs-h4;
   }
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.is-lowercase {
+  text-transform: lowercase;
+}
+
+.is-uppercase {
+  text-transform: uppercase;
 }

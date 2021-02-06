@@ -9,9 +9,9 @@ import {
 
 import useForm from "../../hooks/useForm";
 
-import { Heading } from "../../components/Typography";
-import { CustomButton } from "../../components/Button";
-import { CustomInputText } from "../../components/Inputs";
+import { Heading } from "../common/Typography";
+import { CustomButton } from "../common/Button";
+import { CustomInputText } from "../common/Inputs";
 
 interface Props {
   postId: string;

@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { useQuery } from "@apollo/client";
 
-import { PostType } from "../config/types";
+import { PostType } from "../types";
 import { GET_ALL_POSTS } from "../graphql";
 
-import { Container, Layout } from "../components/Layout";
-import { Heading } from "../components/Typography";
-import { Spacer } from "../components/Helpers";
-import { PostCard } from "../containers/Cards";
+import { Container, Layout } from "../components/common/Layout";
+import { Heading } from "../components/common/Typography";
+import { Spacer } from "../components/common/Helpers";
+import { PostCard } from "../components/Cards";
 
 const Home: React.FC = () => {
   const { loading, data } = useQuery(GET_ALL_POSTS);
@@ -32,7 +32,9 @@ const Home: React.FC = () => {
 
   return (
     <Layout>
-      <Heading size="lg">All posts</Heading>
+      <Heading className="title" size="lg">
+        All posts
+      </Heading>
       {homeComponent}
     </Layout>
   );

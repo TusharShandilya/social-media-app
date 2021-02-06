@@ -5,16 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { GET_ALL_POSTS } from "../../graphql";
-import { PostType } from "../../config/types";
+import { PostType } from "../../types";
 import { AuthContext } from "../../AuthUser.context";
 import { getDate } from "../../utils/date";
 import { useModal } from "../../hooks";
-import { Modal } from "../../components/Modal/Modal";
-import {
-  CommentButton,
-  LikeButton,
-  ShareButton,
-} from "../../components/Button";
+import { Modal } from "../common/Modal/Modal";
+import { CommentButton, LikeButton, ShareButton } from "../common/Button";
 import {
   Card,
   CardTitle,
@@ -22,12 +18,12 @@ import {
   CardActions,
   CardMenu,
   CardImage,
-} from "../../components/Card";
+} from "../common/Card";
 import { PostForm } from "../Forms";
-import { Heading, Paragraph } from "../../components/Typography";
-import { Box } from "../../components/Layout";
+import { Heading, Paragraph } from "../common/Typography";
+import { Box } from "../common/Layout";
 
-import UserDefaultImage from "../../assets/img/user-default.jpg";
+import UserDefaultImage from "../../assets/img/user-default.png";
 
 interface Props {
   post: PostType;

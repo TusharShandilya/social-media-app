@@ -71,18 +71,18 @@ $rem-size-xl: 3.5rem;
         * desktop: 901px+      
   */
 
-  @if $breakpoint == mobile {
-    @media screen and (max-width: 25em) {
+  @if $breakpoint == "laptop" {
+    @media screen and (max-width: 56.25em) {
       @content;
     }
   }
-  @if $breakpoint == tablet {
+  @if $breakpoint == "tablet" {
     @media screen and (max-width: 48em) {
       @content;
     }
   }
-  @if $breakpoint == laptop {
-    @media screen and (max-width: 56.25em) {
+  @if $breakpoint == "mobile" {
+    @media screen and (max-width: 25em) {
       @content;
     }
   }

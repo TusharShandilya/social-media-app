@@ -7,8 +7,8 @@ import "./styles/main.scss";
 import { AuthProvider } from "./AuthUser.context";
 import apolloClient from "./config/ApolloClient";
 
-import Navbar from "./components/Navigation/Navbar";
-import Routes from "./containers/Routes";
+import Navbar from "./components/common/Navigation/Navbar";
+import Routes from "./components/Routes";
 
 function App() {
   return (

@@ -35,8 +35,10 @@
     }
 
     a {
+      color: $clr-primary-500;
+      transition: color 0.2s;
       &:hover {
-        opacity: 0.8;
+        color: $clr-primary-300;
       }
     }
   }
@@ -53,3 +55,14 @@
     }
   }
 }
+
+@include respond("mobile") {
+  .navbar-logo {
+    height: 6rem;
+  }
+  .navbar-links {
+    display: none;
+  }
+}
+
+// 550px

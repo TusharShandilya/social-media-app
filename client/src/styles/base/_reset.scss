@@ -12,6 +12,17 @@ html {
   font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
 }
 
+@include respond("tablet") {
+  html {
+    font-size: 60%;
+  }
+}
+@include respond("mobile") {
+  html {
+    font-size: 50%;
+  }
+}
+
 body {
   box-sizing: border-box;
   background-color: $clr-primary-500;

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { gql } from "@apollo/client";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { CustomButton } from ".";
 import { Paragraph } from "../Typography";
-import { AuthContext } from "../../AuthUser.context";
-import { User } from "../../config/types";
+import { AuthContext } from "../../../AuthUser.context";
+import { User } from "../../../types";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -39,7 +39,7 @@ const FollowButton: React.FC<Props> = ({ followUser }) => {
       <Link to="/login">
         <Paragraph>
           <CustomButton variant="secondary">
-            <FontAwesomeIcon icon={faPlus} /> Follow
+            <FontAwesomeIcon icon={faPlusSquare} /> Follow
           </CustomButton>
         </Paragraph>
       </Link>

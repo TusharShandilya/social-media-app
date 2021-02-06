@@ -14,7 +14,7 @@ interface Props {
 const CommentButton: React.FC<Props> = ({ count, redirect }) => {
   return (
     <Link to={redirect}>
-      <CustomButton variant="secondary">
+      <CustomButton ariaLabel="Comment button" variant="secondary">
         <FontAwesomeIcon icon={faComments} /> {count}
       </CustomButton>
     </Link>

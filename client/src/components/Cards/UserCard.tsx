@@ -1,12 +1,12 @@
 import React from "react";
 
-import { FollowButton, ShareButton } from "../../components/Button";
-import { Card, CardImage, CardActions, CardTitle } from "../../components/Card";
-import { Heading, Paragraph } from "../../components/Typography";
-import { Box } from "../../components/Layout";
-import { User } from "../../config/types";
+import { FollowButton, ShareButton } from "../common/Button";
+import { Card, CardImage, CardActions, CardTitle } from "../common/Card";
+import { Heading, Paragraph } from "../common/Typography";
+import { Box } from "../common/Layout";
+import { User } from "../../types";
 
-import UserDefaultImage from "../../assets/img/user-default.jpg";
+import UserDefaultImage from "../../assets/img/user-default.png";
 
 interface Props {
   user: User;

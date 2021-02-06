@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSize } from "../../config/types";
+import { StyleSize } from "../../../types";
 
 interface Props {
   src: string | undefined;

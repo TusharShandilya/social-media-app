@@ -1,6 +1,6 @@
 import React from "react";
 
-import LogoImage from "../../assets/img/Logo-min.png";
+import LogoImage from "../../../assets/img/Logo-min.png";
 
 interface Props {
   styleClass?: string;

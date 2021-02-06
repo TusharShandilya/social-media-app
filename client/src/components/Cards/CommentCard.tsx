@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthUser.context";
 import { GET_ALL_POSTS } from "../../graphql";
 import { getDate } from "../../utils/date";
-import { Modal } from "../../components/Modal/Modal";
+import { Modal } from "../common/Modal/Modal";
 
 import useModal from "../../hooks/useModal";
 import {
@@ -17,12 +17,12 @@ import {
   CardMenu,
   CardMeta,
   CardTitle,
-} from "../../components/Card";
-import { Heading, Paragraph } from "../../components/Typography";
+} from "../common/Card";
+import { Heading, Paragraph } from "../common/Typography";
 import CommentForm from "../Forms/CommentForm";
-import { Box } from "../../components/Layout";
+import { Box } from "../common/Layout";
 
-import UserDefaultImage from "../../assets/img/user-default.jpg";
+import UserDefaultImage from "../../assets/img/user-default.png";
 
 interface Props {
   comment: {

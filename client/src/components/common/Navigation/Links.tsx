@@ -9,7 +9,7 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { AuthContext } from "../../AuthUser.context";
+import { AuthContext } from "../../../AuthUser.context";
 import { CustomButton } from "../Button";
 
 interface Props {

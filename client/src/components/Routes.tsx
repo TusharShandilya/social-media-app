@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 
 import AuthRoute from "./AuthRoute";
 import {
@@ -13,7 +13,7 @@ import {
 
 const Routes: React.FC = () => {
   return (
-    <React.Fragment>
+    <Switch>
       <Route exact strict path="/" component={Home} />
       <Route exact path="/user/:username" component={SingleUser} />
       <Route exact path="/post/:username/:postId" component={SinglePost} />
@@ -21,10 +21,10 @@ const Routes: React.FC = () => {
       <AuthRoute exact path="/login" component={Login} />
       <AuthRoute exact path="/register" component={Register} />
       {/* No Match path */}
-      <Route path="*">
+      <Route>
         <Redirect to="/" />
       </Route>
-    </React.Fragment>
+    </Switch>
   );
 };
 

@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
 
 import { AuthContext } from "../AuthUser.context";
-import { CommentType } from "../config/types";
+import { CommentType } from "../types";
 
-import { Container, Layout } from "../components/Layout";
-import { Heading } from "../components/Typography";
-import { Spacer } from "../components/Helpers";
-import { CommentForm } from "../containers/Forms";
-import { CommentCard, PostCard } from "../containers/Cards";
+import { Container, Layout } from "../components/common/Layout";
+import { Heading } from "../components/common/Typography";
+import { Spacer } from "../components/common/Helpers";
+import { CommentForm } from "../components/Forms";
+import { CommentCard, PostCard } from "../components/Cards";
 
 interface Props {
   match: { params: { postId: string } };

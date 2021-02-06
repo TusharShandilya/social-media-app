@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-import { LikeType, User } from "../../config/types";
+import { LikeType, User } from "../../../types";
 import { CustomButton } from ".";
 
 interface Props {
@@ -45,15 +45,20 @@ const LikeButton: React.FC<Props> = ({
 
   return loggedInUser ? (
     <CustomButton
+      ariaLabel="Like button"
       styleClass="margin-r-md"
-      variant={isLiked ? "info" : "secondary"}
+      variant={isLiked ? "primary" : "secondary"}
       onClick={() => likePost()}
     >
       <FontAwesomeIcon icon={faThumbsUp} /> {likeCount}
     </CustomButton>
   ) : (
     <Link to="/login">
-      <CustomButton variant="secondary" styleClass="margin-r-md">
+      <CustomButton
+        ariaLabel="Like button"
+        variant="secondary"
+        styleClass="margin-r-md"
+      >
         <FontAwesomeIcon icon={faThumbsUp} /> {likeCount}
       </CustomButton>
     </Link>
