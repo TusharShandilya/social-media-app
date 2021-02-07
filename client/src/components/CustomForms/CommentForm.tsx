@@ -95,12 +95,10 @@ const CommentForm: React.FC<Props> = ({
 
   return (
     <form
-      className="form comment-form full-width  no-margin-x no-padding-t"
+      className="form comment-form no-margin-x no-padding-t"
       onSubmit={handleSubmit}
     >
-      <Heading size="sm">
-        {isEdit ? "Edit your comment" : "Comment on this post"}
-      </Heading>
+      <Heading size="sm">{isEdit ? "Edit comment" : "Comment"}</Heading>
 
       <div className="form-control">
         <CustomInputText
@@ -127,7 +125,7 @@ const CommentForm: React.FC<Props> = ({
         )}
         <CustomButton styleClass="full-width" type="submit">
           <FontAwesomeIcon icon={isEdit ? faCommentDots : faComment} />{" "}
-          {isEdit ? "Edit Comment" : "Comment"}
+          {isEdit ? "Edit" : "Comment"}
         </CustomButton>
       </div>
     </form>

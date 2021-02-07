@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Layout } from "../components/common/Layout";
-import { PostForm } from "../components/Forms";
+import { PostForm } from "../components/CustomForms";
 
 const NewPost: React.FC = () => {
   return (

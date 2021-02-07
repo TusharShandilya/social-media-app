@@ -7,7 +7,7 @@ import { GET_ALL_POSTS } from "../graphql";
 import { Container, Layout } from "../components/common/Layout";
 import { Heading } from "../components/common/Typography";
 import { Spacer } from "../components/common/Helpers";
-import { PostCard } from "../components/Cards";
+import { PostCard } from "../components/CustomCards";
 
 const Home: React.FC = () => {
   const { loading, data } = useQuery(GET_ALL_POSTS);

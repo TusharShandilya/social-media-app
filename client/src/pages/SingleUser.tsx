@@ -6,7 +6,7 @@ import { PostType } from "../types";
 import { Container, Layout } from "../components/common/Layout";
 import { Heading } from "../components/common/Typography";
 import { Spacer } from "../components/common/Helpers";
-import { PostCard, UserCard } from "../components/Cards";
+import { PostCard, UserCard } from "../components/CustomCards";
 
 interface Props {
   match: { params: { username: string } };

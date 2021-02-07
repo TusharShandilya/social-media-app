@@ -22,7 +22,7 @@ const UserCard: React.FC<Props> = ({ user }) => {
           alt={`${user.firstName} ${user.lastName} image`}
         />
         <Box vertical>
-          <Heading size="md">
+          <Heading size="xs">
             {user.firstName} {user.lastName}
             <span className="link is-lowercase"> @{user.username}</span>
           </Heading>

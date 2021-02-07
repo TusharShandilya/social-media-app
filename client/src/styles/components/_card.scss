@@ -96,8 +96,9 @@
 .card-image {
   overflow: hidden;
   border: $border-default;
+
   img {
-    height: auto;
+    height: 100%;
     width: 100%;
   }
 

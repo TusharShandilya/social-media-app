@@ -19,7 +19,7 @@ import {
   CardTitle,
 } from "../common/Card";
 import { Heading, Paragraph } from "../common/Typography";
-import CommentForm from "../Forms/CommentForm";
+import CommentForm from "../CustomForms/CommentForm";
 import { Box } from "../common/Layout";
 
 import UserDefaultImage from "../../assets/img/user-default.png";

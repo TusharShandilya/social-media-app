@@ -56,7 +56,69 @@
   }
 }
 
-@include respond("mobile") {
+.sidebar {
+  display: none;
+  position: fixed;
+  cursor: pointer;
+
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 10;
+
+  font-size: $fs-h4;
+}
+
+.sidebar-icon {
+  display: inline-block;
+
+  width: 8rem;
+  height: 8rem;
+
+  border-radius: 5000px;
+  background: $clr-primary-400;
+  color: $clr-text-inverted;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 500;
+
+  box-shadow: -3px 3px 0 $clr-primary-200;
+}
+
+.sidebar-links {
+  box-shadow: -3px 3px 0 $clr-primary-200;
+  position: absolute;
+  z-index: -1;
+
+  transform-origin: bottom left;
+  transition: all 0.2s ease-out;
+
+  background: $clr-primary-400;
+
+  bottom: $fs-h6;
+  left: $fs-h6;
+  width: 70vw;
+
+  li {
+    padding: 1.5rem;
+    margin-left: $fs-h1;
+
+    a {
+      color: $clr-text-inverted;
+      &.sidebar-links--active {
+        color: $clr-primary-200;
+      }
+    }
+  }
+}
+
+@include respond("tablet") {
+  .sidebar {
+    display: block;
+  }
+
   .navbar-logo {
     height: 6rem;
   }
@@ -65,4 +127,9 @@
   }
 }
 
-// 550px
+@include respond("mobile") {
+  .sidebar {
+    display: block;
+    font-size: $fs-h5;
+  }
+}

@@ -19,7 +19,7 @@ import {
   CardMenu,
   CardImage,
 } from "../common/Card";
-import { PostForm } from "../Forms";
+import { PostForm } from "../CustomForms";
 import { Heading, Paragraph } from "../common/Typography";
 import { Box } from "../common/Layout";
 

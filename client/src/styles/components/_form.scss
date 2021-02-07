@@ -25,3 +25,33 @@
     height: 11rem;
   }
 }
+
+@include respond("tablet") {
+  .form {
+    max-width: 100%;
+  }
+  .login-form {
+  }
+
+  .comment-form {
+    width: 95%;
+  }
+}
+
+@include respond("mobile") {
+  .form {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .login-form {
+    width: 100%;
+  }
+  .comment-form {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 95%;
+  }
+}

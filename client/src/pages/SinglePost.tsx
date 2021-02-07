@@ -7,8 +7,8 @@ import { CommentType } from "../types";
 import { Container, Layout } from "../components/common/Layout";
 import { Heading } from "../components/common/Typography";
 import { Spacer } from "../components/common/Helpers";
-import { CommentForm } from "../components/Forms";
-import { CommentCard, PostCard } from "../components/Cards";
+import { CommentForm } from "../components/CustomForms";
+import { CommentCard, PostCard } from "../components/CustomCards";
 
 interface Props {
   match: { params: { postId: string } };
